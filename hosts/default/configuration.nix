@@ -23,23 +23,9 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "pearl-nix"; # Define your hostname.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.pearl = {
-    isNormalUser = true;
-    description = "Vincent Fortin";
-    extraGroups = [ "networkmanager" "wheel" "openrazer" ];
-    #shell = pkgs.zsh;
-    packages = with pkgs; [];
-  };
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -60,7 +46,7 @@
   services.getty.autologinUser = "pearl";
 
   home-manager = {
-    #also pass inputs to home manager modules
+    # Also pass inputs to home manager modules
     extraSpecialArgs = { inherit inputs; };
     users = {
       "pearl" = import ./home.nix;
@@ -70,6 +56,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Graphics
   hardware.graphics.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
@@ -96,7 +83,7 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
-#  sound.enable = true;
+  # Enable Sound
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -124,11 +111,7 @@
 
     git-credential-oauth
 
-    font-awesome
-    #(pkgs.waybar.overideAttrs (oldAttrs: {
-    #    mesonFlags = old Attrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    #  })
-    #)
+    font-awesome # FIX (doesn't fix waybar for wtv reason)
 
     libnotify
  #   pkgs.emptty
@@ -154,22 +137,5 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
-
-
-
-#  programs.git = {
- #   enable = true;
-  #  userName = "P34R1";
-  #  userEmail = "undeadgamer279@gmail.com";
-    #extraConfig = {
-    #  credential.helper = "oauth";
-    #};
-#  };
+  system.stateVersion = "24.05"; # Don't change for simplicity!
 }
