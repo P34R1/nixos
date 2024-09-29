@@ -92,6 +92,11 @@
         url = "https://dwm.suckless.org/patches/steam/dwm-steam-6.2.diff";
         hash = "sha256-Lvgyv+h1nMdx+Hnw/r1S2Ubd1eh2fmHyQ65cA934odE=";
       })
+
+      (pkgs.fetchpatch {
+        url = "https://dwm.suckless.org/patches/alpha/dwm-alpha-20230401-348f655.diff";
+        hash = "sha256-Hu5f/7OyZoosILFjBwccqpYipm2hyKzLI6fkq+gyZmQ=";
+      })
     ];
   }; 
 
