@@ -1,6 +1,13 @@
 { config, pkgs, inputs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+
+  imports = [
+    # For home-manager
+    inputs.spicetify-nix.homeManagerModules.default
+  ];
+
   programs.git = {
     enable = true;
     userEmail = "undeadgamer279@gmail.com";
@@ -11,9 +18,6 @@
       credential.helper = "oauth";
     };
   };
-
-  home.file.".xinitrc".source = ./xinitrc;
-
 
   programs.spicetify =
    let
@@ -72,6 +76,8 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+
+    ".xinitrc".source = ./xinitrc;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
