@@ -9,9 +9,9 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
-      # spicetify
+
+      # Spicetify
       inputs.spicetify-nix.nixosModules.default
-#      inputs.spicetify-nix.homeManagerModules.default
     ];
 
   # Bootloader.
@@ -78,43 +78,15 @@
     nvidiaSettings = true;
   };
 
+  # DWM
   services.xserver.windowManager.dwm.enable = true;
   services.xserver.enable = true;
   services.xserver.autorun = false;
   services.xserver.displayManager.startx.enable = true;
 
-  #services.xserver.windowManager.dwm.package = pkgs.dwm.override {
-  #  patches = [
-  #    # replace hash with the value from `nix-prefetch-url "https://dwm.suckless.org/patches/path/to/patch.diff" | xargs nix hash to-sri --type sha256`
-  #    (pkgs.fetchpatch {
-  #      url = "https://dwm.suckless.org/patches/fullgaps/dwm-fullgaps-20200508-7b77734.diff";
-  #      hash = "sha256-+b88csCfyR8cnn95rz6enLELLCoHl00gdBhS1Q/mw3o=";
-  #    })
-
-  #    (pkgs.fetchpatch {
-  #      url = "https://dwm.suckless.org/patches/steam/dwm-steam-6.2.diff";
-  #      hash = "sha256-Lvgyv+h1nMdx+Hnw/r1S2Ubd1eh2fmHyQ65cA934odE=";
-  #    })
-
-  #    (pkgs.fetchpatch {
-  #      url = "https://dwm.suckless.org/patches/alpha/dwm-alpha-20230401-348f655.diff";
-  #      hash = "sha256-Hu5f/7OyZoosILFjBwccqpYipm2hyKzLI6fkq+gyZmQ=";
-  #    })
-  #  ];
-  #}; 
-
   services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
     src = /home/pearl/dwm;
   }; 
-
-#  programs.hyprland = {
-#    enable = true;
-#    xwayland.enable = true;
-#  };
-#  environment.sessionVariables.NIXOS_OZONE_NL = "1";
-#  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
-#  xdg.portal.enable = true;
-#  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Enable Sound
   security.rtkit.enable = true;
