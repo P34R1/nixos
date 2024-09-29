@@ -75,22 +75,22 @@
     nvidiaSettings = true;
   };
 
-#  services.xserver.windowManager.dwm.enable = true;
-#  services.xserver.enable = true;
-#  services.xserver.autorun = false;
-#  services.xserver.displayManager.startx.enable = true;
-#  services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
-#    src = /home/pearl/dwm;
-#  }; 
+  services.xserver.windowManager.dwm.enable = true;
+  services.xserver.enable = true;
+  services.xserver.autorun = false;
+  services.xserver.displayManager.startx.enable = true;
+  services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
+    src = /home/pearl/dwm;
+  }; 
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  environment.sessionVariables.NIXOS_OZONE_NL = "1";
-  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+#  programs.hyprland = {
+#    enable = true;
+#    xwayland.enable = true;
+#  };
+#  environment.sessionVariables.NIXOS_OZONE_NL = "1";
+#  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+#  xdg.portal.enable = true;
+#  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Enable Sound
   security.rtkit.enable = true;
@@ -119,6 +119,8 @@
     openrazer-daemon
 
     git-credential-oauth
+
+    dmenu
 
     font-awesome # FIX (doesn't fix waybar for wtv reason)
 
