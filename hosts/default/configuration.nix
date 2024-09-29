@@ -23,6 +23,15 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.pearl = {
+    isNormalUser = true;
+    description = "Vincent Fortin";
+    extraGroups = [ "networkmanager" "wheel" "openrazer" ];
+    #shell = pkgs.zsh;
+    packages = with pkgs; [];
+  };
+
   networking.hostName = "pearl-nix"; # Define your hostname.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

@@ -12,16 +12,6 @@
     };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.pearl = {
-    isNormalUser = true;
-    description = "Vincent Fortin";
-    extraGroups = [ "networkmanager" "wheel" "openrazer" ];
-    #shell = pkgs.zsh;
-    packages = with pkgs; [];
-  };
-
-
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "pearl";
