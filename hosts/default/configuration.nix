@@ -9,6 +9,9 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
+      # spicetify
+      inputs.spicetify-nix.nixosModules.default
+      inputs.spicetify-nix.homeManagerModules.default
     ];
 
   # Bootloader.
@@ -152,6 +155,7 @@
     libnotify
  #   pkgs.emptty
  #   pkgs.lemurs
+    spotify
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
