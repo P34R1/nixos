@@ -87,7 +87,7 @@
         url = "https://dwm.suckless.org/patches/fullgaps/dwm-fullgaps-20200508-7b77734.diff";
         hash = "sha256-+b88csCfyR8cnn95rz6enLELLCoHl00gdBhS1Q/mw3o=";
       })
-      # replace hash with the value from `nix-prefetch-url "https://dwm.suckless.org/patches/path/to/patch.diff" | xargs nix hash to-sri --type sha256`
+
       (pkgs.fetchpatch {
         url = "https://dwm.suckless.org/patches/steam/dwm-steam-6.2.diff";
         hash = "sha256-Lvgyv+h1nMdx+Hnw/r1S2Ubd1eh2fmHyQ65cA934odE=";
