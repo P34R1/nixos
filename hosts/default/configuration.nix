@@ -132,18 +132,22 @@
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     git  
     wget
-    swww
-    rofi-wayland
+
+    lf
+    ueberzugpp
+    alacritty
+#    swww
+#    rofi-wayland
     librewolf
-    pkgs.kitty
-    pkgs.waybar
+#    pkgs.kitty
+#    pkgs.waybar
     openrazer-daemon
     feh
     git-credential-oauth
 
     dmenu
 
-    font-awesome # FIX (doesn't fix waybar for wtv reason)
+#    font-awesome # FIX (doesn't fix waybar for wtv reason)
 
     libnotify
  #   pkgs.emptty
