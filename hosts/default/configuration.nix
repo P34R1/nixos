@@ -138,7 +138,7 @@
     pkgs.kitty
     pkgs.waybar
     openrazer-daemon
-
+    feh
     git-credential-oauth
 
     dmenu
