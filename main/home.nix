@@ -65,7 +65,8 @@
   # plain files is through 'home.file'.
   home.file = {
     ".xinitrc".source = ../dotfiles/xinitrc;
-    ".config/lfrc".source = ../dotfiles/.config/lfrc;
+    #".config/lf/lfrc".source = ../dotfiles/lf/lfrc;
+    ".config/lf/".source = ../dotfiles/lf;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
