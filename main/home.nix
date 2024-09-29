@@ -64,7 +64,7 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".xinitrc".source = ./xinitrc;
+    ".xinitrc".source = ../dotfiles/xinitrc;
     ".config/lfrc".source = ../dotfiles/.config/lfrc;
 
     # # You can also set the file content immediately.
