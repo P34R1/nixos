@@ -4,6 +4,17 @@
 
 { config, pkgs, inputs, ... }:
 
+let
+  dwmblocksPackage = pkgs.dwmblocks.overrideAttrs (old: {
+    src = /home/pearl/dwmblocks; # Path to your local dwmblocks source
+    nativeBuildInputs = with pkgs; [
+      xorg.libX11.dev
+      xorg.libXft
+      imlib2
+      xorg.libXinerama
+    ];
+  });
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -118,6 +129,18 @@
   services.xserver.autorun = false;
   services.xserver.displayManager.startx.enable = true;
 
+  services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs (old: {
+        src = /home/pearl/dwm; # Local source
+        nativeBuildInputs = with pkgs; [
+          xorg.libX11.dev
+          xorg.libXft
+          imlib2
+          xorg.libXinerama
+        ];
+      });
+
+  # dwmblocks added at the bottom
+
   # Enable Sound
   security.rtkit.enable = true;
   services.pipewire = {
@@ -147,13 +170,17 @@
     git-credential-oauth
 
     dmenu
+    dwmblocksPackage
 
     feh
     libnotify
     dunst
+
+  
  #   pkgs.emptty
  #   pkgs.lemurs
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions

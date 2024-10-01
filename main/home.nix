@@ -1,8 +1,5 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
-let
-  dwmPackages = import ./dwm.nix { inherit pkgs; };
-in
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -46,7 +43,6 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    dwmPackages
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
