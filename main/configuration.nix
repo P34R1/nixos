@@ -118,10 +118,6 @@
   services.xserver.autorun = false;
   services.xserver.displayManager.startx.enable = true;
 
-  services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs {
-    src = /home/pearl/dwm;
-  }; 
-
   # Enable Sound
   security.rtkit.enable = true;
   services.pipewire = {
