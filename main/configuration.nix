@@ -145,9 +145,6 @@
     openrazer-daemon
     git-credential-oauth
 
-    dmenu
-    config.slstatusPackage
-
     feh
     libnotify
     dunst

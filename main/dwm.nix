@@ -7,6 +7,11 @@ let
     imlib2
     xorg.libXinerama
   ];
+
+  slstatusPackage = pkgs.dwmblocks.overrideAttrs (old: {
+    src = /home/pearl/slstatus;
+    nativeBuildInputs = buildInputs;
+  });
 in
 {
   services.xserver = {
@@ -22,8 +27,6 @@ in
     };
   };
 
-  slstatusPackage = pkgs.dwmblocks.overrideAttrs (old: {
-    src = /home/pearl/slstatus; # Path to your local dwmblocks source
-    nativeBuildInputs = buildInputs;
-  });
+
+  environment.systemPackages = [ slstatusPackage, dmenu ];
 }
