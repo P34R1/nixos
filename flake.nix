@@ -13,6 +13,11 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -20,7 +25,8 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./main/configuration.nix
-        inputs.home-manager.nixosModules.default        
+        inputs.home-manager.nixosModules.default
+        inputs.nix-flatpak.nixosModules.nix-flatpak        
       ];
     };
   };

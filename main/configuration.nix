@@ -11,7 +11,9 @@
 
       # dwm
       ./dwm.nix
-      ./dorion.nix
+
+      # Flatpak
+      ./flatpak.nix
 
       # Home-Manager
       inputs.home-manager.nixosModules.default
@@ -149,10 +151,6 @@
     feh
     libnotify
     dunst
-
-    picom  
-
-
  #   pkgs.emptty
  #   pkgs.lemurs
   ];

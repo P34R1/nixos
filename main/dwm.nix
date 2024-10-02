@@ -9,7 +9,7 @@ let
   ];
 
   slstatusPackage = pkgs.dwmblocks.overrideAttrs (old: {
-    src = /home/pearl/slstatus;
+    src = /home/pearl/repos/slstatus;
     nativeBuildInputs = buildInputs;
   });
 in
@@ -21,12 +21,16 @@ in
     windowManager.dwm = {
       enable = true;
       package = pkgs.dwm.overrideAttrs (old: {
-        src = /home/pearl/dwm;
+        src = /home/pearl/repos/dwm;
         nativeBuildInputs = buildInputs;
       });
     };
   };
 
 
-  environment.systemPackages = [ slstatusPackage pkgs.dmenu ];
+  environment.systemPackages = [
+    slstatusPackage
+    pkgs.dmenu
+    pkgs.picom
+  ];
 }
