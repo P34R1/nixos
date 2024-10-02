@@ -4,21 +4,15 @@
 
 { config, pkgs, inputs, ... }:
 
-let
-  slstatusPackage = pkgs.dwmblocks.overrideAttrs (old: {
-    src = /home/pearl/slstatus; # Path to your local dwmblocks source
-    nativeBuildInputs = with pkgs; [
-      xorg.libX11.dev
-      xorg.libXft
-      imlib2
-      xorg.libXinerama
-    ];
-  });
-in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      # dwm
+      ./dwm.nix
+
+      # Home-Manager
       inputs.home-manager.nixosModules.default
 
       # Spicetify
@@ -123,24 +117,6 @@ in
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # DWM
-  services.xserver.windowManager.dwm.enable = true;
-  services.xserver.enable = true;
-  services.xserver.autorun = false;
-  services.xserver.displayManager.startx.enable = true;
-
-  services.xserver.windowManager.dwm.package = pkgs.dwm.overrideAttrs (old: {
-        src = /home/pearl/dwm; # Local source
-        nativeBuildInputs = with pkgs; [
-          xorg.libX11.dev
-          xorg.libXft
-          imlib2
-          xorg.libXinerama
-        ];
-      });
-
-  # slstatus added at the bottom
-
   # Enable Sound
   security.rtkit.enable = true;
   services.pipewire = {
@@ -170,7 +146,7 @@ in
     git-credential-oauth
 
     dmenu
-    slstatusPackage
+    config.slstatusPackage
 
     feh
     libnotify
