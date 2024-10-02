@@ -5,8 +5,8 @@
 { config, pkgs, inputs, ... }:
 
 let
-  dwmblocksPackage = pkgs.dwmblocks.overrideAttrs (old: {
-    src = /home/pearl/dwmblocks; # Path to your local dwmblocks source
+  slstatusPackage = pkgs.dwmblocks.overrideAttrs (old: {
+    src = /home/pearl/slstatus; # Path to your local dwmblocks source
     nativeBuildInputs = with pkgs; [
       xorg.libX11.dev
       xorg.libXft
@@ -139,7 +139,7 @@ in
         ];
       });
 
-  # dwmblocks added at the bottom
+  # slstatus added at the bottom
 
   # Enable Sound
   security.rtkit.enable = true;
@@ -170,7 +170,7 @@ in
     git-credential-oauth
 
     dmenu
-    dwmblocksPackage
+    slstatusPackage
 
     feh
     libnotify
