@@ -10,8 +10,8 @@
 
 
   services.flatpak.packages = [
-    # GoofCord
-    "io.github.milkshiift.GoofCord"
+    # Dissent
+    "so.libdb.dissent"
 
     # OBS
     "com.obsproject.Studio"
