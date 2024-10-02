@@ -11,6 +11,7 @@
 
       # dwm
       ./dwm.nix
+      ./dorion.nix
 
       # Home-Manager
       inputs.home-manager.nixosModules.default
@@ -150,6 +151,8 @@
     dunst
 
     picom  
+
+
  #   pkgs.emptty
  #   pkgs.lemurs
   ];
