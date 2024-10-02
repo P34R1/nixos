@@ -17,9 +17,6 @@
 
       # Home-Manager
       inputs.home-manager.nixosModules.default
-
-      # Spicetify
-      inputs.spicetify-nix.nixosModules.default
     ];
 
   # Bootloader.
