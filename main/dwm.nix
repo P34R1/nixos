@@ -28,5 +28,5 @@ in
   };
 
 
-  environment.systemPackages = [ slstatusPackage, dmenu ];
+  environment.systemPackages = [ slstatusPackage dmenu ];
 }
