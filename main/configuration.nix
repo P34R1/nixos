@@ -176,7 +176,7 @@ in
     libnotify
     dunst
 
-  
+    picom  
  #   pkgs.emptty
  #   pkgs.lemurs
   ];
