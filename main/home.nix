@@ -74,6 +74,8 @@
       recursive = true;
     };
 
+    "~/.config/tofi/config".source = ../dotfiles/tofi;
+
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
