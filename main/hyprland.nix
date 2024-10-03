@@ -2,6 +2,8 @@
 
 {
   programs.hyprland.enable = true; # enable Hyprland
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
 
   environment.systemPackages = with pkgs; [
     hyprpaper
