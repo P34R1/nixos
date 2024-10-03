@@ -41,7 +41,7 @@
   users.users.pearl = {
     isNormalUser = true;
     description = "Vincent Fortin";
-    extraGroups = [ "networkmanager" "wheel" "openrazer" ];
+    extraGroups = [ "networkmanager" "wheel" "openrazer" "audio" ];
     #shell = pkgs.zsh;
     packages = with pkgs; [];
   };
