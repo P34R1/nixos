@@ -69,10 +69,10 @@
     ".config/lf/".source = ../dotfiles/lf;
     ".config/lf/".recursive = true;
 
-    ".config/hypr" = {
-      source = ../dotfiles/hypr;
-      recursive = true;
-    };
+    #".config/hypr" = {
+    #  source = ../dotfiles/hypr;
+    #  recursive = true;
+    #};
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
