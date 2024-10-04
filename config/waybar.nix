@@ -9,7 +9,7 @@
       position = "top";
       height = 30;
 
-      modules-left = [ "hyprland/workspaces" "wlr/taskbar" ];
+      modules-left = [ "hyprland/workspaces" ];
       modules-center = [ "hyprland/window" ];
       modules-right = [ "mpd" "clock" ];
 
