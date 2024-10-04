@@ -92,6 +92,10 @@
     openrazer-daemon
     git-credential-oauth
 
+    font-awesome
+    qt5-wayland
+    qt6-wayland
+
     feh
     libnotify
     dunst
