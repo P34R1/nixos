@@ -5,6 +5,7 @@
     # Spicetify
     inputs.spicetify-nix.homeManagerModules.default
 
+    ../config/hyprland.nix
     ../config/waybar.nix
     ../config/git.nix
     ../config/spicetify.nix

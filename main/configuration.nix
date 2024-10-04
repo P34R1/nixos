@@ -13,7 +13,7 @@
 #      ./dwm.nix
 
       # Hypr
-      ./hyprland.nix
+#      ./hyprland.nix
 
       # Desktop
       ./desktop.nix
@@ -97,6 +97,9 @@
     feh
     libnotify
     dunst
+
+
+    htop
  #   pkgs.emptty
  #   pkgs.lemurs
   ];
