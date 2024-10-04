@@ -8,11 +8,14 @@
 
     extraConfig = {
       init.defaultBranch = "main";
-      credential.helper = "oauth";
+      #credential.helper = "ssh";
+      url."ssh://git@github.com/".insteadOf = "https://github.com/";      
+      #credential.credentialStore = "gpg";
     };
   };
 
-#  home.packages = [
+  home.packages = [
 #    pkgs.git-credential-oauth
-#  ];
+#    pkgs.git-credential-manager
+  ];
 }
