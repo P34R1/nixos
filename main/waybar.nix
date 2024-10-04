@@ -9,21 +9,16 @@
       height = 30;
 
       modules-left = [ "hyprland/workspaces" "hyprland/mode" "wlr/taskbar" ];
-      modules-center = [ "hyprland/window" "custom/hello-from-waybar" ];
-      modules-right = [ "mpd" "custom/mymodule#with-css-id" "clock" ];
+      modules-center = [ "hyprland/window" ];
+      modules-right = [ "mpd" "clock" ];
 
       "hyprland/workspaces" = {
         disable-scroll = true;
         all-outputs = true;
       };
 
-      "custom/hello-from-waybar" = {
-        format = "hello {}";
-        max-length = 40;
-        interval = "once";
-        exec = pkgs.writeShellScript "hello-from-waybar" ''
-          echo "from within waybar"
-        '';
+      "clock" = {
+        format = "{:%a, %b %d | %I:%M}";
       };
     };
   };
