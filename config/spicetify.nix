@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 {
+  # https://github.com/Gerg-L/spicetify-nix
   programs.spicetify =
    let
      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};

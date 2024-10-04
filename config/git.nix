@@ -1,6 +1,7 @@
 { config, ... }:
 
 {
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.git.enable
   programs.git = {
     enable = true;
     userEmail = "undeadgamer279@gmail.com";
