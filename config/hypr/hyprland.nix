@@ -3,10 +3,9 @@
 
 {
   imports = [
+    ./waybar.nix
     ./visuals.nix
   ];
-
-#  programs.hyprland.enable = true;
 
   # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
   # https://nix-community.github.io/home-manager/options.xhtml#opt-wayland.windowManager.hyprland.enable
@@ -53,9 +52,4 @@
 
 #  programs.hyprlock.enable = true;
 #  services.hypridle.enable = true;
-
-#  environment.systemPackages = with pkgs; [
-#    hyprpaper
-#    waybar
-#  ];
 }
