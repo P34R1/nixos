@@ -9,7 +9,6 @@
     inputs.nix-colors.homeManagerModules.default
 
     ../config/hypr/hyprland.nix
-    ../config/hypr/waybar.nix
     ../config/git.nix
     ../config/spicetify.nix
     ../config/foot.nix
