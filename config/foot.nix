@@ -9,7 +9,11 @@
     };
   };
 
-  environment.systemPackages = [
-    pkgs.foot
-  ];
+#  home.packages = [
+#    pkgs.foot
+#  ];
+
+  #systemPackages = [
+  #  pkgs.foot
+  #];
 }

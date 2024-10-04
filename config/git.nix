@@ -11,4 +11,8 @@
       credential.helper = "oauth";
     };
   };
+
+  home.packages = [
+    pkgs.git-credential-oauth
+  ];
 }

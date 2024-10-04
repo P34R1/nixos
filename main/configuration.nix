@@ -81,10 +81,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    foot
     tofi
     neovim
-    git
     lf
 
     playerctl
@@ -92,7 +90,6 @@
     librewolf
 
     openrazer-daemon
-    git-credential-oauth
 
     font-awesome
     nerdfonts
