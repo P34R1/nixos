@@ -87,14 +87,15 @@
     git
     lf
 
+    playerctl
+
     librewolf
 
     openrazer-daemon
     git-credential-oauth
 
     font-awesome
-    qt5-wayland
-    qt6-wayland
+    nerdfonts
 
     feh
     libnotify
