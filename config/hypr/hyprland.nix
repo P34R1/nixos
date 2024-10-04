@@ -25,8 +25,9 @@
           # workspaces
           # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
           builtins.concatLists (builtins.genList (i:
-              let button = toString i;
-              let workspace = if i == 0 then "10" else toString i;
+              let
+                button = toString i;
+                workspace = if i == 0 then "10" else toString i;
               in [
                 # Workspaces
                 "$mod, ${button}, workspace, ${workspace}"
