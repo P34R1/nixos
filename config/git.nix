@@ -12,7 +12,7 @@
     };
   };
 
-  home.packages = [
-    pkgs.git-credential-oauth
-  ];
+#  home.packages = [
+#    pkgs.git-credential-oauth
+#  ];
 }
