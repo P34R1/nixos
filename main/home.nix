@@ -5,12 +5,17 @@
     # Spicetify
     inputs.spicetify-nix.homeManagerModules.default
 
+    # Nix Colors  
+    inputs.nix-colors.homeManagerModules.default
+
     ../config/hyprland.nix
     ../config/waybar.nix
     ../config/git.nix
     ../config/spicetify.nix
     ../config/foot.nix
   ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.dracula;
 
   # Home Manager Config.
   home.username = "pearl";
