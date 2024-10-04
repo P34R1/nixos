@@ -7,13 +7,10 @@
       layer = "top";
       position = "top";
       height = 30;
-      output = [
-        "eDP-1"
-        "HDMI-A-1"
-      ];
+
       modules-left = [ "hyprland/workspaces" "hyprland/mode" "wlr/taskbar" ];
       modules-center = [ "hyprland/window" "custom/hello-from-waybar" ];
-      modules-right = [ "mpd" "custom/mymodule#with-css-id" "temperature" ];
+      modules-right = [ "mpd" "custom/mymodule#with-css-id" "clock" ];
 
       "hyprland/workspaces" = {
         disable-scroll = true;
