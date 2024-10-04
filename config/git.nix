@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   programs.git = {
@@ -7,15 +7,11 @@
     userName = "p34r1";
 
     extraConfig = {
+      # Use main instead of master
       init.defaultBranch = "main";
-      #credential.helper = "ssh";
+
+      # Use SSH
       url."ssh://git@github.com/".insteadOf = "https://github.com/";      
-      #credential.credentialStore = "gpg";
     };
   };
-
-  home.packages = [
-#    pkgs.git-credential-oauth
-#    pkgs.git-credential-manager
-  ];
 }
