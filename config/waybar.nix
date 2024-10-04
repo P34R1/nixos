@@ -9,13 +9,14 @@
       position = "top";
       height = 30;
 
-      modules-left = [ "hyprland/workspaces" "hyprland/mode" "wlr/taskbar" ];
+      modules-left = [ "hyprland/workspaces" "wlr/taskbar" ];
       modules-center = [ "hyprland/window" ];
       modules-right = [ "mpd" "clock" ];
 
       "hyprland/workspaces" = {
         disable-scroll = true;
-        #all-outputs = true;
+        all-outputs = true;
+        format = "{name}";
       };
 
       "clock" = {
