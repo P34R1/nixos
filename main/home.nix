@@ -47,10 +47,10 @@
     ".config/lf/".source = ../dotfiles/lf;
     ".config/lf/".recursive = true;
 
-    ".config/hypr/" = {
-      source = ../dotfiles/hypr;
-      recursive = true;
-    };
+#    ".config/hypr/" = {
+#      source = ../dotfiles/hypr;
+#      recursive = true;
+#    };
 
     "~/.config/tofi/config".source = ../dotfiles/tofi;
 
