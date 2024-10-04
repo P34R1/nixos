@@ -5,34 +5,11 @@
     # Spicetify
     inputs.spicetify-nix.homeManagerModules.default
 
-    ./waybar.nix
+    ../config/waybar.nix
+    ../config/git.nix
+    ../config/spicetify.nix
+    ../config/foot.nix
   ];
-
-  programs.git = {
-    enable = true;
-    userEmail = "undeadgamer279@gmail.com";
-    userName = "p34r1";
-
-    extraConfig = {
-      init.defaultBranch = "main";
-      credential.helper = "oauth";
-    };
-  };
-
-  programs.spicetify =
-   let
-     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-   in
-   {
-     enable = true;
-     enabledExtensions = with spicePkgs.extensions; [
-       adblock
-       hidePodcasts
-       shuffle # shuffle+ (special characters are sanitized out of extension names)
-     ];
-     theme = spicePkgs.themes.catppuccin;
-     colorScheme = "mocha";
-   };
 
   # Home Manager Config.
   home.username = "pearl";
