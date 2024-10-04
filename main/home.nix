@@ -8,8 +8,8 @@
     # Nix Colors  
     inputs.nix-colors.homeManagerModules.default
 
-    ../config/hyprland.nix
-    ../config/waybar.nix
+    ../config/hypr/hyprland.nix
+    ../config/hypr/waybar.nix
     ../config/git.nix
     ../config/spicetify.nix
     ../config/foot.nix
