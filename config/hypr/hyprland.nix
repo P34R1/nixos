@@ -30,7 +30,7 @@
         "$mod, J, togglesplit," # dwindle
 #        "$mod, F, exec, firefox"
 #        ", Print, exec, grimblast copy area"
-      ]
+      ];
     };
   };
 
