@@ -71,9 +71,8 @@
   home-manager = {
     # Also pass inputs to home manager modules
     extraSpecialArgs = { inherit inputs; };
-    users = {
-      "pearl" = import ./home.nix;
-    };
+    useGlobalPkgs = true;
+    users.pearl = import ./home.nix;
   };
 
   # Allow unfree packages
