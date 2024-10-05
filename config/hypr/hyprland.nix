@@ -2,7 +2,7 @@
 
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar &
+    #${pkgs.waybar}/bin/waybar & 
     ${pkgs.udiskie}/bin/udiskie &
   '';
 in
@@ -23,6 +23,7 @@ in
       monitor = "HDMI-A-4, highrr, 0x0, 1";
       cursor.no_hardware_cursors = true;
 
+      exec-once = "waybar";
       exec-once = ''${startupScript}/bin/start'';
 
       "$mod" = "SUPER";

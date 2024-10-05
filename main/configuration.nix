@@ -13,7 +13,7 @@
 #      ./dwm.nix
 
       # Hypr
-#      ./hyprland.nix
+      ./hyprland.nix
 
       # Desktop
       ./desktop.nix
@@ -46,12 +46,14 @@
     packages = with pkgs; [];
   };
 
-  networking.hostName = "pearl-nix"; # Define your hostname.
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "pearl-nix";
+    enableIPv6 = false;
+    networkmanager.enable = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
@@ -106,26 +108,6 @@
   ];
 
   services.udisks2.enable = true;
-
-  programs.hyprland.enable = true;
-  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  services.displayManager = {
-    enable = true;
-    autoLogin = {
-      enable = true;
-      user = "pearl";
-    };
-    defaultSession = "hyprland";
-  };
-
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    autoLogin.timeout = 0;
-    greeter.enable = false;
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions
