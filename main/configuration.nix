@@ -17,6 +17,7 @@
 
       # Desktop
       ./desktop.nix
+      ./darkmode.nix
 
       # Flatpak
       ./flatpak.nix
