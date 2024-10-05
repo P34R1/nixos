@@ -16,12 +16,23 @@
       "hyprland/workspaces" = {
         disable-scroll = true;
         all-outputs = true;
-        format = "{name}";
+        #format = "{name}";
+        format = "{icon}";
+        format-icons = {
+          "1" = "";
+          "2" = "";
+          "3" = "";
+          "4" = "";
+          "5" = "";
+          "6" = "";
+        };
       };
 
       "clock" = {
         format = "{:%a, %b %d | %I:%M}";
       };
     };
+
+    style = ./waybar.css;
   };  
 }
