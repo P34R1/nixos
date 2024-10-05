@@ -1,11 +1,12 @@
 /* * {
   font-family: 'RobotoMonoNerdFontPropo-Regular';
-*/}
+}
+*/
 
 * {
   border: none;
   border-radius: 0;
-  font-family: Source Code Pro;
+  font-family: RobotoMonoNerdFontPropo;
 }
 
 window#waybar {
