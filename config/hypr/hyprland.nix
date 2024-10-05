@@ -15,6 +15,7 @@ in
     ./waybar.nix
     ./visuals.nix
     ./workspaces.nix
+    ./windowrules.nix
   ];
 
   # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
