@@ -108,6 +108,10 @@
     udiskie
   ];
 
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "RobotoMono" ]; })
+  ];
+
   services.udisks2.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
