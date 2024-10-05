@@ -23,8 +23,10 @@ in
       monitor = "HDMI-A-4, highrr, 0x0, 1";
       cursor.no_hardware_cursors = true;
 
-      exec-once = "waybar";
-      exec-once = ''${startupScript}/bin/start'';
+      exec-once = [
+        "waybar"
+        ''${startupScript}/bin/start''
+      ];
 
       "$mod" = "SUPER";
       "$TERMINAL" = "foot";
