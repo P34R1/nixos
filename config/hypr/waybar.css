@@ -146,39 +146,14 @@
 	margin-left: 35pt;
 }
 
-#pulseaudio {
-	background: @sound;
-	color: @black;
-}
-
-#network {
-	background: @network;
-	color: @white;
+#custom-spotify {
+  background: @sound;
+  color: @black;
 }
 
 #memory {
 	background: @memory;
 	color: @black;
-}
-
-#cpu {
-	background: @cpu;
-	color: @white;
-}
-
-#temperature {
-	background: @temp;
-	color: @black;
-}
-
-#language {
-	background: @layout;
-	color: @black;
-}
-
-#battery {
-	background: @battery;
-	color: @white;
 }
 
 #tray {

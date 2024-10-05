@@ -26,8 +26,8 @@
       "hyprland/workspaces" = {
         disable-scroll = true;
         all-outputs = true;
-        format = "{name}";
-        #format = " {icon} ";
+        #format = "{name}";
+        format = "{icon}";
         format-icons = {
           "1" = "1";
           "2" = "";
@@ -43,6 +43,7 @@
         "return-type" = "json";
         exec = ./spotify.sh;
         exec-if = "pgrep spotify";
+        format = " {}";
         escape = true;
       };
 
