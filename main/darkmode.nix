@@ -1,4 +1,4 @@
-{ config, ...  }:
+{ config, pkgs, ... }:
 
 {
   home-manager.users.pearl = {
@@ -15,11 +15,17 @@
       enable = true;
       theme = {
         name = "Adwaita-dark";
-        package = pkgs.gnome.gnome-themes-extra;
+        package = pkgs.gnome-themes-extra;
       };
     };
 
     # Wayland, X, etc. support for session vars
     systemd.user.sessionVariables = config.home-manager.users.pearl.home.sessionVariables;
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
   };
 }
