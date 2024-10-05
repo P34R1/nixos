@@ -3,11 +3,7 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
-    #${pkgs.swww}/bin/swww init &
-
-    sleep 1
-
-    #${pkgs.swww}/bin/swww img ${./wallpaper.png} &
+    ${pkgs.udiskie}/bin/udiskie &
   '';
 in
 {
@@ -23,7 +19,11 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
+      # My main moniter, max hz
+      monitor = "HDMI-A-4, highrr, 0x0, 1";
       cursor.no_hardware_cursors = true;
+
+      exec-once = ''${startupScript}/bin/start'';
 
       "$mod" = "SUPER";
       "$TERMINAL" = "foot";
@@ -44,6 +44,11 @@ in
         "$mod SHIFT, S, movetoworkspace, special:magic"
 #        "$mod, F, exec, firefox"
 #        ", Print, exec, grimblast copy area"
+      ];
+
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
       ];
     };
 

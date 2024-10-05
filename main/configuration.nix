@@ -98,15 +98,34 @@
     libnotify
     dunst
 
-
     htop
- #   pkgs.emptty
- #   pkgs.lemurs
+
+    ntfs3g
+    udisks2
+    udiskie
   ];
+
+  services.udisks2.enable = true;
 
   programs.hyprland.enable = true;
   programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  services.displayManager = {
+    enable = true;
+    autoLogin = {
+      enable = true;
+      user = "pearl";
+    };
+    defaultSession = "hyprland";
+  };
+
+  services.xserver.enable = true;
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    autoLogin.timeout = 0;
+    greeter.enable = false;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions
