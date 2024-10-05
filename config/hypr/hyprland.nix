@@ -1,6 +1,15 @@
 { config, pkgs, ... }:
 
+let
+  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    ${pkgs.waybar}/bin/waybar &
+    #${pkgs.swww}/bin/swww init &
 
+    sleep 1
+
+    #${pkgs.swww}/bin/swww img ${./wallpaper.png} &
+  '';
+in
 {
   imports = [
     ./waybar.nix
@@ -28,9 +37,18 @@
         "$mod, R, exec, $MENU"
         "$mod, P, pseudo," # dwindle
         "$mod, J, togglesplit," # dwindle
+
+        # Example special workspace (scratchpad)
+        "$mod, S, togglespecialworkspace, magic"
+        "$mod SHIFT, S, movetoworkspace, special:magic"
 #        "$mod, F, exec, firefox"
 #        ", Print, exec, grimblast copy area"
       ];
+    };
+
+    systemd = {
+      enable = true;
+      variables = ["--all"];
     };
   };
 
