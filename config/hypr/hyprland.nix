@@ -2,8 +2,9 @@
 
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    #${pkgs.waybar}/bin/waybar & 
+    ${pkgs.waybar}/bin/waybar & disown 
     ${pkgs.udiskie}/bin/udiskie &
+    ${pkgs.dunst}/bin/dunst
   '';
 in
 {
@@ -24,7 +25,7 @@ in
       cursor.no_hardware_cursors = true;
 
       exec-once = [
-        "waybar"
+        #"waybar"
         ''${startupScript}/bin/start''
       ];
 
@@ -60,7 +61,4 @@ in
       variables = ["--all"];
     };
   };
-
-#  programs.hyprlock.enable = true;
-#  services.hypridle.enable = true;
 }
