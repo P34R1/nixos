@@ -50,8 +50,8 @@ in
         "$mod, J, togglesplit," # dwindle
 
         # Example special workspace (scratchpad)
-        "$mod, S, togglespecialworkspace, magic"
-        "$mod SHIFT, S, movetoworkspace, special:magic"
+        "$mod, S, togglespecialworkspace, scratchpad"
+        "$mod SHIFT, S, movetoworkspace, special:scratchpad"
 #        "$mod, F, exec, firefox"
 #        ", Print, exec, grimblast copy area"
       ];
