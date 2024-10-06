@@ -12,12 +12,24 @@
       modules-left = [ "hyprland/workspaces" "custom/arrow#right" ];
       modules-center = [ "hyprland/window" ];
       modules-right = [
-        "custom/arrow#music"	"custom/spotify"	# spotify info
+        "custom/arrow#music"	"mpris"			# music info
         "custom/arrow#memory"	"memory"		# mem usage
         "custom/arrow#date"	"clock#date"		# date
         "custom/arrow#time"	"clock#time"		# time
         "custom/arrow#tray"	"tray"			# tray icons
       ];
+
+      mpris = {
+        format = "{player_icon} {artist} - {title}";
+        format-paused = "{player_icon} <i>{artist} - {title}</i>";
+
+        player-icons = {
+          default = "";
+          mpv = "🎵";
+        };
+
+        ignored-players = ["librewolf"];
+      };
 
       "hyprland/workspaces" = {
         disable-scroll = true;
@@ -32,13 +44,6 @@
           "5" = "";
           "6" = "";
         };
-      };
-
-      "custom/spotify" = {
-        interval = 3;
-        exec = ./spotify.sh;
-        exec-if = "pgrep spotify";
-        format = " {}";
       };
 
       memory = {

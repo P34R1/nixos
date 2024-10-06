@@ -33,42 +33,41 @@
 @define-color critical	@red;
 @define-color unfocused	@bg2;
 @define-color focused	@purple;
-@define-color music	@brblue;
-@define-color memory	@braqua;
-@define-color date	@black;
+@define-color tray	@focused
 @define-color time	@white;
+@define-color date	@black;
+@define-color memory	@braqua;
+@define-color mpris	@brblue;
 
 /* Reset all styles */
 * {
-	border: none;
-	border-radius: 0;
-	min-height: 0;
-	margin: 0;
-	padding: 0;
-	box-shadow: none;
-	text-shadow: none;
-	-gtk-icon-shadow: none;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
 }
 
 /* The whole bar */
 #waybar {
-	background: rgba(40, 40, 40, 0.8784313725); /* #282828e0 */
-	color: @white;
-	font-family: JetBrainsMonoNerdFontPropo, "Font Awesome 6 Free";
-	font-size: 11pt;
-//	font-weight: bold;
+  background: rgba(40, 40, 40, 0.8784313725); /* #282828e0 */
+  color: @white;
+  font-family: JetBrainsMonoNerdFontPropo, "Font Awesome 6 Free";
+  font-size: 11pt;
+  /*font-weight: bold;*/
 }
 
 /* Each module */
 #clock,
 #memory,
-#custom-spotify,
 #tray,
-#backlight,
 #user,
 #mpris {
-	padding-left: 8pt;
-	padding-right: 8pt;
+  padding-left: 8pt;
+  padding-right: 8pt;
 }
 
 /* Each critical module */
@@ -89,92 +88,94 @@
 
 /* Workspaces stuff */
 #workspaces button {
-	padding-left: 2pt;
-	padding-right: 2pt;
-	color: @white;
-	background: @unfocused;
+  padding-left: 2pt;
+  padding-right: 2pt;
+  color: @white;
+  background: @unfocused;
 }
 
 /* Active (on focused output) */
 #workspaces button.visible {
-	color: @white;
-	background: @focused;
+  color: @white;
+  background: @focused;
 }
 
 /* Contains an urgent window */
 #workspaces button.urgent {
-	color: @black;
-	background: @warning;
+  color: @black;
+  background: @warning;
 }
 
 /* Style when cursor is on the button */
 #workspaces button:hover {
-	background: @black;
-	color: @white;
+  background: @black;
+  color: @white;
 }
 
 #window {
-	margin-right: 35pt;
-	margin-left: 35pt;
+  margin-right: 35pt;
+  margin-left: 35pt;
 }
 
-#custom-spotify {
-  background: @music;
-  color: @black;
-}
 
-#memory {
-	background: @memory;
-	color: @black;
-}
-
+/* Modules */
 #tray {
-	background: @focused;
-        color: @white;
-}
-
-#clock.date {
-	background: @date;
-	color: @white;
+  background: @tray;
+  color: @white;
 }
 
 #clock.time {
-	background: @time;
-	color: @black;
+  background: @time;
+  color: @black;
+}
+
+#clock.date {
+  background: @date;
+  color: @white;
+}
+
+#memory {
+  background: @memory;
+  color: @black;
+}
+
+#mpris {
+  background: @mpris;
+  color: @black;
+}
+
+
+/* Arrows */
+#custom-arrow {
+  font-size: 11pt;
+}
+
+#custom-arrow.right {
+  color: @unfocused;
+  background: transparent;
+}
+
+#custom-arrow.tray {
+  color: @tray;
+  background: @time;
 }
 
 #custom-arrow.time {
-	font-size: 11pt;
-	color: @time;
-	background: @date;
+  color: @time;
+  background: @date;
 }
 
 #custom-arrow.date {
-  font-size: 11pt;
   color: @date;
   background: @memory;
 }
 
-#custom-arrow.tray {
-  font-size: 11pt;
-  color: @focused;
-  background: @time;
-}
-
 #custom-arrow.memory {
-	font-size: 11pt;
-	color: @memory;
-	background: @music;
+  color: @memory;
+  background: @mpris;
 }
 
-#custom-arrow.music {
-	font-size: 11pt;
-	color: @music;
-	background: @transparent;
-}
-
-#custom-arrow.right {
-	font-size: 11pt;
-	color: @unfocused;
-	background: transparent;
+#custom-arrow.mpris {
+  color: @mpris;
+  background: @transparent;
 }
