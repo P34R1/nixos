@@ -20,11 +20,4 @@
     autoLogin.timeout = 0;
     greeter.enable = false;
   };
-
-  programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    hyprpaper
-  ];
 }
