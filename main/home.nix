@@ -9,7 +9,7 @@
     inputs.nix-colors.homeManagerModules.default
 
     ../config/hypr/hyprland.nix
-    ../config/dunst.nix
+    ../config/dunst/dunst.nix
     ../config/git.nix
     ../config/spicetify.nix
     ../config/foot.nix
@@ -59,7 +59,7 @@
 
     ".config/tofi/config".source = ../dotfiles/tofi;
 
-    ".local/share/icons/dunst/".source = ../config/dunsticons;
+    ".local/share/icons/dunst/".source = ../config/dunst/icons;
     ".local/share/icons/dunst/".recursive = true;
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
