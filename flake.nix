@@ -18,6 +18,9 @@
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     nix-colors.url = "github:misterio77/nix-colors";
+
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -26,7 +29,8 @@
       modules = [
         ./main/configuration.nix
         inputs.home-manager.nixosModules.default
-        inputs.nix-flatpak.nixosModules.nix-flatpak        
+        inputs.nix-flatpak.nixosModules.nix-flatpak
+        inputs.nix-index-database.nixosModules.nix-index
       ];
     };
   };
