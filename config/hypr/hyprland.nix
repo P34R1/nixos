@@ -4,7 +4,8 @@ let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar & disown 
     ${pkgs.udiskie}/bin/udiskie &
-    ${pkgs.dunst}/bin/dunst
+    ${pkgs.dunst}/bin/dunst &
+    ${pkgs.hypridle}/bin/hypridle &
   '';
 in
 {
@@ -27,10 +28,7 @@ in
       monitor = "HDMI-A-4, highrr, 0x0, 1";
       cursor.no_hardware_cursors = true;
 
-      exec-once = [
-        #"waybar"
-        ''${startupScript}/bin/start''
-      ];
+      exec-once = "${startupScript}/bin/start";
 
       "$mod" = "SUPER";
       "$TERMINAL" = "foot";
