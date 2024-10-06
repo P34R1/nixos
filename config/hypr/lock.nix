@@ -1,15 +1,18 @@
 { config, pkgs, ... }:
 
 {
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.hyprlock.enable
   programs.hyprlock = {
     enable = true;
-    
+
+
+    # https://github.com/ericmurphyxyz/dotfiles/blob/master/.config/hypr/hyprlock.conf 
     settings = {
       general = {
-#        disable_loading_bar = true;
+        disable_loading_bar = true;
         grace = 0;
-#        hide_cursor = true;
-#        no_fade_in = true;
+        hide_cursor = true;
+        no_fade_in = true;
       };
 
       background = [
