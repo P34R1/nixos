@@ -9,8 +9,8 @@
       position = "top";
       height = 20;
 
-      modules-left = [ "hyprland/workspaces" "custom/arrow#right" ];
-      modules-center = [ "hyprland/window" ];
+      modules-left = [ "hyprland/workspaces" "custom/arrow#right" "hyprland/window" ];
+
       modules-right = [
         "custom/arrow#mpris"	"mpris"			# music info
         "custom/arrow#memory"	"memory"		# mem usage
