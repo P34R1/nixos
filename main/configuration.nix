@@ -97,10 +97,6 @@
     font-awesome
     nerdfonts
 
-    feh
-    libnotify
-    dunst
-
     htop
 
     ntfs3g
