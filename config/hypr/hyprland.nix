@@ -15,6 +15,7 @@ in
     ./windowrules.nix
     ./volume.nix
     ./lock.nix
+    ./idle.nix
   ];
 
   # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
