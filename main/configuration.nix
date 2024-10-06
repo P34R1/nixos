@@ -70,6 +70,7 @@
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "pearl";
+  security.pam.services.hyprlock = {};
 
   home-manager = {
     # Also pass inputs to home manager modules
@@ -95,7 +96,7 @@
     openrazer-daemon
 
     font-awesome
-    nerdfonts
+#    nerdfonts
 
     htop
 
@@ -106,6 +107,7 @@
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "RobotoMono" "JetBrainsMono" ]; })
+    maple-mono
   ];
 
   services.udisks2.enable = true;
