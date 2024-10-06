@@ -12,15 +12,16 @@
       modules-left = [ "hyprland/workspaces" "custom/arrow#right" ];
       modules-center = [ "hyprland/window" ];
       modules-right = [
-        "custom/arrow#sound"
+        "custom/arrow#music"
         "custom/spotify"
         "custom/arrow#memory"
         "memory"
-        "custom/arrow#tray"
-        "tray"
+        "custom/arrow#date"
         "clock#date"
         "custom/arrow#time"
         "clock#time"
+        "custom/arrow#tray"
+        "tray"
       ];
 
       "hyprland/workspaces" = {
@@ -40,11 +41,9 @@
 
       "custom/spotify" = {
         interval = 2;
-        #"return-type" = "json";
         exec = ./spotify.sh;
         exec-if = "pgrep spotify";
         format = " {}";
-        #escape = true;
       };
 
       memory = {
@@ -71,6 +70,11 @@
         tooltip = false;
       };
 
+      "custom/arrow#date" = {
+        format = "";
+        tooltip = false;
+      };
+
       "custom/arrow#tray" = {
         format = "";
         tooltip = false;
@@ -81,7 +85,7 @@
         tooltip = false;
       };
 
-      "custom/arrow#sound" = {
+      "custom/arrow#music" = {
         format = "";
         tooltip = false;
       };

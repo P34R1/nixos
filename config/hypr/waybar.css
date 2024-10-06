@@ -37,18 +37,10 @@
 
 @define-color warning 	@bryellow;
 @define-color critical	@red;
-@define-color mode	@black;
 @define-color unfocused	@bg2;
-@define-color focused	@braqua;
-@define-color inactive	@purple;
-@define-color idle	@blue;
-@define-color sound	@brblue;
-@define-color network	@purple;
+@define-color focused	@purple;
+@define-color music	@brblue;
 @define-color memory	@braqua;
-@define-color cpu	@green;
-@define-color temp	@brgreen;
-@define-color layout	@bryellow;
-@define-color battery	@aqua;
 @define-color date	@black;
 @define-color time	@white;
 
@@ -75,13 +67,10 @@
 
 /* Each module */
 #clock,
-#cpu,
 #memory,
-#pulseaudio,
-#temperature,
+#custom-spotify,
 #tray,
 #backlight,
-#disk,
 #user,
 #mpris {
 	padding-left: 8pt;
@@ -89,9 +78,7 @@
 }
 
 /* Each critical module */
-#memory.critical,
-#cpu.critical,
-#temperature.critical {
+#memory.critical {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
@@ -100,9 +87,7 @@
 }
 
 /* Each warning */
-#memory.warning,
-#cpu.warning,
-#temperature.warning {
+#memory.warning {
   color: @warning;
 }
 
@@ -117,15 +102,9 @@
 	background: @unfocused;
 }
 
-/* Inactive (on unfocused output) */
+/* Active (on focused output) */
 #workspaces button.visible {
 	color: @white;
-	background: @inactive;
-}
-
-/* Active (on focused output) */
-#workspaces button.focused {
-	color: @black;
 	background: @focused;
 }
 
@@ -147,7 +126,7 @@
 }
 
 #custom-spotify {
-  background: @sound;
+  background: @music;
   color: @black;
 }
 
@@ -157,7 +136,8 @@
 }
 
 #tray {
-	background: @date;
+	background: @focused;
+        color: @white;
 }
 
 #clock.date {
@@ -176,27 +156,27 @@
 	background: @date;
 }
 
-#custom-arrow.tray {
+#custom-arrow.date {
   font-size: 11pt;
   color: @date;
-  background: @cpu;
+  background: @memory;
 }
 
-#custom-arrow.cpu {
-	font-size: 11pt;
-	color: @cpu;
-	background: @memory;
+#custom-arrow.tray {
+  font-size: 11pt;
+  color: @focused;
+  background: @time;
 }
 
 #custom-arrow.memory {
 	font-size: 11pt;
 	color: @memory;
-	background: @sound;
+	background: @music;
 }
 
-#custom-arrow.sound {
+#custom-arrow.music {
 	font-size: 11pt;
-	color: @sound;
+	color: @music;
 	background: @transparent;
 }
 
