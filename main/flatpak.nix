@@ -10,10 +10,7 @@
 
 
   services.flatpak.packages = [
-    # Dissent
-    "so.libdb.dissent"
-
-    # OBS
+    "dev.vencord.Vesktop"
     "com.obsproject.Studio"
   ];
 }
