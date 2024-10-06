@@ -85,19 +85,15 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    tofi
     neovim
+    librewolf
+    htop
+
+    tofi
     lf
 
-
-    htop
-    librewolf
-
-    openrazer-daemon
-
-
     playerctl
-#    ntfs3g
+    openrazer-daemon
     udisks2
     udiskie
   ];
