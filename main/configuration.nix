@@ -89,22 +89,20 @@
     neovim
     lf
 
-    playerctl
 
+    htop
     librewolf
 
     openrazer-daemon
 
-    font-awesome
-#    nerdfonts
 
-    htop
-
-    ntfs3g
+    playerctl
+#    ntfs3g
     udisks2
     udiskie
   ];
 
+  # https://github.com/ryanoasis/nerd-fonts
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "RobotoMono" "JetBrainsMono" ]; })
     maple-mono
