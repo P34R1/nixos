@@ -6,6 +6,8 @@ let
     ${pkgs.udiskie}/bin/udiskie &
     ${pkgs.dunst}/bin/dunst
   '';
+
+  volume = pkgs.pkgs.writeShellScriptBin "volume" ./volume;
 in
 {
   imports = [
@@ -33,6 +35,11 @@ in
       "$TERMINAL" = "foot";
       "$MENU" = "tofi-drun --drun-launch=true";
 
+      # Bind + 
+        # m -> mouse
+        # l -> do stuff even when locked
+        # e -> repeats when key is held
+ 
       bind = [
         "$mod, RETURN, exec, $TERMINAL"
         "$mod, C, killactive,"
@@ -53,6 +60,15 @@ in
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
+      ];
+
+      bindl = [
+        ", XF86AudioPlay, exec, playerctl play-pause" # the stupid key is called play , but it toggles 
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioRaiseVolume, exec, ${volume} up"
+        ", XF86AudioLowerVolume, exec, ${volume} down"
+        ", XF86AudioMute, exec, ${volume} mute"
       ];
     };
 

@@ -56,8 +56,10 @@
 #      recursive = true;
 #    };
 
-    "~/.config/tofi/config".source = ../dotfiles/tofi;
+    ".config/tofi/config".source = ../dotfiles/tofi;
 
+    ".local/share/icons/dunst/".source = ../config/dunsticons;
+    ".local/share/icons/dunst/".recursive = true;
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
