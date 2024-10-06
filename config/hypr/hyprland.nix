@@ -6,10 +6,6 @@ let
     ${pkgs.udiskie}/bin/udiskie &
     ${pkgs.dunst}/bin/dunst
   '';
-
-  #volume = pkgs.pkgs.writeShellScriptBin "volume" ./volume;
-
-  volume = import ./volume.nix;
 in
 {
   imports = [
@@ -17,6 +13,7 @@ in
     ./visuals.nix
     ./workspaces.nix
     ./windowrules.nix
+    ./volume.nix
   ];
 
   # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
@@ -62,15 +59,6 @@ in
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
-      ];
-
-      bindl = [
-        ", XF86AudioPlay, exec, playerctl play-pause" # the stupid key is called play , but it toggles 
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPrev, exec, playerctl previous"
-        ", XF86AudioRaiseVolume, exec, ${volume}/bin/volume up"
-        ", XF86AudioLowerVolume, exec, ${volume}/bin/volume down"
-        ", XF86AudioMute, exec, ${volume}/bin/volume mute"
       ];
     };
 
