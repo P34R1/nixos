@@ -68,8 +68,6 @@
 
     master = {
       new_status = "slave";
-      no_gaps_when_only = 1;
-      orientation = "left";
       smart_resizing = false;
       drop_at_cursor = true;
     };
