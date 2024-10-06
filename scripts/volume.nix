@@ -4,23 +4,23 @@
 pkgs.writeShellScriptBin "volume" ''
   # Ensure volume is unmuted when changing volume
   if [ "$1" != "mute" ]; then
-    wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+    ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
   fi
 
   # Adjust volume based on the argument
   case $1 in
     up)
-      wpctl set-volume -l 2.0 @DEFAULT_AUDIO_SINK@ 2%+
+      ${pkgs.wireplumber}/bin/wpctl set-volume -l 2.0 @DEFAULT_AUDIO_SINK@ 2%+
       ;;
     down)
-      wpctl set-volume -l 2.0 @DEFAULT_AUDIO_SINK@ 2%-
+      ${pkgs.wireplumber}/bin/wpctl set-volume -l 2.0 @DEFAULT_AUDIO_SINK@ 2%-
       ;;
     mute)
-      wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+      ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
       ;;
   esac
 
-  VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}')
+  VOLUME=$(${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}')
 
 
   send_notification() {
@@ -38,7 +38,7 @@ pkgs.writeShellScriptBin "volume" ''
       TEXT="Currently muted"
     fi
 
-    dunstify -a "Volume" -r 9993 -h int:value:"$VOLUME" -i "volume-$ICON" "Volume" "$TEXT" -t 2000
+    ${pkgs.dunst}/bin/dunstify -a "Volume" -r 9993 -h int:value:"$VOLUME" -i "volume-$ICON" "Volume" "$TEXT" -t 2000
   }
 
   # Send the appropriate notification based on the mute state
