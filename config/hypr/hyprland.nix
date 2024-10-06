@@ -7,7 +7,9 @@ let
     ${pkgs.dunst}/bin/dunst
   '';
 
-  volume = pkgs.pkgs.writeShellScriptBin "volume" ./volume;
+  #volume = pkgs.pkgs.writeShellScriptBin "volume" ./volume;
+
+  volume = import ./volume.nix;
 in
 {
   imports = [
@@ -66,9 +68,9 @@ in
         ", XF86AudioPlay, exec, playerctl play-pause" # the stupid key is called play , but it toggles 
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPrev, exec, playerctl previous"
-        ", XF86AudioRaiseVolume, exec, ${volume} up"
-        ", XF86AudioLowerVolume, exec, ${volume} down"
-        ", XF86AudioMute, exec, ${volume} mute"
+        ", XF86AudioRaiseVolume, exec, ${volume}/bin/volume up"
+        ", XF86AudioLowerVolume, exec, ${volume}/bin/volume down"
+        ", XF86AudioMute, exec, ${volume}/bin/volume mute"
       ];
     };
 
