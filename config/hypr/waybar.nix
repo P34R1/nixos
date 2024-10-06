@@ -7,7 +7,7 @@
     settings.mainBar = {
       layer = "top";
       position = "top";
-#      height = 30;
+      height = 20;
 
       modules-left = [ "hyprland/workspaces" "custom/arrow#right" ];
       modules-center = [ "hyprland/window" ];
@@ -39,12 +39,12 @@
       };
 
       "custom/spotify" = {
-        interval = 1;
-        "return-type" = "json";
+        interval = 2;
+        #"return-type" = "json";
         exec = ./spotify.sh;
         exec-if = "pgrep spotify";
         format = " {}";
-        escape = true;
+        #escape = true;
       };
 
       memory = {
