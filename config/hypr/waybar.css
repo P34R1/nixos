@@ -33,7 +33,7 @@
 @define-color critical	@red;
 @define-color unfocused	@bg2;
 @define-color focused	@purple;
-@define-color tray	@focused
+@define-color tray	@focused;
 @define-color time	@white;
 @define-color date	@black;
 @define-color memory	@braqua;

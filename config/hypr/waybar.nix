@@ -12,7 +12,7 @@
       modules-left = [ "hyprland/workspaces" "custom/arrow#right" ];
       modules-center = [ "hyprland/window" ];
       modules-right = [
-        "custom/arrow#music"	"mpris"			# music info
+        "custom/arrow#mpris"	"mpris"			# music info
         "custom/arrow#memory"	"memory"		# mem usage
         "custom/arrow#date"	"clock#date"		# date
         "custom/arrow#time"	"clock#time"		# time
@@ -28,7 +28,7 @@
           mpv = "🎵";
         };
 
-        ignored-players = ["librewolf"];
+        ignored-players = ["firefox" "librewolf"];
       };
 
       "hyprland/workspaces" = {
@@ -85,8 +85,8 @@
       "custom/arrow#memory".format = "";
       "custom/arrow#memory".tooltip = false;
 
-      "custom/arrow#music".format = "";
-      "custom/arrow#music".tooltip = false;
+      "custom/arrow#mpris".format = "";
+      "custom/arrow#mpris".tooltip = false;
     };
 
     style = ./waybar.css;
