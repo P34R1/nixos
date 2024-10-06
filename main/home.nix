@@ -47,17 +47,12 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".xinitrc".source = ../dotfiles/xinitrc;
+    ".xinitrc".source = ../config/xinitrc;
 
-    ".config/lf/".source = ../dotfiles/lf;
+    ".config/lf/".source = ../config/lf;
     ".config/lf/".recursive = true;
 
-#    ".config/hypr/" = {
-#      source = ../dotfiles/hypr;
-#      recursive = true;
-#    };
-
-    ".config/tofi/config".source = ../dotfiles/tofi;
+    ".config/tofi/config".source = ../config/tofi;
 
     ".local/share/icons/dunst/".source = ../config/dunst/icons;
     ".local/share/icons/dunst/".recursive = true;
