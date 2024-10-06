@@ -12,25 +12,20 @@
       modules-left = [ "hyprland/workspaces" "custom/arrow#right" ];
       modules-center = [ "hyprland/window" ];
       modules-right = [
-        "custom/arrow#music"
-        "custom/spotify"
-        "custom/arrow#memory"
-        "memory"
-        "custom/arrow#date"
-        "clock#date"
-        "custom/arrow#time"
-        "clock#time"
-        "custom/arrow#tray"
-        "tray"
+        "custom/arrow#music"	"custom/spotify"	# spotify info
+        "custom/arrow#memory"	"memory"		# mem usage
+        "custom/arrow#date"	"clock#date"		# date
+        "custom/arrow#time"	"clock#time"		# time
+        "custom/arrow#tray"	"tray"			# tray icons
       ];
 
       "hyprland/workspaces" = {
         disable-scroll = true;
         all-outputs = true;
-        #format = "{name}";
         format = "{icon}";
+
+        # Leave empty for number
         format-icons = {
-          "1" = "1";
           "2" = "";
           "3" = "";
           "4" = "";
@@ -40,7 +35,7 @@
       };
 
       "custom/spotify" = {
-        interval = 2;
+        interval = 3;
         exec = ./spotify.sh;
         exec-if = "pgrep spotify";
         format = " {}";
@@ -60,41 +55,33 @@
         icon-size = 18;
       };
 
-      "custom/arrow#right" = {
-        format = "";
-        tooltip = false;
-      };
-
-      "custom/arrow#time" = {
-        format = "";
-        tooltip = false;
-      };
-
-      "custom/arrow#date" = {
-        format = "";
-        tooltip = false;
-      };
-
-      "custom/arrow#tray" = {
-        format = "";
-        tooltip = false;
-      };
-
-      "custom/arrow#memory" = {
-        format = "";
-        tooltip = false;
-      };
-
-      "custom/arrow#music" = {
-        format = "";
-        tooltip = false;
-      };
-
+      # Time & Date
+      "clock#time".format = "{:%I:%M}";
       "clock#time".tooltip = false;
+
+      "clock#date".format = "{:%a, %b %d}";
       "clock#date".tooltip = false;
 
-      "clock#time".format = "{:%I:%M}";
-      "clock#date".format = "{:%a, %b %d}";
+
+      # Arrows
+      "custom/arrow#right".format = "";
+      "custom/arrow#right".tooltip = false;
+
+
+      "custom/arrow#tray".format = "";
+      "custom/arrow#tray".tooltip = false;
+
+      "custom/arrow#time".format = "";
+      "custom/arrow#time".tooltip = false;
+
+      "custom/arrow#date".format = "";
+      "custom/arrow#date".tooltip = false;
+
+      "custom/arrow#memory".format = "";
+      "custom/arrow#memory".tooltip = false;
+
+      "custom/arrow#music".format = "";
+      "custom/arrow#music".tooltip = false;
     };
 
     style = ./waybar.css;
