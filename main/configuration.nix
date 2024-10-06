@@ -4,6 +4,9 @@
 
 { config, pkgs, inputs, ... }:
 
+let
+  screenshot = import ../config/screenshot.nix { inherit pkgs; };
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -96,6 +99,8 @@
     openrazer-daemon
     udisks2
     udiskie
+
+    screenshot
   ];
 
   # https://github.com/ryanoasis/nerd-fonts
