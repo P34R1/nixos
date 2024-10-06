@@ -5,7 +5,8 @@
 { config, pkgs, inputs, ... }:
 
 let
-  screenshot = import ../config/screenshot.nix { inherit pkgs; };
+  screenshot = import ../scripts/screenshot.nix { inherit pkgs; };
+  volume = import ../scripts/volume.nix { inherit pkgs; };
 in
 {
   imports =
@@ -101,6 +102,7 @@ in
     udiskie
 
     screenshot
+    volume
   ];
 
   # https://github.com/ryanoasis/nerd-fonts
