@@ -52,6 +52,8 @@ in
         # Example special workspace (scratchpad)
         "$mod, S, togglespecialworkspace, scratchpad"
         "$mod SHIFT, S, movetoworkspace, special:scratchpad"
+
+        ", Print, exec, screenshot"
 #        "$mod, F, exec, firefox"
 #        ", Print, exec, grimblast copy area"
       ];
