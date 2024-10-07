@@ -17,6 +17,21 @@
 
   colorScheme = inputs.nix-colors.colorSchemes.dracula;
 
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.bat.enable
+  programs.bat.enable = true;
+
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.eza.enable
+  programs.eza.enable = true;
+
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fzf.enable
+  programs.fzf.enable = true;
+
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.jq.enable
+  programs.jq.enable = true;
+
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.ripgrep.enable
+  programs.ripgrep.enable = true;
+
   # Home Manager Config.
   home.username = "pearl";
   home.homeDirectory = "/home/pearl";
@@ -85,10 +100,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-#  qt = {
-#    enable = true;
-#    platformTheme = "gnome";
-#    style = "adwaita-dark";
-#  };
 }

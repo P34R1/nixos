@@ -95,6 +95,7 @@ in
 
     tofi
     lf
+    entr
 
     playerctl
     openrazer-daemon
