@@ -95,10 +95,6 @@ in
     tofi
     lf
     entr
-
-
-    dt-shell-color-scripts
-
    
     playerctl
     openrazer-daemon
