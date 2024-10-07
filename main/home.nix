@@ -72,6 +72,10 @@
 
     ".local/share/icons/dunst/".source = ../config/dunst/icons;
     ".local/share/icons/dunst/".recursive = true;
+
+    ".local/share/colorscripts/".source = ../scripts/colorscripts;
+    ".local/share/colorscripts/".recursive = true;
+    
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose

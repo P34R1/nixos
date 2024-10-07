@@ -96,6 +96,10 @@ in
     lf
     entr
 
+
+    dt-shell-color-scripts
+
+   
     playerctl
     openrazer-daemon
     udisks2
