@@ -30,9 +30,6 @@
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.jq.enable
   programs.jq.enable = true;
 
-  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.ripgrep.enable
-  programs.ripgrep.enable = true;
-
   # Home Manager Config.
   home.username = "pearl";
   home.homeDirectory = "/home/pearl";
