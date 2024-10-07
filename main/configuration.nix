@@ -47,7 +47,6 @@ in
     isNormalUser = true;
     description = "Vincent Fortin";
     extraGroups = [ "networkmanager" "wheel" "openrazer" "audio" ];
-    shell = pkgs.fish;
     packages = with pkgs; [];
   };
 
