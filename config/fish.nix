@@ -10,7 +10,10 @@
     };
 
     interactiveShellInit = ''
-      
+      function fish_greeting
+        set DIR_COLORSCRIPTS "/home/pearl/.local/share/colorscripts"
+        bash "$DIR_COLORSCRIPTS/$(basename (random choice $(ls $DIR_COLORSCRIPTS)))"
+      end
     '';
   };
 }
