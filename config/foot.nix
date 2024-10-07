@@ -6,6 +6,10 @@
   programs.foot = {
     enable = true;
     settings = {
+      main = {
+        shell = "${pkgs.fish}/bin/fish";
+      };
+
       colors.alpha = 0.5;
     };
   };
