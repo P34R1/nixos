@@ -14,19 +14,13 @@
         set DIR_COLORSCRIPTS "/home/pearl/.local/share/colorscripts"
         bash "$DIR_COLORSCRIPTS/$(basename (random choice $(ls $DIR_COLORSCRIPTS)))"
       end
-
-#      function fish_prompt
-        # This shows up as USER@HOST /home/user/ >, with the directory colored
-        # $USER and $hostname are set by fish, so you can just use them
-        # instead of using `whoami` and `hostname`
-#        printf '%s@%s %s%s%s > ' $USER $hostname \
-#          (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
-#      end
     '';
   };
 
 
   programs.fish.plugins = [
+
+    # https://github.com/jethrokuan/z
     {
       name = "z";
       src = pkgs.fetchFromGitHub {
@@ -36,16 +30,6 @@
         sha256 = "sha256-+FUBM7CodtZrYKqU542fQD+ZDGrd2438trKM0tIESs0=";
       };
     }
-
-   # {
-   #   name = "dracula";
-   #   src = pkgs.fetchFromGitHub {
-   #     owner = "dracula";
-   #     repo = "fish";
-   #     rev = "269cd7d76d5104fdc2721db7b8848f6224bdf554";
-   #     sha256 = "sha256-Hyq4EfSmWmxwCYhp3O8agr7VWFAflcUe8BUKh50fNfY=";
-   #   };
-   # }
 
     # https://github.com/meaningful-ooo/sponge
     {
