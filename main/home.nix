@@ -16,7 +16,7 @@
     ../config/foot.nix
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.dracula;
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fd.enable
   programs.fd.enable = true;
