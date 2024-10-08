@@ -18,6 +18,10 @@
 
   colorScheme = inputs.nix-colors.colorSchemes.dracula;
 
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fd.enable
+  programs.fd.enable = true;
+  programs.fd.ignores = [ ".git/" ];
+
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.bat.enable
   programs.bat.enable = true;
 
