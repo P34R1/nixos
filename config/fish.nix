@@ -47,6 +47,18 @@
    #   };
    # }
 
+    # https://github.com/meaningful-ooo/sponge
+    {
+      name = "sponge";
+      src = pkgs.fetchFromGitHub {
+        owner = "meaningful-ooo";
+        repo = "sponge";
+        rev = "384299545104d5256648cee9d8b117aaa9a6d7be";
+        sha256 = "";
+      };
+    }
+
+    # https://github.com/PatrickF1/fzf.fish
     {
       name = "fzf";
       src = pkgs.fetchFromGitHub {
@@ -57,6 +69,7 @@
       };
     }
 
+    # https://github.com/jorgebucaran/hydro
     {
       name = "hydro";
       src = pkgs.fetchFromGitHub {
