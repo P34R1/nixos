@@ -23,7 +23,7 @@
       };
       gp = "git push";
       gs = "git status";
-      gd = "git diff --cached"
+      gd = "git diff --cached";
 
       v = "nvim";
       l = "ls -al";
