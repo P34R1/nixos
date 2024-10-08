@@ -9,6 +9,18 @@
       gitignore = "curl -sL https://www.gitignore.io/api/$argv";
     };
 
+    # https://github.com/nix-community/home-manager/blob/master/modules/programs/fish.nix#L141
+    # Line might change in the future
+    # Find abbrModule = types.submodule {
+    shellAbbrs = {
+      rb = "sudo nixos-rebuild switch --flake /home/pearl/nixos#main";
+      ga = "git add .";
+      gc = {
+        expansion = "git commit -m \"|\"";
+        setCursor = "|";
+      };
+    };
+
     interactiveShellInit = ''
       function fish_greeting
         set DIR_COLORSCRIPTS "/home/pearl/.local/share/colorscripts"
