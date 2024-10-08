@@ -15,12 +15,15 @@
     # Find abbrModule = types.submodule {
     shellAbbrs = {
       rb = "sudo nixos-rebuild switch --flake /home/pearl/nixos#main";
+
       ga = "git add .";
       gc = {
         expansion = "git commit -m \"|\"";
         setCursor = "|";
       };
       gp = "git push";
+      gs = "git status";
+      gd = "git diff --cached"
 
       v = "nvim";
       l = "ls -al";
