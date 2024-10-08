@@ -9,6 +9,7 @@
     inputs.nix-colors.homeManagerModules.default
 
     ../config/hypr/hyprland.nix
+    ../config/java.nix
     ../config/fish.nix
     ../config/dunst/dunst.nix
     ../config/git.nix
