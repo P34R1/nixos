@@ -9,6 +9,7 @@
       gitignore = "curl -sL https://www.gitignore.io/api/$argv";
     };
 
+    # https://fishshell.com/docs/current/cmds/abbr.html
     # https://github.com/nix-community/home-manager/blob/master/modules/programs/fish.nix#L141
     # Line might change in the future
     # Find abbrModule = types.submodule {
@@ -19,6 +20,10 @@
         expansion = "git commit -m \"|\"";
         setCursor = "|";
       };
+      gp = "git push";
+
+      v = "nvim";
+      l = "ls -al";
     };
 
     interactiveShellInit = ''
