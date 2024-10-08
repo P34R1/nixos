@@ -1,4 +1,4 @@
-{ config, pkgs }:
+{ config, pkgs, ... }:
 
 {
   # https://codeberg.org/dnkl/foot/src/branch/master/foot.ini
@@ -11,8 +11,8 @@
         #font = "JetBrains Mono:size=11";
       };
 
-      colors = with config.colorScheme.palette {
-        alpha = 0.5;
+      colors = with config.colorScheme.palette; {
+        alpha = "0.5";
 
         foreground = base05;
         background = base00;
