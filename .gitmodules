@@ -1,0 +1,3 @@
+[submodule "scripts/nvim"]
+	path = scripts/nvim
+	url = https://github.com/P34R1/nvim
