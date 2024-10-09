@@ -21,8 +21,8 @@
         expansion = "git commit -m \"|\"";
         setCursor = "|";
       };
-      gp = "git push";
-      gs = "git status";
+      g = "git";
+
       gd = "git diff --cached";
 
       v = "nvim";
