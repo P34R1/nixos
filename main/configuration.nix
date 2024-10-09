@@ -78,6 +78,7 @@ in
   home-manager = {
     # Also pass inputs to home manager modules
     extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "backup";
     useGlobalPkgs = true;
     users.pearl = import ./home.nix;
   };
