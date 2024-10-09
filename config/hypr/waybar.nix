@@ -29,6 +29,8 @@
         };
 
         ignored-players = ["firefox" "librewolf"];
+
+        tooltip = false;
       };
 
       "hyprland/workspaces" = {
@@ -62,9 +64,9 @@
 
       # Time & Date
       "clock#time".format = "{:%I:%M}";
-      "clock#time".tooltip = false;
-
       "clock#date".format = "{:%a, %b %d}";
+
+      "clock#time".tooltip = false;
       "clock#date".tooltip = false;
 
 
