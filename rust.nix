@@ -1,5 +1,5 @@
-({ pkgs, ... }: {
-  nixpkgs.overlays = [ fenix.overlays.default ];
+({ pkgs, inputs, ... }: {
+  nixpkgs.overlays = [ inputs.fenix.overlays.default ];
   environment.systemPackages = with pkgs; [
     (fenix.complete.withComponents [
       "cargo"
