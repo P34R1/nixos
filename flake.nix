@@ -26,19 +26,11 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    zig.url = "github:mitchellh/zig-overlay";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
     # Rust config
     packages.x86_64-linux.default = inputs.fenix.packages.x86_64-linux.minimal.toolchain;
-
-#    overlays = [
-#      (final: prev: {
-#        zigpkgs = inputs.zig.packages.${prev.system};
-#      })
-#    ];
 
     nixosConfigurations.main = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};

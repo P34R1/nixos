@@ -1,9 +1,6 @@
 ({ pkgs, inputs, ... }: {
   nixpkgs.overlays = [
     inputs.fenix.overlays.default
-    (final: prev: {
-      zigpkgs = inputs.zig.packages.${prev.system};
-    })
   ];
 
   environment.systemPackages = with pkgs; [
