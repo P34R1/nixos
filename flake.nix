@@ -30,7 +30,7 @@
 
   outputs = { self, nixpkgs, ... }@inputs: {
     # Rust config
-    packages.x86_64-linux.default = fenix.packages.x86_64-linux.minimal.toolchain;
+    packages.x86_64-linux.default = inputs.fenix.packages.x86_64-linux.minimal.toolchain;
 
     nixosConfigurations.main = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
@@ -39,6 +39,8 @@
         inputs.home-manager.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.nix-index-database.nixosModules.nix-index
+
+        ./rust.nix
       ];
     };
   };
