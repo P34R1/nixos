@@ -78,7 +78,8 @@
     ".local/share/icons/dunst/".source = ../config/dunst/icons;
     ".local/share/colorscripts/".source = ../scripts/colorscripts;
 
-    ".config/nvim/".source = ../scripts/nvim;
+#    ".config/nvim/".source = ../scripts/nvim;
+#    ".config/nvim/".recursive = true;
     
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

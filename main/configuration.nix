@@ -92,9 +92,10 @@ in
     neovim
 
     # Kickstart required
-    unzip
-    libgcc
-    gnumake
+#    unzip
+#    libgccjit
+#    libgcc
+#    gnumake
 
     librewolf
     htop
