@@ -39,6 +39,12 @@
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.ripgrep.enable
   programs.ripgrep.enable = true;
 
+  programs.neovim = {
+    enable = true;
+    extraPackages = [ pkgs.gcc ];
+  };
+
+
   # Home Manager Config.
   home.username = "pearl";
   home.homeDirectory = "/home/pearl";
@@ -78,6 +84,7 @@
     ".local/share/icons/dunst/".source = ../config/dunst/icons;
     ".local/share/colorscripts/".source = ../scripts/colorscripts;
 
+    "./.config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/pearl/nix/home-manager/lib/nvim";
 #    ".config/nvim/".source = ../scripts/nvim;
 #    ".config/nvim/".recursive = true;
     
