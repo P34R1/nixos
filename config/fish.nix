@@ -7,6 +7,11 @@
 
     functions = {
       gitignore = "curl -sL https://www.gitignore.io/api/$argv";
+      dev = {
+        #        env ANY_NIX_SHELL_PKGS=example#v1.0.1 (off of tag)                      /fullpath/nix develop --command fish
+        body = ''env ANY_NIX_SHELL_PKGS=(basename (pwd))"#"(git describe --tags --dirty) (type -P nix) develop --command fish'';
+        wraps = "nix develop";
+      };
     };
 
     # https://fishshell.com/docs/current/cmds/abbr.html
