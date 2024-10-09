@@ -103,6 +103,15 @@ in
 
     screenshot
     volume
+
+    (fenix.complete.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
+    rust-analyzer-nightly
   ];
 
   # https://github.com/ryanoasis/nerd-fonts
