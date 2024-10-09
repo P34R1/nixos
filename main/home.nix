@@ -83,6 +83,7 @@
     ".local/share/colorscripts/".recursive = true;
 
     ".config/nvim/".source = ../scripts/nvim;
+    ".config/nvim/".recursive = true;
     
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

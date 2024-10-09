@@ -89,6 +89,12 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim
+
+    # Kickstart required
+    unzip
+    libgcc
+    gnumake
+
     librewolf
     htop
 
