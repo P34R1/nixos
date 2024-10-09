@@ -84,7 +84,7 @@
     ".local/share/icons/dunst/".source = ../config/dunst/icons;
     ".local/share/colorscripts/".source = ../scripts/colorscripts;
 
-    "./.config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/pearl/nix/home-manager/lib/nvim";
+    "./.config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/pearl/repos/nvim";
 #    ".config/nvim/".source = ../scripts/nvim;
 #    ".config/nvim/".recursive = true;
     
