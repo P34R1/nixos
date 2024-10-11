@@ -6,6 +6,7 @@ let
     ${pkgs.udiskie}/bin/udiskie &
     ${pkgs.dunst}/bin/dunst &
     ${pkgs.hypridle}/bin/hypridle &
+    ${pkgs.wl-clipboard}/bin/wl-paste --watch cliphist store &
   '';
 in
 {
@@ -45,8 +46,6 @@ in
         "$mod, E, exec, $fileManager"
         "$mod, V, togglefloating,"
         "$mod, R, exec, $MENU"
-        "$mod, P, pseudo," # dwindle
-        "$mod, J, togglesplit," # dwindle
 
         # Example special workspace (scratchpad)
         "$mod, S, togglespecialworkspace, scratchpad"
