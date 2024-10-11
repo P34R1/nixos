@@ -93,14 +93,10 @@
 
     ".config/lf/".source = ../config/lf;
 
-    #".config/tofi/config".source = ../config/tofi;
-
     ".local/share/icons/dunst/".source = ../config/dunst/icons;
     ".local/share/colorscripts/".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/shell-color-scripts/colorscripts;
 
     "./.config/nvim".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/nvim;
-#    ".config/nvim/".source = ../scripts/nvim;
-#    ".config/nvim/".recursive = true;
     
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
