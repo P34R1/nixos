@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# clipboard manager using tofi
-# requires tofi, cliphist and wl-clipboard to function
-
-cliphist list | tofi | cliphist decode | wl-copy

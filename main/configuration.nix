@@ -7,6 +7,7 @@
 let
   screenshot = import ../scripts/screenshot.nix { inherit pkgs; };
   volume = import ../scripts/volume.nix { inherit pkgs; };
+  toficlip = import ../scripts/tofi-clip.nix { inherit pkgs; };
 in
 {
   imports =
@@ -113,6 +114,7 @@ in
 
     screenshot
     volume
+    toficlip
 
     (fenix.complete.withComponents [
       "cargo"
