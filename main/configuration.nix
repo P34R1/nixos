@@ -90,23 +90,13 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #    neovim
-
-    # Kickstart required
-    #unzip
-    #libgccjit
-    #libgcc
-    #gnumake
-
-    wl-clipboard
-
     librewolf
     htop
 
-    tofi
     lf
     entr
-   
+    wl-clipboard
+    chafa
     playerctl
     openrazer-daemon
     udisks2
@@ -115,15 +105,6 @@ in
     screenshot
     volume
     toficlip
-
-    (fenix.complete.withComponents [
-      "cargo"
-      "clippy"
-      "rust-src"
-      "rustc"
-      "rustfmt"
-    ])
-    rust-analyzer-nightly
   ];
 
   # https://github.com/ryanoasis/nerd-fonts
