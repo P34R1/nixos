@@ -53,6 +53,11 @@
     };
   };
 
+  services.cliphist = {
+    enable = true;
+    allowImages = true;
+  };
+
   # Home Manager Config.
   home.username = "pearl";
   home.homeDirectory = "/home/pearl";

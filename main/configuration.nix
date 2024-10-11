@@ -97,6 +97,8 @@ in
     #libgcc
     #gnumake
 
+    wl-clipboard
+
     librewolf
     htop
 
