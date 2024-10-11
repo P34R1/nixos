@@ -7,8 +7,8 @@
     settings = with config.colorScheme.palette; {
       # RobotoMonoNerdFontProportional
       font = "${pkgs.nerdfonts}/share/fonts/truetype/NerdFonts/RobotoMonoNerdFontPropo-Medium.ttf";
-      # #282828 alpha 50%
-      background-color = "#${base00}88";
+      # #282828 alpha 75%
+      background-color = "#${base00}BF";
       border-color = "#${base0E}";
       text-color = "#${base06}";
       selection-color = "#${base09}";
