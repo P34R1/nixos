@@ -50,7 +50,7 @@
 	# Default text color
 	#
 	# All text defaults to this color if not otherwise specified.
-	text-color = #FFFFFF
+	text-color = #ebdbb2
 
 	# All pieces of text have the same theming attributes available:
 	#
@@ -68,28 +68,28 @@
 	#     Radius of background box corners in pixels
 
 	# Prompt text theme
-	# prompt-color = #FFFFFF
-	prompt-background = #00000000
-	prompt-background-padding = 0
-	prompt-background-corner-radius = 0
+	# prompt-color = #fb4934
+	#prompt-background = #00000000
+	#prompt-background-padding = 0
+	#prompt-background-corner-radius = 0
 
 	# Placeholder text theme
-	placeholder-color = #FFFFFFA8
-	placeholder-background = #00000000
-	placeholder-background-padding = 0
-	placeholder-background-corner-radius = 0
+	#placeholder-color = #FFFFFFA8
+	#placeholder-background = #00000000
+	#placeholder-background-padding = 0
+	#placeholder-background-corner-radius = 0
 
 	# Input text theme
 	# input-color = #FFFFFF
-	input-background = #00000000
-	input-background-padding = 0
-	input-background-corner-radius = 0
+	#input-background = #00000000
+	#input-background-padding = 0
+	#input-background-corner-radius = 0
 
 	# Default result text theme
 	# default-result-color = #FFFFFF
-	default-result-background = #00000000
-	default-result-background-padding = 0
-	default-result-background-corner-radius = 0
+	#default-result-background = #00000000
+	#default-result-background-padding = 0
+	#default-result-background-corner-radius = 0
 
 	# Alternate (even-numbered) result text theme
 	#
@@ -102,13 +102,13 @@
 	# alternate-result-background-corner-radius = 0
 
 	# Selection text
-	selection-color = #F92672
-	selection-background = #00000000
-	selection-background-padding = 0
-	selection-background-corner-radius = 0
+	selection-color = #fabd2f
+	#selection-background = #00000000
+	#selection-background-padding = 0
+	#selection-background-corner-radius = 0
 
 	# Matching portion of selection text
-	selection-match-color = #00000000
+	#selection-match-color = #00000000
 
 
 #
@@ -142,7 +142,7 @@
 ### Text layout
 #
 	# Prompt to display.
-	prompt-text = "run: "
+	prompt-text = "> "
 
 	# Extra horizontal padding between prompt and input.
 	prompt-padding = 0
@@ -171,7 +171,7 @@
 	height = 720
 
 	# Window background color
-	background-color = #1B1D1E
+	background-color = #282828
 
 	# Width of the border outlines in pixels.
 	outline-width = 4
@@ -180,19 +180,19 @@
 	outline-color = #080800
 
 	# Width of the border in pixels.
-	border-width = 12
+	#border-width = 12
 
 	# Border color
-	border-color = #F92672
+	#border-color = #F92672
 
 	# Radius of window corners in pixels.
-	corner-radius = 0
+	#corner-radius = 5
 
 	# Padding between borders and text. Can be pixels or a percentage.
-	padding-top = 8
-	padding-bottom = 8
-	padding-left = 8
-	padding-right = 8
+	#padding-top = 8
+	#padding-bottom = 8
+	#padding-left = 8
+	#padding-right = 8
 
 	# Whether to clip text drawing to be within the specified padding. This
 	# is mostly important for allowing text to be inset from the border,

@@ -10,6 +10,7 @@
 
     ../config/hypr/hyprland.nix
     ../config/java.nix
+    ../config/tofi.nix
     ../config/fish.nix
     ../config/dunst/dunst.nix
     ../config/git.nix
@@ -92,7 +93,7 @@
 
     ".config/lf/".source = ../config/lf;
 
-    ".config/tofi/config".source = ../config/tofi;
+    #".config/tofi/config".source = ../config/tofi;
 
     ".local/share/icons/dunst/".source = ../config/dunst/icons;
     ".local/share/colorscripts/".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/shell-color-scripts/colorscripts;
