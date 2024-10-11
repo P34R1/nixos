@@ -44,6 +44,14 @@
     extraPackages = [ pkgs.gcc ];
   };
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = false;
+    #    enableFishIntegration = true;
+    config = {
+      hide_env_diff = true;
+    };
+  };
 
   # Home Manager Config.
   home.username = "pearl";
