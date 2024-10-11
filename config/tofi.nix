@@ -2,7 +2,7 @@
 
 {
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.tofi.enable
-  packages.tofi = {
+  programs.tofi = {
     enable = true;
     settings = {
       background-color = "#000000";
