@@ -4,17 +4,24 @@
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.tofi.enable
   programs.tofi = {
     enable = true;
-    settings = {
-      background-color = "#000000";
-      border-width = 0;
-      font = "monospace";
-      height = "100%";
-      num-results = 5;
+    settings = with config.colorScheme.palette; {
+      # RobotoMonoNerdFontProportional
+      font = "${pkgs.nerdfonts}/share/fonts/truetype/NerdFonts/RobotoMonoNerdFontPropo-Medium.ttf";
+      # #282828 alpha 50%
+      background-color = "#${base00}88";
+      border-color = "#${base0E}";
+      text-color = "#${base06}";
+      selection-color = "#${base09}";
+
+      prompt-text = "> ";
+
+      border-width = 3;
+      height = "50%";
+      width = "50%";
+      corner-radius = 25;
+      num-results = 10;
       outline-width = 0;
-      padding-left = "35%";
-      padding-top = "35%";
-      result-spacing = 25;
-      width = "100%";
+      result-spacing = 0;
     };
   };
 }
