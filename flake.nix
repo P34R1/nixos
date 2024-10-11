@@ -21,17 +21,9 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    # Rust config
-    packages.x86_64-linux.default = inputs.fenix.packages.x86_64-linux.minimal.toolchain;
-
     nixosConfigurations.main = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
@@ -39,8 +31,6 @@
         inputs.home-manager.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.nix-index-database.nixosModules.nix-index
-
-        ./rust.nix
       ];
     };
   };
