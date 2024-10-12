@@ -13,29 +13,29 @@
 
       # https://codeberg.org/dnkl/foot/src/branch/master/themes/gruvbox-dark
       colors = with config.colorScheme.palette; {
-        alpha = "0.5";
+        alpha = "0.75";
 
         # Normal/regular colors (color palette 0-7)
-        background = "282828";
-        foreground = "ebdbb2";
-        regular0 = "282828";
-        regular1 = "cc241d";
-        regular2 = "98971a";
-        regular3 = "d79921";
-        regular4 = "458588";
-        regular5 = "b16286";
-        regular6 = "689d6a";
-        regular7 = "a89984";
+        background = "${base00}";
+        foreground = "${base06}";
+        regular0 = "${base00}"; # black
+        regular1 = "${base08}"; # red
+        regular2 = "${base0B}"; # green
+        regular3 = "${base09}"; # yellow
+        regular4 = "${base0D}"; # blue
+        regular5 = "${base0E}"; # purple
+        regular6 = "${base0C}"; # aqua/cyan
+        regular7 = "${base06}"; # white
 
         # Bright colors (color palette 8-15)
-        bright0 = "928374";
-        bright1 = "fb4934";
-        bright2 = "b8bb26";
-        bright3 = "fabd2f";
-        bright4 = "83a598";
-        bright5 = "d3869b";
-        bright6 = "8ec07c";
-        bright7 = "ebdbb2";
+        bright0 = "${base01}";
+        bright1 = "${base08}"; # bright red
+        bright2 = "${base14}"; # green
+        bright3 = "${base13}"; # yellow
+        bright4 = "${base16}"; # blue
+        bright5 = "${base17}"; # purple
+        bright6 = "${base15}"; # aqua/cyan
+        bright7 = "${base07}"; # white
       };
     };
   };
