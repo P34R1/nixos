@@ -18,7 +18,8 @@
   ];
 
   # https://github.com/tinted-theming/schemes/tree/spec-0.11/base16
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+  #colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+  colorScheme = import ./gruvbox.nix;
 
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fd.enable
   programs.fd.enable = true;
