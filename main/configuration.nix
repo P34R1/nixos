@@ -93,7 +93,6 @@ in
     librewolf
     htop
 
-    lf
     entr
     wl-clipboard
     chafa

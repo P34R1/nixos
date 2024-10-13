@@ -15,6 +15,7 @@
     ../config/git.nix
     ../config/spicetify.nix
     ../config/foot.nix
+    ../config/nnn.nix
   ];
 
   # https://github.com/tinted-theming/schemes/tree/spec-0.11/base16
@@ -90,8 +91,6 @@
   # plain files is through 'home.file'.
   home.file = {
     ".xinitrc".source = ../config/xinitrc;
-
-    ".config/lf/".source = ../config/lf;
 
     ".local/share/icons/dunst/".source = ../config/dunst/icons;
     ".local/share/colorscripts/".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/shell-color-scripts/colorscripts;
