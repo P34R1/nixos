@@ -10,7 +10,7 @@
 
     ../config/hypr/hyprland.nix
     ../config/tofi.nix
-    ../config/fish.nix
+    ../config/fish/fish.nix
     ../config/dunst/dunst.nix
     ../config/git.nix
     ../config/spicetify.nix
