@@ -93,14 +93,16 @@ in
     librewolf
     htop
 
+    tlrc # tldr
     entr
     wl-clipboard
-    chafa
+    chafa # terminal imgs
     playerctl
     openrazer-daemon
-    udisks2
+    udisks2 # auto mounting
     udiskie
 
+    # My Scripts
     screenshot
     volume
     toficlip
