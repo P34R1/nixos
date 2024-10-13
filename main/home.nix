@@ -16,6 +16,7 @@
     ../config/spicetify.nix
     ../config/foot.nix
     ../config/nnn.nix
+    ../config/tmux.nix
   ];
 
   # https://github.com/tinted-theming/schemes/tree/spec-0.11/base16

@@ -94,7 +94,6 @@ in
     librewolf
     htop
 
-    tmux
     trashy # trash-cli replacment
     tlrc # tldr
     entr
