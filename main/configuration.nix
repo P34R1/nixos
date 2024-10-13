@@ -8,6 +8,7 @@ let
   screenshot = import ../scripts/screenshot.nix { inherit pkgs; };
   volume = import ../scripts/volume.nix { inherit pkgs; };
   toficlip = import ../scripts/tofi-clip.nix { inherit pkgs; };
+  trashput = import ../scripts/trash-put.nix { inherit pkgs; };
 in
 {
   imports =
@@ -107,6 +108,7 @@ in
     screenshot
     volume
     toficlip
+    trashput
   ];
 
   # https://github.com/ryanoasis/nerd-fonts
@@ -116,6 +118,7 @@ in
   ];
 
   services.udisks2.enable = true;
+  services.gvfs.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions

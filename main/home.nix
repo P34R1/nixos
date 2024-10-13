@@ -121,7 +121,11 @@
   #  /etc/profiles/per-user/pearl/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    VISUAL = "nvim";
+    EDITOR = "nvim";
+
+    NNN_FIFO = "/tmp/nnn.fifo";
+    NNN_TRASH = 1;
   };
 
   # Let Home Manager install and manage itself.
