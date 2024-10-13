@@ -93,6 +93,7 @@ in
     librewolf
     htop
 
+    trashy # trash-cli replacment
     tlrc # tldr
     entr
     wl-clipboard
