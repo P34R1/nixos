@@ -68,7 +68,7 @@
       src = pkgs.fetchFromGitHub {
         owner = "meaningful-ooo";
         repo = "sponge";
-        rev = "384299545104d5256648cee9d8b117aaa9a6d7be";
+        rev = "main";
         sha256 = "sha256-MdcZUDRtNJdiyo2l9o5ma7nAX84xEJbGFhAVhK+Zm1w=";
       };
     }
@@ -79,7 +79,7 @@
       src = pkgs.fetchFromGitHub {
         owner = "PatrickF1";
         repo = "fzf.fish";
-        rev = "8920367cf85eee5218cc25a11e209d46e2591e7a";
+        rev = "main";
         sha256 = "sha256-T8KYLA/r/gOKvAivKRoeqIwE2pINlxFQtZJHpOy9GMM=";
       };
     }
@@ -90,8 +90,20 @@
       src = pkgs.fetchFromGitHub {
         owner = "jorgebucaran";
         repo = "hydro";
-        rev = "bc31a5ebc687afbfb13f599c9d1cc105040437e1";
+        rev = "main";
         sha256 = "sha256-0MMiM0NRbjZPJLAMDXb+Frgm+du80XpAviPqkwoHjDA=";
+      };
+    }
+
+
+    # https://github.com/budimanjojo/tmux.fish
+    {
+      name = "tmux";
+      src = pkgs.fetchFromGitHub {
+        owner = "budimanjojo";
+        repo = "tmux.fish";
+        rev = "main";
+        sha256 = "sha256-rIMMU7gLNYVgFH3/ZtDCqxLx2TBYgJ29S7YcHO25AIg=";
       };
     }
   ];
