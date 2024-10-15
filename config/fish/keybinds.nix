@@ -4,6 +4,8 @@
   programs.fish.interactiveShellInit = ''
     # Reset binds
     bind -ea
-    bind \cf _fzf_search_directory
+    bind \c\et _fzf_search_directory
+
+    bind \cf tmux-sessionizer
   '';
 }

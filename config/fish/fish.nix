@@ -36,6 +36,9 @@
 
       v = "nvim";
       l = "ls -al";
+
+      ts = "tmux-sessionizer";
+      tw = "tmux-windowizer";
     };
 
     interactiveShellInit = ''
