@@ -12,7 +12,23 @@
       init.defaultBranch = "main";
 
       # Use SSH
-      url."ssh://git@github.com/".insteadOf = "https://github.com/";      
+      url."ssh://git@github.com/".insteadOf = "https://github.com/";
+
+      # https://www.youtube.com/watch?v=HJtxQPJUcJc
+      rerere.enabled = true;
+    };
+
+    aliases = {
+      st = "status -s";
+      sta = "status";
+
+      br = "branch";
+      bra = "branch -a";
+      co = "checkout";
+
+      # https://www.youtube.com/watch?v=xN1-2p06Urc
+      pr = "pull --rebase";
+      amend = "commit -a --amend --no-edit";
     };
   };
 }
