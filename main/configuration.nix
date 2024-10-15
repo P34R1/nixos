@@ -9,6 +9,7 @@ let
   volume = import ../scripts/volume.nix { inherit pkgs; };
   toficlip = import ../scripts/tofi-clip.nix { inherit pkgs; };
   trashput = import ../scripts/trash-put.nix { inherit pkgs; };
+  tmuxdrv = import ../scripts/tmux/default.nix { inherit pkgs; };
 in
 {
   imports =
@@ -109,6 +110,7 @@ in
     volume
     toficlip
     trashput
+    tmuxdrv
   ];
 
   # https://github.com/ryanoasis/nerd-fonts
