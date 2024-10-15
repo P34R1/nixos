@@ -71,6 +71,9 @@
     };
   };
 
+  programs.zoxide.enable = true;
+  programs.zoxide.options = [];
+
   services.cliphist = {
     enable = true;
     allowImages = true;
