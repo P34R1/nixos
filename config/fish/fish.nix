@@ -85,16 +85,5 @@
       };
     }
 
-
-    # https://github.com/budimanjojo/tmux.fish
-    {
-      name = "tmux";
-      src = pkgs.fetchFromGitHub {
-        owner = "budimanjojo";
-        repo = "tmux.fish";
-        rev = "main";
-        sha256 = "sha256-rIMMU7gLNYVgFH3/ZtDCqxLx2TBYgJ29S7YcHO25AIg=";
-      };
-    }
   ];
 }
