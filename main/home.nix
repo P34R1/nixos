@@ -17,7 +17,7 @@
     ../config/foot.nix
     ../config/nnn.nix
     ../config/yazi.nix
-    ../config/tmux.nix
+    ../config/tmux/tmux.nix
   ];
 
   # https://github.com/tinted-theming/schemes/tree/spec-0.11/base16

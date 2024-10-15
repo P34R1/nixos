@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./bar.nix
+  ];
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.tmux.enable
   programs.tmux = {
     enable = true;
@@ -27,11 +30,11 @@
     '';
 
     plugins = with pkgs; [
-      {
-        # https://github.com/egel/tmux-gruvbox
-        plugin = tmuxPlugins.gruvbox;
-        extraConfig = "set -g @tmux-gruvbox 'dark'";
-      }
+      # {
+      #   # https://github.com/egel/tmux-gruvbox
+      #   plugin = tmuxPlugins.gruvbox;
+      #   extraConfig = "set -g @tmux-gruvbox 'dark'";
+      # }
     ];
   };
 }
