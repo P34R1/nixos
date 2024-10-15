@@ -22,6 +22,7 @@
       set -ga update-environment TERM
       set -ga update-environment TERM_PROGRAM
 
+      bind-key -T prefix e command-prompt -I "#S" { rename-session '%%' }
       bind-key -T prefix r command-prompt -I "#W" { rename-window '%%' }
     '';
 
