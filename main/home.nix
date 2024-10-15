@@ -16,6 +16,7 @@
     ../config/spicetify.nix
     ../config/foot.nix
     ../config/nnn.nix
+    ../config/yazi.nix
     ../config/tmux.nix
   ];
 
