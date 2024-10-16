@@ -2,11 +2,11 @@
 
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar & disown 
+    ${pkgs.waybar}/bin/waybar & disown
     ${pkgs.udiskie}/bin/udiskie &
     ${pkgs.dunst}/bin/dunst &
     ${pkgs.hypridle}/bin/hypridle &
-    ${pkgs.wl-clipboard}/bin/wl-paste --watch cliphist store &
+    ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store &
   '';
 in
 {
@@ -52,8 +52,6 @@ in
         "$mod SHIFT, S, movetoworkspace, special:scratchpad"
 
         ", Print, exec, screenshot"
-#        "$mod, F, exec, firefox"
-#        ", Print, exec, grimblast copy area"
       ];
 
       bindm = [
