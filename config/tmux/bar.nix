@@ -8,18 +8,15 @@
     # default statusbar color
     set-option -g status-style bg=default,fg=white
 
-    # default window with an activity alert
-    set-window-option -g window-status-activity-style bg=colour237,fg=colour248 # bg=bg1, fg=fg3
-
     # pane border
     set-option -g pane-active-border-style fg=white
     set-option -g pane-border-style fg=black
 
     # message infos
-    set-option -g message-style bg=colour239,fg=colour223 # bg=bg2, fg=fg1
+    set-option -g message-style bg=brightblack,fg=yellow
 
     # writing commands inactive
-    set-option -g message-command-style bg=colour239,fg=colour223 # bg=fg3, fg=bg1
+    set-option -g message-command-style bg=brightblack,fg=yellow
 
     ## Theme settings mixed with colors (unfortunately, but there is no cleaner way)
     set-option -g status-justify "right"
