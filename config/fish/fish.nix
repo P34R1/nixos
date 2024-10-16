@@ -39,6 +39,11 @@
 
       ts = "tmux-sessionizer";
       tw = "tmux-windowizer";
+
+      r = "projectdo -d run";
+      b = "projectdo -d build";
+      t = "projectdo -d test";
+      p = "projectdo -d tool";
     };
 
     interactiveShellInit = ''
@@ -101,17 +106,6 @@
         repo = "hydro";
         rev = "main";
         sha256 = "sha256-0MMiM0NRbjZPJLAMDXb+Frgm+du80XpAviPqkwoHjDA=";
-      };
-    }
-
-    # https://github.com/paldepind/projectdo
-    {
-      name = "projectdo";
-      src = pkgs.fetchFromGitHub {
-        owner = "paldepind";
-        repo = "projectdo";
-        rev = "main";
-        sha256 = "sha256-j8wR+s1cMVMcNYXcVxmSf14UuHsRNq112jrMmevN9Dg=";
       };
     }
 
