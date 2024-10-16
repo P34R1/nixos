@@ -12,11 +12,11 @@
       modules-left = [ "hyprland/workspaces" "custom/arrow#right" "hyprland/window" ];
 
       modules-right = [
-        "custom/arrow#mpris"	"mpris"			# music info
-        "custom/arrow#memory"	"memory"		# mem usage
-        "custom/arrow#date"	"clock#date"		# date
-        "custom/arrow#time"	"clock#time"		# time
-        "custom/arrow#tray"	"tray"			# tray icons
+        "custom/arrow#mpris"	"mpris" 	# music info
+        "custom/arrow#memory"	"memory"	# mem usage
+        "custom/arrow#date"	"clock#date"	# date
+        "custom/arrow#time"	"clock#time"	# time
+        "custom/arrow#tray"	"tray"  	# tray icons
       ];
 
       mpris = {
@@ -28,7 +28,10 @@
           mpv = "🎵";
         };
 
-        ignored-players = ["firefox" "librewolf"];
+        # ignored-players = ["firefox" "librewolf"];
+
+        on-scroll-up = "playerctld shift";
+        on-scroll-down = "playerctld unshift";
 
         tooltip = false;
       };
