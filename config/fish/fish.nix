@@ -40,10 +40,10 @@
       ts = "tmux-sessionizer";
       tw = "tmux-windowizer";
 
-      r = "projectdo -d run";
-      b = "projectdo -d build";
-      t = "projectdo -d test";
-      p = "projectdo -d tool";
+      r = "projectdo -q run";
+      b = "projectdo -q build";
+      t = "projectdo -q test";
+      p = "projectdo -q tool";
     };
 
     interactiveShellInit = ''
