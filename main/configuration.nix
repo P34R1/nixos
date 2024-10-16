@@ -78,6 +78,8 @@ in
   # Enable automatic login for the user.
   services.getty.autologinUser = "pearl";
   security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock.nodelay = true;
+  security.pam.services.sudo.nodelay = true;
 
   home-manager = {
     # Also pass inputs to home manager modules
