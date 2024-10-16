@@ -6,6 +6,7 @@
     enable = true;
     userEmail = "undeadgamer279@gmail.com";
     userName = "p34r1";
+    delta.enable = true;
 
     extraConfig = {
       # Use main instead of master
@@ -31,6 +32,16 @@
       amend = "commit -a --amend --no-edit";
 
       lo = "log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit";
+    };
+  };
+
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.lazygit.enable
+  programs.lazygit = {
+    enable = true;
+
+    # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+    settings = {
+
     };
   };
 }
