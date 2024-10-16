@@ -10,6 +10,7 @@ let
   toficlip = import ../scripts/tofi-clip.nix { inherit pkgs; };
   trashput = import ../scripts/trash-put.nix { inherit pkgs; };
   tmuxdrv = import ../scripts/tmux/default.nix { inherit pkgs; };
+  projectdo = import ../scripts/projectdo/default.nix { inherit pkgs; };
 in
 {
   imports =
@@ -111,6 +112,7 @@ in
     toficlip
     trashput
     tmuxdrv
+    projectdo
   ];
 
   # https://github.com/ryanoasis/nerd-fonts

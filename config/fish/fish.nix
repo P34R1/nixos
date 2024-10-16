@@ -104,5 +104,16 @@
       };
     }
 
+    # https://github.com/paldepind/projectdo
+    {
+      name = "projectdo";
+      src = pkgs.fetchFromGitHub {
+        owner = "paldepind";
+        repo = "projectdo";
+        rev = "main";
+        sha256 = "sha256-j8wR+s1cMVMcNYXcVxmSf14UuHsRNq112jrMmevN9Dg=";
+      };
+    }
+
   ];
 }
