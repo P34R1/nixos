@@ -24,10 +24,10 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.main = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.vincent-desktop = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        ./main/configuration.nix
+        ./vincent-desktop/configuration.nix
         inputs.home-manager.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.nix-index-database.nixosModules.nix-index

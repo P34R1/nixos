@@ -58,7 +58,7 @@ in
 
   # Enable networking
   networking = {
-    hostName = "pearl-nix";
+    hostName = "vincent-desktop";
     enableIPv6 = false;
     networkmanager.enable = true;
   };
