@@ -114,6 +114,7 @@ in
     openrazer-daemon
     udisks2 # auto mounting
     udiskie
+    glow # markdown parser
 
     # My Scripts
     screenshot

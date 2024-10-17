@@ -20,6 +20,15 @@
         body = ''env ANY_NIX_SHELL_PKGS=(basename (pwd))"#"(git describe --tags --dirty) (type -P nix) develop --command fish'';
         wraps = "nix develop";
       };
+
+      y = ''
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        yazi $argv --cwd-file="$tmp"
+        if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+                builtin cd -- "$cwd"
+        end
+        rm -f -- "$tmp"
+      '';
     };
 
     # https://fishshell.com/docs/current/cmds/abbr.html
