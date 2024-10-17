@@ -1,14 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar & disown
-    ${pkgs.udiskie}/bin/udiskie &
-    ${pkgs.dunst}/bin/dunst &
-    ${pkgs.hypridle}/bin/hypridle &
-    ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store &
-  '';
-in
 {
   imports = [
     ./waybar.nix
@@ -28,7 +19,13 @@ in
       monitor = "HDMI-A-4, highrr, 0x0, 1";
       cursor.no_hardware_cursors = true;
 
-      exec-once = "${startupScript}/bin/start";
+      exec-once = [
+        "${pkgs.waybar}/bin/waybar"
+        "${pkgs.udiskie}/bin/udiskie"
+        "${pkgs.dunst}/bin/dunst"
+        "${pkgs.hypridle}/bin/hypridle"
+        "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store"
+      ];
 
       "$mod" = "SUPER";
       "$TERMINAL" = "foot";
