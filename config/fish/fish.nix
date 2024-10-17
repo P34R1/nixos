@@ -23,7 +23,7 @@
     # Line might change in the future
     # Find abbrModule = types.submodule {
     shellAbbrs = {
-      rb = "sudo nixos-rebuild switch --flake /home/pearl/nixos#main";
+      rb = "nh os switch";
 
       ga = "git add .";
       gc = {
