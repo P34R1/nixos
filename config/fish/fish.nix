@@ -9,6 +9,10 @@
   programs.fish = {
     enable = true;
 
+    # Completions
+    # trash completions fish > ~/.config/fish/completions/trash.fish
+    # nh completions --shell fish > ~/.config/fish/completions/nh.fish
+
     functions = {
       gitignore = "curl -sL https://www.gitignore.io/api/$argv";
       dev = {
