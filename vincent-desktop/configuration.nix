@@ -21,7 +21,7 @@ in
       # ./dwm.nix
 
       # Hypr
-      ./hyprland.nix
+      ../config/hypr/hyprland.nix
 
       # Desktop
       ./desktop.nix

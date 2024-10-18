@@ -8,7 +8,6 @@
     # Nix Colors  
     inputs.nix-colors.homeManagerModules.default
 
-    ../config/hypr/hyprland.nix
     ../config/tofi.nix
     ../config/fish/fish.nix
     ../config/dunst/dunst.nix
