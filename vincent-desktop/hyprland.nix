@@ -17,7 +17,7 @@
   services.xserver.enable = true;
   services.xserver.displayManager.lightdm = {
     enable = true;
-    autoLogin.timeout = 0;
-    greeter.enable = false;
+    autoLogin.timeout = 10;
+    #greeter.enable = false;
   };
 }
