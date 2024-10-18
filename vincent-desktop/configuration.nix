@@ -18,7 +18,7 @@ in
       ./hardware-configuration.nix
 
       # dwm
-#      ./dwm.nix
+      # ./dwm.nix
 
       # Hypr
       ./hyprland.nix

@@ -1,5 +1,15 @@
 { config, pkgs, ... }:
 
+let
+  startup = pkgs.writeShellScriptBin "start" ''
+    ${pkgs.udiskie}/bin/udiskie &
+    ${pkgs.dunst}/bin/dunst &
+    ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store &
+    sleep 1
+    ${pkgs.waybar}/bin/waybar & disown
+    ${pkgs.hypridle}/bin/hypridle &
+  '';
+in
 {
   imports = [
     ./waybar.nix
@@ -20,11 +30,7 @@
       cursor.no_hardware_cursors = true;
 
       exec-once = [
-        "${pkgs.waybar}/bin/waybar"
-        "${pkgs.udiskie}/bin/udiskie"
-        "${pkgs.dunst}/bin/dunst"
-        "${pkgs.hypridle}/bin/hypridle"
-        "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store"
+        "${startup}/bin/start"
       ];
 
       "$mod" = "SUPER";

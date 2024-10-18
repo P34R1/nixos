@@ -17,7 +17,7 @@ in
   services.xserver = {
     enable = true;
     autorun = false;
-    displayManager.startx.enable = true;
+    displayManager.startx.enable = false;
     windowManager.dwm = {
       enable = true;
       package = pkgs.dwm.overrideAttrs (old: {

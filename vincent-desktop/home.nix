@@ -115,7 +115,41 @@
     ".local/share/colorscripts/".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/shell-color-scripts/colorscripts;
     ".local/share/wall.png".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/backgrounds/nix-wallpaper-simple-blue.png;
 
-    "./.config/nvim".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/nvim;
+    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/nvim;
+
+    ".bash_profile".text = ''
+#      if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+#        printf "does this actually work"
+#        read -n 1
+#
+#        exec hyprland
+#      fi
+
+      if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+        printf "\033[1m[h]\033[0m - hyprland\n"
+        printf "\033[1m[d]\033[0m - dwm\n"
+        stty -icanon -echo
+        choice=$(dd bs=1 count=1 2>/dev/null)
+        stty icanon echo
+
+        case "$choice" in
+          h|H)
+            printf "Launching Hyprland...\n"
+            # Replace with the actual command to start Hyprland
+            exec hyprland
+            ;;
+          d|D)
+            printf "Launching dwm...\n"
+            # Replace with the actual command to start dwm
+            exec dwm
+            ;;
+          *)
+            printf "Invalid choice! Launching Hyprland.\n"
+            exec hyprland
+            ;;
+        esac
+      fi
+    '';
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
