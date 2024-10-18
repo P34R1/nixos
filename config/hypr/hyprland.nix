@@ -27,6 +27,23 @@ in
       ./idle.nix
     ];
 
+    home.file.".bash_profile".text = ''
+      if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+        printf "\033[1m[h]\033[0m - hyprland\n"
+        printf "\033[1m[d]\033[0m - dwm\n"
+
+        stty -icanon -echo
+        choice=$(dd bs=1 count=1 2>/dev/null)
+        stty icanon echo
+
+        case "$choice" in
+          h|H) exec hyprland;;
+          d|D) exec dwm;;
+          *) exec hyprland;;
+        esac
+      fi
+    '';
+
     wayland.windowManager.hyprland = {
       enable = true;
       settings = {
