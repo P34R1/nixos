@@ -21,7 +21,7 @@ in
       # ./dwm.nix
 
       # Hypr
-      ../config/hypr/hyprland.nix
+      #../config/hypr/hyprland.nix
 
       ../config
 
@@ -40,6 +40,7 @@ in
   lazygit.enable = true;
   nnn.enable = false;
   foot.enable = true;
+  hyprland.enable = true;
 
   # Bootloader.
   boot.loader.grub = {

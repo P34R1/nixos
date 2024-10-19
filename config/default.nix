@@ -9,7 +9,7 @@
     #./yazi.nix
     #./spicetify.nix
     #./fish/fish.nix
-    #./hypr/hyprland.nix
+    ./hypr/hyprland.nix
     #./tmux/tmux.nix
     #./dunst/dunst.nix
   ];
