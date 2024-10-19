@@ -46,6 +46,7 @@ in
   foot.enable = true;
   hyprland.enable = true;
   tofi.enable = true;
+  yazi.enable = true;
 
   # Bootloader.
   boot.loader.grub = {

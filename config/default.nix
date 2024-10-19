@@ -12,7 +12,7 @@
     ./nnn.nix
     ./foot.nix
     ./tofi.nix
-    #./yazi.nix
+    ./yazi.nix
     #./spicetify.nix
     #./fish/fish.nix
     ./hypr/hyprland.nix
