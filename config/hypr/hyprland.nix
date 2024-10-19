@@ -27,6 +27,7 @@ in
       ./idle.nix
     ];
 
+    # https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login
     home.file.".bash_profile".text = ''
       if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
         printf "\033[1m[h]\033[0m - hyprland\n"
