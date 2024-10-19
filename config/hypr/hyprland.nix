@@ -54,6 +54,11 @@ in
 
         exec-once = [
           "${startup}/bin/start"
+
+          "[workspace 1 silent] foot"
+          "[workspace 2 silent] librewolf"
+          "[workspace 3 silent] spotify"
+          "[workspace 4 silent] flatpak run dev.vencord.Vesktop"
         ];
 
         "$mod" = "SUPER";
