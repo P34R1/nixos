@@ -23,6 +23,8 @@ in
       # Hypr
       ../config/hypr/hyprland.nix
 
+      ../config
+
       # Desktop
       ./desktop.nix
       ./darkmode.nix
@@ -33,6 +35,11 @@ in
       # Home-Manager
       inputs.home-manager.nixosModules.default
     ];
+
+  git.enable = true;
+  lazygit.enable = true;
+  nnn.enable = false;
+  foot.enable = true;
 
   # Bootloader.
   boot.loader.grub = {

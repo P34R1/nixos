@@ -11,10 +11,10 @@
     ../config/tofi.nix
     ../config/fish/fish.nix
     ../config/dunst/dunst.nix
-    ../config/git.nix
+    #../config/git.nix
     ../config/spicetify.nix
-    ../config/foot.nix
-    ../config/nnn.nix
+    #../config/foot.nix
+    #../config/nnn.nix
     ../config/yazi.nix
     ../config/tmux/tmux.nix
   ];
