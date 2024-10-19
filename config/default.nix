@@ -13,7 +13,7 @@
     ./foot.nix
     ./tofi.nix
     ./yazi.nix
-    #./spicetify.nix
+    ./spicetify.nix
     #./fish/fish.nix
     ./hypr/hyprland.nix
     #./tmux/tmux.nix

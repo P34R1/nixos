@@ -47,6 +47,7 @@ in
   hyprland.enable = true;
   tofi.enable = true;
   yazi.enable = true;
+  spicetify.enable = true;
 
   # Bootloader.
   boot.loader.grub = {

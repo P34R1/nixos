@@ -10,7 +10,6 @@
 
     ../config/fish/fish.nix
     ../config/dunst/dunst.nix
-    ../config/spicetify.nix
     ../config/tmux/tmux.nix
   ];
 
