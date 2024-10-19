@@ -31,7 +31,7 @@ in
 
     # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
     # https://nix-community.github.io/home-manager/options.xhtml#opt-wayland.windowManager.hyprland.enable
-    home-manager.users.pearl = {
+    hm = {
       imports = [
         ./waybar.nix
         ./visuals.nix

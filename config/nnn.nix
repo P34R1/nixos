@@ -9,7 +9,7 @@
   config = lib.mkIf config.nnn.enable {
 
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.nnn.enable
-    home-manager.users.pearl.programs.nnn = {
+    hm.programs.nnn = {
       enable = true;
 
       bookmarks = {

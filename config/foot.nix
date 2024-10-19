@@ -10,7 +10,7 @@
 
     # https://codeberg.org/dnkl/foot/src/branch/master/foot.ini
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.foot.enable
-    home-manager.users.pearl.programs.foot = {
+    hm.programs.foot = {
       enable = true;
       settings = {
         main = {
@@ -19,7 +19,7 @@
         };
 
         # https://codeberg.org/dnkl/foot/src/branch/master/themes/gruvbox-dark
-        colors = with config.home-manager.users.pearl.colorScheme.palette; {
+        colors = with config.hm.colorScheme.palette; {
           alpha = "0.75";
 
           # Normal/regular colors (color palette 0-7)

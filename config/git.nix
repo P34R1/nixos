@@ -9,7 +9,7 @@
       lib.mkEnableOption "enables lazygit";
   };
 
-  config.home-manager.users.pearl.programs = lib.mkIf config.git.enable {
+  config.hm.programs = lib.mkIf config.git.enable {
 
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.git.enable
     git = {
