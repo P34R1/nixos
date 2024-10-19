@@ -11,6 +11,8 @@ let
   trashput = import ../scripts/trash-put.nix { inherit pkgs; };
   tmuxdrv = import ../scripts/tmux/default.nix { inherit pkgs; };
   projectdo = import ../scripts/projectdo/default.nix { inherit pkgs; };
+
+  defaultUser = "pearl"; # Set your default user here
 in
 {
   imports =
@@ -36,11 +38,14 @@ in
       inputs.home-manager.nixosModules.default
     ];
 
+  user = "pearl";
+
   git.enable = true;
   lazygit.enable = true;
   nnn.enable = false;
   foot.enable = true;
   hyprland.enable = true;
+  tofi.enable = true;
 
   # Bootloader.
   boot.loader.grub = {
@@ -55,7 +60,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.pearl = {
+  users.users.${defaultUser} = {
     isNormalUser = true;
     description = "Vincent Fortin";
     extraGroups = [ "networkmanager" "wheel" "openrazer" "audio" ];
