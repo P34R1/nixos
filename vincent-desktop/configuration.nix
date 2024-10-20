@@ -38,14 +38,10 @@ in
 
   user = "pearl"; # set default user here
 
-  git.enable = true;
-  lazygit.enable = true;
-  foot.enable = true;
   hyprland.enable = true;
-  tofi.enable = true;
+
   yazi.enable = true;
   spicetify.enable = true;
-  dunst.enable = true;
   fish.enable = true;
   tmux.enable = true;
 
