@@ -17,7 +17,7 @@
     #./fish/fish.nix
     ./hypr/hyprland.nix
     #./tmux/tmux.nix
-    #./dunst/dunst.nix
+    ./dunst/dunst.nix
 
     # https://discourse.nixos.org/t/configuring-a-module-alias-for-home-manager/12914/2
     # This creates an alias hm = home-manager.users.${config.user} (pearl)

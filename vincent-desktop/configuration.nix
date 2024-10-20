@@ -48,6 +48,7 @@ in
   tofi.enable = true;
   yazi.enable = true;
   spicetify.enable = true;
+  dunst.enable = true;
 
   # Bootloader.
   boot.loader.grub = {

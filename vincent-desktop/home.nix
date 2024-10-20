@@ -9,7 +9,6 @@
     inputs.nix-colors.homeManagerModules.default
 
     ../config/fish/fish.nix
-    ../config/dunst/dunst.nix
     ../config/tmux/tmux.nix
   ];
 
