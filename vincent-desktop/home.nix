@@ -1,16 +1,7 @@
 { config, pkgs, inputs, lib, ... }:
 
 {
-  imports = [
-    # Spicetify
-    inputs.spicetify-nix.homeManagerModules.default
-
-    # Nix Colors  
-    # inputs.nix-colors.homeManagerModules.default
-  ];
-
   # https://github.com/tinted-theming/schemes/tree/spec-0.11/base16
-  #colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
   colorScheme = import ./gruvbox.nix;
 
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fd.enable

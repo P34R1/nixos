@@ -6,7 +6,9 @@
       lib.mkEnableOption "enable spicetify";
   };
 
+  # https://github.com/Gerg-L/spicetify-nix
   config = lib.mkIf config.spicetify.enable {
+    hm.imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
     # https://github.com/Gerg-L/spicetify-nix
     hm.programs.spicetify = let
