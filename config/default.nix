@@ -14,7 +14,7 @@
     ./tofi.nix
     ./yazi.nix
     ./spicetify.nix
-    #./fish/fish.nix
+    ./fish/fish.nix
     ./hypr/hyprland.nix
     #./tmux/tmux.nix
     ./dunst/dunst.nix

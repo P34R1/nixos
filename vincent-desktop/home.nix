@@ -8,7 +8,6 @@
     # Nix Colors  
     inputs.nix-colors.homeManagerModules.default
 
-    ../config/fish/fish.nix
     ../config/tmux/tmux.nix
   ];
 

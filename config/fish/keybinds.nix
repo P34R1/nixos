@@ -6,7 +6,7 @@
   # \e\c for ctrl + alt
   # i think shift is impossible
 
-  programs.fish.interactiveShellInit = ''
+  hm.programs.fish.interactiveShellInit = ''
     # Reset binds
     bind -ea
 

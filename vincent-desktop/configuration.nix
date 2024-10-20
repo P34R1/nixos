@@ -47,6 +47,7 @@ in
   yazi.enable = true;
   spicetify.enable = true;
   dunst.enable = true;
+  fish.enable = true;
 
   # Bootloader.
   boot.loader.grub = {
