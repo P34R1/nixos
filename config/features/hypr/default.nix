@@ -25,6 +25,10 @@ in
 
   config = lib.mkIf config.hyprland.enable {
 
+    tofi.enable = true;
+    dunst.enable = true;
+    foot.enable = true;
+
     programs.hyprland.enable = true;
     programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
