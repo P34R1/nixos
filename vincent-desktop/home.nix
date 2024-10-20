@@ -7,8 +7,6 @@
 
     # Nix Colors  
     inputs.nix-colors.homeManagerModules.default
-
-    ../config/tmux/tmux.nix
   ];
 
   # https://github.com/tinted-theming/schemes/tree/spec-0.11/base16

@@ -48,6 +48,7 @@ in
   spicetify.enable = true;
   dunst.enable = true;
   fish.enable = true;
+  tmux.enable = true;
 
   # Bootloader.
   boot.loader.grub = {

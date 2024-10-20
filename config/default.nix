@@ -16,7 +16,7 @@
     ./spicetify.nix
     ./fish/fish.nix
     ./hypr/hyprland.nix
-    #./tmux/tmux.nix
+    ./tmux/tmux.nix
     ./dunst/dunst.nix
 
     # https://discourse.nixos.org/t/configuring-a-module-alias-for-home-manager/12914/2

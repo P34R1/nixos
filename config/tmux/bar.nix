@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  programs.tmux.extraConfig = ''
+  hm.programs.tmux.extraConfig = ''
     set-option -g status "on"
     set-option -g status-position "top"
 

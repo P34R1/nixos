@@ -1,40 +1,41 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
     ./bar.nix
   ];
-  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.tmux.enable
-  programs.tmux = {
-    enable = true;
 
-    # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/tools/misc/tmux/default.nix
-    package = pkgs.tmux.override ({
-      withSixel = true;
-    });
+  options = {
+    tmux.enable =
+      lib.mkEnableOption "enable tmux";
+  };
 
-    shell = "${pkgs.fish}/bin/fish";
-    terminal = "tmux-256color";
-    mouse = true;
-    prefix = "C-Space";
-    baseIndex = 1;
-    escapeTime = 10;
+  config = lib.mkIf config.tmux.enable {
 
-    extraConfig = ''
-      set -g allow-passthrough all
-      set -ga update-environment TERM
-      set -ga update-environment TERM_PROGRAM
+    # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.tmux.enable
+    hm.programs.tmux = {
+      enable = true;
 
-      bind-key -T prefix e command-prompt -I "#S" { rename-session '%%' }
-      bind-key -T prefix r command-prompt -I "#W" { rename-window '%%' }
-    '';
+      # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/tools/misc/tmux/default.nix
+      package = pkgs.tmux.override ({
+        withSixel = true;
+      });
 
-    plugins = with pkgs; [
-      # {
-      #   # https://github.com/egel/tmux-gruvbox
-      #   plugin = tmuxPlugins.gruvbox;
-      #   extraConfig = "set -g @tmux-gruvbox 'dark'";
-      # }
-    ];
+      shell = "${pkgs.fish}/bin/fish";
+      terminal = "tmux-256color";
+      mouse = true;
+      prefix = "C-Space";
+      baseIndex = 1;
+      escapeTime = 10;
+
+      extraConfig = ''
+        set -g allow-passthrough all
+        set -ga update-environment TERM
+        set -ga update-environment TERM_PROGRAM
+
+        bind-key -T prefix e command-prompt -I "#S" { rename-session '%%' }
+        bind-key -T prefix r command-prompt -I "#W" { rename-window '%%' }
+      '';
+    };
   };
 }
