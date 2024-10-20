@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, repoPaths ? "~/repos" }:
 
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-windowizer
@@ -11,6 +11,10 @@ pkgs.stdenv.mkDerivation {
   buildInputs = [ pkgs.tmux ];
 
   installPhase = ''
+    # Replace Variables
+    sed -i "s|__REPOSITORY_PATHS__|${repoPaths}|g" tmux-sessionizer
+
+    # Setup Environment
     mkdir -p $out/bin
     cp tmux-* $out/bin
   '';

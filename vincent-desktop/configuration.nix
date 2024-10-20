@@ -9,10 +9,8 @@ let
   volume = import ../scripts/volume.nix { inherit pkgs; };
   toficlip = import ../scripts/tofi-clip.nix { inherit pkgs; };
   trashput = import ../scripts/trash-put.nix { inherit pkgs; };
-  tmuxdrv = import ../scripts/tmux/default.nix { inherit pkgs; };
+  tmuxdrv = import ../scripts/tmux/default.nix { inherit pkgs; repoPaths = "~/repos"; };
   projectdo = import ../scripts/projectdo/default.nix { inherit pkgs; };
-
-  defaultUser = "pearl"; # Set your default user here
 in
 {
   imports =
@@ -38,7 +36,7 @@ in
       inputs.home-manager.nixosModules.default
     ];
 
-  user = "pearl";
+  user = "pearl"; # set default user here
 
   git.enable = true;
   lazygit.enable = true;
@@ -63,7 +61,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${defaultUser} = {
+  users.users.${config.user} = {
     isNormalUser = true;
     description = "Vincent Fortin";
     extraGroups = [ "networkmanager" "wheel" "openrazer" "audio" ];
@@ -76,7 +74,7 @@ in
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/pearl/nixos";
+    flake = "/home/${config.user}/nixos";
   };
 
   # Enable networking
@@ -99,7 +97,7 @@ in
   };
 
   # Enable automatic login for the user.
-  services.getty.autologinUser = "pearl";
+  services.getty.autologinUser = "${config.user}";
   security.pam.services.hyprlock = {};
   security.pam.services.hyprlock.nodelay = true;
   security.pam.services.sudo.nodelay = true;

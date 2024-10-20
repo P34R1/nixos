@@ -3,7 +3,7 @@
 if [ $# -eq 1 ]; then
     selected=$1
 else
-    selected=$(fd . ~/repos -td -c always -d 1 | fzf)
+    selected=$(fd . __REPOSITORY_PATHS__ -td -c always -d 1 | fzf)
 fi
 
 if [ -z "$selected" ]; then
