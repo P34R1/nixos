@@ -11,7 +11,7 @@
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.tofi.enable
     hm.programs.tofi = {
       enable = true;
-      settings = with config.hm.colorScheme.palette; {
+      settings = with config.colours; {
         # RobotoMonoNerdFontProportional
         font = "${pkgs.nerdfonts}/share/fonts/truetype/NerdFonts/RobotoMonoNerdFontPropo-Medium.ttf";
         # #282828 alpha 75%

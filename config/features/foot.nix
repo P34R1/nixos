@@ -19,7 +19,7 @@
         };
 
         # https://codeberg.org/dnkl/foot/src/branch/master/themes/gruvbox-dark
-        colors = with config.hm.colorScheme.palette; {
+        colors = with config.colours; {
           alpha = "0.75";
 
           # Normal/regular colors (color palette 0-7)
