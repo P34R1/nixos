@@ -2,6 +2,7 @@
 
 # https://github.com/vimjoyer/nixconf/tree/main/nixosModules
 let
+  # https://github.com/Goxore/nixconf/blob/22d969809cbfdad01133d5bbafa47617d0427c24/myLib/default.nix#L40-L41
   filesIn = dir: (map (fname: dir + "/${fname}")
     (builtins.attrNames (builtins.readDir dir)));
 
