@@ -75,8 +75,6 @@
   home.stateVersion = "24.05"; # Don't Change.
 
   home.file = {
-    ".xinitrc".source = ../config/xinitrc;
-
     ".local/share/colorscripts/".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/shell-color-scripts/colorscripts;
     ".local/share/wall.png".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/backgrounds/nix-wallpaper-simple-blue.png;
 

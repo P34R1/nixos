@@ -1,3 +1,0 @@
-feh --bg-scale /home/pearl/backgrounds/nix-wallpaper-simple-blue.png
-slstatus &
-exec dwm
