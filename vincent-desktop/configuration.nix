@@ -16,24 +16,10 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-
-      # dwm
-      # ./dwm.nix
-
-      # Hypr
-      #../config/hypr/hyprland.nix
-
       ../config
-
-      # Desktop
-      # ./desktop.nix
-      # ./darkmode.nix
 
       # Flatpak
       ./flatpak.nix
-
-      # Home-Manager
-      inputs.home-manager.nixosModules.default
     ];
 
   user = "pearl"; # set default user here
