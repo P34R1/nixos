@@ -23,6 +23,24 @@ in
     fish.enable = lib.mkDefault true;
     tmux.enable = lib.mkDefault true;
 
+    time.timeZone = "America/Toronto";
+    i18n.defaultLocale = "en_CA.UTF-8";
+
+    # Configure keymap in X11
+    services.xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
+
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+
+    # https://github.com/ryanoasis/nerd-fonts
+    fonts.packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "RobotoMono" "JetBrainsMono" ]; })
+      maple-mono
+      corefonts
+    ];
 
     # Graphics
     hardware.graphics = {

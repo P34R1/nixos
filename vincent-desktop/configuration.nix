@@ -70,18 +70,6 @@ in
     networkmanager.enable = true;
   };
 
-  # Set your time zone.
-  time.timeZone = "America/Toronto";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_CA.UTF-8";
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   # Enable automatic login for the user.
   services.getty.autologinUser = "${config.user}";
   security.pam.services.hyprlock = {};
@@ -96,8 +84,6 @@ in
     users.pearl = import ./home.nix;
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -123,12 +109,6 @@ in
     trashput
     tmuxdrv
     projectdo
-  ];
-
-  # https://github.com/ryanoasis/nerd-fonts
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "RobotoMono" "JetBrainsMono" ]; })
-    maple-mono
   ];
 
   services.udisks2.enable = true;
