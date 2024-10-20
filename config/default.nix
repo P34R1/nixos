@@ -6,6 +6,7 @@ let
   filesIn = dir: (map (fname: dir + "/${fname}")
     (builtins.attrNames (builtins.readDir dir)));
 
+  bundles = (filesIn ./bundles);
   features = (filesIn ./features);
 in
 {
@@ -23,7 +24,7 @@ in
     # Use as config.hm.packages.git = { enable = true; };
     (lib.mkAliasOptionModule ["hm"] ["home-manager" "users" config.user])
     (lib.mkAliasOptionModule ["colours"] ["hm" "colorScheme" "palette"])
-  ] ++ features;
+  ] ++ bundles ++ features;
 
   config.hm.imports = [
     inputs.nix-colors.homeManagerModules.default # Nix Colors

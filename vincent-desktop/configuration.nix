@@ -26,8 +26,8 @@ in
       ../config
 
       # Desktop
-      ./desktop.nix
-      ./darkmode.nix
+      # ./desktop.nix
+      # ./darkmode.nix
 
       # Flatpak
       ./flatpak.nix
@@ -49,6 +49,9 @@ in
   dunst.enable = true;
   fish.enable = true;
   tmux.enable = true;
+
+  desktop.enable = true;
+  desktop.nvidia = true;
 
   # Bootloader.
   boot.loader.grub = {
