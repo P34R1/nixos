@@ -80,7 +80,6 @@
   home.file = {
     ".xinitrc".source = ../config/xinitrc;
 
-    ".local/share/icons/dunst/".source = ../config/dunst/icons;
     ".local/share/colorscripts/".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/shell-color-scripts/colorscripts;
     ".local/share/wall.png".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/backgrounds/nix-wallpaper-simple-blue.png;
 

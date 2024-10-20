@@ -9,6 +9,7 @@
   # https://nix-community.github.io/home-manager/options.xhtml#opt-services.dunst.enable
   # https://mynixos.com/home-manager/options/services.dunst
   config = lib.mkIf config.dunst.enable {
+    hm.home.file.".local/share/icons/dunst/".source = ./icons;
     hm.services.dunst = {
       enable = true;
 
