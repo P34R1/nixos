@@ -5,7 +5,7 @@ let
     ${pkgs.udiskie}/bin/udiskie &
     ${pkgs.dunst}/bin/dunst &
     ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store &
-    sleep 1
+    sleep 2
     ${pkgs.waybar}/bin/waybar & disown
     ${pkgs.hypridle}/bin/hypridle &
   '';
