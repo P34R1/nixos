@@ -16,6 +16,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    hyprland.enable = lib.mkDefault true;
+
+    git.enable = lib.mkDefault true;
+    lazygit.enable = lib.mkDefault true;
+    fish.enable = lib.mkDefault true;
+    tmux.enable = lib.mkDefault true;
+
 
     # Graphics
     hardware.graphics = {
