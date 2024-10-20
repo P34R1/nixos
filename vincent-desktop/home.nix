@@ -86,12 +86,6 @@
   home.sessionVariables = {
     VISUAL = "nvim";
     EDITOR = "nvim";
-
-    # https://github.com/jarun/nnn/tree/master/plugins#configuration
-    NNN_PLUG = "p:preview-tui";
-    NNN_TERMINAL = "tmux";
-    NNN_FIFO = "/tmp/nnn.fifo";
-    NNN_TRASH = 1;
   };
 
   # Let Home Manager install and manage itself.

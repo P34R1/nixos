@@ -40,7 +40,6 @@ in
 
   git.enable = true;
   lazygit.enable = true;
-  nnn.enable = false;
   foot.enable = true;
   hyprland.enable = true;
   tofi.enable = true;
