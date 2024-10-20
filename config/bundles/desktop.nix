@@ -85,9 +85,6 @@ in
     # DARKMODE
     hm = {
       dconf.settings = {
-        "org/gnome/desktop/background" = {
-          picture-uri-dark = "file://${pkgs.nixos-artwork.wallpapers.nineish-dark-gray.src}";
-        };
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
         };
@@ -102,7 +99,7 @@ in
       };
 
       # Wayland, X, etc. support for session vars
-      systemd.user.sessionVariables = config.home-manager.users.pearl.home.sessionVariables;
+      systemd.user.sessionVariables = config.hm.home.sessionVariables;
     };
 
     qt = {
