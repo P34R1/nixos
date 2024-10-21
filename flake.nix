@@ -28,6 +28,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./vincent-desktop/configuration.nix
+        ./config
         inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.nix-index-database.nixosModules.nix-index
       ];
