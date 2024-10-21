@@ -35,11 +35,6 @@
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.ripgrep.enable
   programs.ripgrep.enable = true;
 
-  programs.neovim = {
-    enable = true;
-    extraPackages = [ pkgs.gcc ];
-  };
-
   programs.direnv = {
     enable = true;
 
@@ -59,8 +54,6 @@
   home.file = {
     ".local/share/colorscripts/".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/shell-color-scripts/colorscripts;
     ".local/share/wall.png".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/backgrounds/nix-wallpaper-simple-blue.png;
-
-    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/nvim;
   };
 
   home.sessionVariables = {
