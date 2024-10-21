@@ -1,9 +1,6 @@
 { config, pkgs, inputs, lib, ... }:
 
 {
-  # https://github.com/tinted-theming/schemes/tree/spec-0.11/base16
-  colorScheme = import ./gruvbox.nix;
-
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fd.enable
   programs.fd.enable = true;
   programs.fd.ignores = [ ".git/" ];
@@ -59,7 +56,6 @@
     allowImages = true;
   };
 
-
   home.file = {
     ".local/share/colorscripts/".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/shell-color-scripts/colorscripts;
     ".local/share/wall.png".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/backgrounds/nix-wallpaper-simple-blue.png;
@@ -71,5 +67,4 @@
     VISUAL = "nvim";
     EDITOR = "nvim";
   };
-
 }
