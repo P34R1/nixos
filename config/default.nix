@@ -31,6 +31,13 @@ in
       inputs.nix-colors.homeManagerModules.default # Nix Colors
     ];
 
+    # Home Manager Config.
+    home.username = "${config.user}";
+    home.homeDirectory = "/home/${config.user}";
 
+    home.stateVersion = "24.05"; # Don't Change.
+
+    # Let Home Manager install and manage itself.
+    programs.home-manager.enable = true;
   };
 }
