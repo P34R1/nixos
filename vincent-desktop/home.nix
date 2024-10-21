@@ -66,7 +66,7 @@
   home.stateVersion = "24.05"; # Don't Change.
 
   home.file = {
-    ".local/share/colorscripts/".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/shell-color-scripts/colorscripts;
+    ".local/share/colorscripts/".source = config.lib.file.mkOutOfStoreSymlink /home/${config.user}/repos/shell-color-scripts/colorscripts;
     ".local/share/wall.png".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/backgrounds/nix-wallpaper-simple-blue.png;
 
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink /home/pearl/repos/nvim;
