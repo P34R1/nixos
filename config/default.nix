@@ -17,8 +17,6 @@ in
   };
 
   imports = [
-    inputs.home-manager.nixosModules.default # Home Manager
-
     # https://discourse.nixos.org/t/configuring-a-module-alias-for-home-manager/12914/2
     # This creates an alias hm = home-manager.users.${config.user} (pearl)
     # Use as config.hm.packages.git = { enable = true; };
