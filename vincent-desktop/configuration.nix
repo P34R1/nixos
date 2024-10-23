@@ -21,6 +21,12 @@ in
       ./flatpak.nix
     ];
 
+  nixpkgs = {
+    overlays = [
+      inputs.nvim.overlays.default
+    ];
+  };
+
   user = "pearl"; # set default user here
 
   hyprland.enable = true;
@@ -100,6 +106,8 @@ in
     udisks2 # auto mounting
     udiskie
     glow # markdown parser
+
+    nvim-pkg
 
     # My Scripts
     screenshot
