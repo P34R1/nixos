@@ -12,6 +12,6 @@
 
     bind \ct _fzf_search_directory
     bind \cf tmux-sessionizer
-    bind \e\cn "tmux-sessionizer nixos"
+    bind \e\cn "tmux-sessionizer ~/nixos"
   '';
 }
