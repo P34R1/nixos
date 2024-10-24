@@ -24,12 +24,25 @@
         gitignore = "curl -sL https://www.gitignore.io/api/$argv";
 
         y = ''
-        set tmp (mktemp -t "yazi-cwd.XXXXXX")
-        yazi $argv --cwd-file="$tmp"
-        if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-                builtin cd -- "$cwd"
-        end
-        rm -f -- "$tmp"
+          set tmp (mktemp -t "yazi-cwd.XXXXXX")
+          yazi $argv --cwd-file="$tmp"
+          if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+                  builtin cd -- "$cwd"
+          end
+          rm -f -- "$tmp"
+        '';
+
+        # https://discourse.nixos.org/t/can-i-use-flakes-within-a-git-repo-without-committing-flake-nix/18196
+        # https://discourse.nixos.org/t/adding-flake-nix-with-out-git-tracking-it/42806/2
+        envrc = ''
+          set loc (git rev-parse --show-toplevel) # get root of project
+          printf ".direnv\n.envrc\nflake.nix\nflake.nix\n" >> $loc/.git/info/exclude # Ignore flake and env
+
+          if not [ -f "$loc/.envrc" ]
+            printf "use flake path:$loc" > $loc/.envrc
+          end
+
+          set -e loc # remove env variable
         '';
       };
 
