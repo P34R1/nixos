@@ -8,7 +8,6 @@ let
   screenshot = import ../scripts/screenshot.nix { inherit pkgs; };
   volume = import ../scripts/volume.nix { inherit pkgs; };
   toficlip = import ../scripts/tofi-clip.nix { inherit pkgs; };
-  trashput = import ../scripts/trash-put.nix { inherit pkgs; };
   tmuxdrv = import ../scripts/tmux/default.nix { inherit pkgs; repoPaths = "~/repos"; };
   projectdo = import ../scripts/projectdo/default.nix { inherit pkgs; };
 in
@@ -113,7 +112,6 @@ in
     screenshot
     volume
     toficlip
-    trashput
     tmuxdrv
     projectdo
   ];
