@@ -36,7 +36,7 @@
         # https://discourse.nixos.org/t/adding-flake-nix-with-out-git-tracking-it/42806/2
         envrc = ''
           set loc (git rev-parse --show-toplevel) # get root of project
-          printf ".direnv\n.envrc\nflake.nix\nflake.nix\n" >> $loc/.git/info/exclude # Ignore flake and env
+          printf ".direnv\n.envrc\nflake.nix\nflake.lock\n" >> $loc/.git/info/exclude # Ignore flake and env
 
           if not [ -f "$loc/.envrc" ]
             printf "use flake path:$loc" > $loc/.envrc
