@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 let
   screenshot = import ../scripts/screenshot.nix { inherit pkgs; };
@@ -76,6 +76,7 @@ in
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "${config.user}";
+  services.getty.helpLine = lib.mkForce ""; # https://www.reddit.com/r/NixOS/comments/161uvb5/remove_nixoshelp_reminder_on_tty/
   security.pam.services.hyprlock = {};
   security.pam.services.hyprlock.nodelay = true;
   security.pam.services.sudo.nodelay = true;
