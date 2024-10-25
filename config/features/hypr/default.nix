@@ -55,7 +55,7 @@ in
           stty icanon echo
 
           case "$choice" in
-            h|H) exec hyprland;;
+            h|H) exec Hyprland;;
             d|D) exec dwm;;
           esac
         fi
