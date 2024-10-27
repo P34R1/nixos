@@ -20,8 +20,8 @@
       ];
 
       mpris = {
-        format = "{player_icon} {artist} - {title}";
-        format-paused = "{player_icon} <i>{artist} - {title}</i>";
+        format = "{player_icon} {title}";
+        format-paused = "{player_icon} <i>{title}</i>";
 
         player-icons = {
           default = "";
