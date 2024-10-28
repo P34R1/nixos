@@ -17,6 +17,7 @@
       userEmail = "undeadgamer279@gmail.com";
       userName = "p34r1";
       delta.enable = true;
+      lfs.enable = true;
 
       extraConfig = {
         # Use main instead of master
