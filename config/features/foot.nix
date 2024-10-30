@@ -35,7 +35,7 @@
           regular7 = "${base07}"; # white
 
           # Bright colors (color palette 8-15)
-          bright0 = "${base02}";
+          bright0 = "${base04}";
           bright1 = "${base12}"; # bright red
           bright2 = "${base14}"; # green
           bright3 = "${base13}"; # yellow
