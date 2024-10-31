@@ -99,6 +99,7 @@ in
     trashy # trash-cli replacment
     tlrc # tldr
     entr
+    just
     wl-clipboard
     chafa # terminal imgs
     playerctl

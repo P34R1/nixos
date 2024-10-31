@@ -1,0 +1,17 @@
+set shell := ["fish", "-c"]
+
+build:
+  zig build # Change to command
+
+zig-watch:
+  @ls **/*.zig | entr -r zig build run
+zig-test-watch:
+  @ls **/*.zig | entr -r zig build test
+
+watch:
+  @tmux split-window -v # 2 vertical panes
+  @tmux send-keys -t 1 "clear && just zig-watch" C-m # command in pane 1
+  @tmux send-keys -t 2 "clear && just zig-test-watch" C-m # command in pane 2
+
+clean:
+  rm -rf zig-out/

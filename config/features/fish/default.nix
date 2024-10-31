@@ -1,5 +1,9 @@
 { config, pkgs, lib, ... }:
 
+let
+  justfileRaw = builtins.readFile ./justfile;
+  justfile = builtins.replaceStrings ["\n" ] ["\\n" ] justfileRaw;
+in
 {
   options = {
     fish.enable =
@@ -40,6 +44,18 @@
 
           if not [ -f "$loc/.envrc" ]
             printf "use flake path:$loc" > $loc/.envrc
+          end
+
+          set -e loc # remove env variable
+        '';
+
+
+        justfile = ''
+          set loc (git rev-parse --show-toplevel) # get root of project
+          printf "justfile\n" >> $loc/.git/info/exclude # Ignore justfile
+
+          if not [ -f "$loc/justfile" ]
+            printf '${justfile}' > $loc/justfile
           end
 
           set -e loc # remove env variable
