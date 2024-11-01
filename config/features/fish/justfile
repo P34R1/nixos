@@ -1,17 +1,21 @@
 set shell := ["fish", "-c"]
 
-build:
-  zig build # Change to command
+release:
+  cargo build --release
 
-zig-watch:
-  @ls **/*.zig | entr -r zig build run
-zig-test-watch:
-  @ls **/*.zig | entr -r zig build test
+watch-run:
+  @ls **/*.rs | entr -s "clear && cargo run"
+watch-test:
+  @ls **/*.rs | entr -s "clear && cargo test"
+watch-lint:
+  @ls **/*.rs | entr -s "clear && cargo clippy"
 
 watch:
-  @tmux split-window -v # 2 vertical panes
-  @tmux send-keys -t 1 "clear && just zig-watch" C-m # command in pane 1
-  @tmux send-keys -t 2 "clear && just zig-test-watch" C-m # command in pane 2
+  @tmux split-window -v # 2 vertical panes [---]
+  @tmux split-window -h # split bottom section [-┬-]
+  @tmux send-keys -t 1 "clear && just watch-run" C-m # command in pane 1
+  @tmux send-keys -t 2 "clear && just watch-test" C-m # command in pane 2
+  @tmux send-keys -t 3 "clear && just watch-lint" C-m # command in pane 3
 
 clean:
-  rm -rf zig-out/
+  rm -rf target/ 
