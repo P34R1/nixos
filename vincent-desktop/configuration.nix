@@ -109,6 +109,8 @@ in
     glow # markdown parser
 
     nvim-pkg
+    nil
+    nixfmt-rfc-style
 
     # My Scripts
     screenshot
