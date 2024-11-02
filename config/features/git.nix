@@ -25,6 +25,7 @@
 
         # Use SSH
         url."ssh://git@github.com/".insteadOf = "https://github.com/";
+        url."ssh://git@codeberg.org/".insteadOf = "https://codeberg.org/";
 
         # https://www.youtube.com/watch?v=HJtxQPJUcJc
         rerere.enabled = true;
