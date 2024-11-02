@@ -2,23 +2,32 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   screenshot = import ../scripts/screenshot.nix { inherit pkgs; };
   volume = import ../scripts/volume.nix { inherit pkgs; };
   toficlip = import ../scripts/tofi-clip.nix { inherit pkgs; };
-  tmuxdrv = import ../scripts/tmux/default.nix { inherit pkgs; repoPaths = "~/repos"; };
+  tmuxdrv = import ../scripts/tmux/default.nix {
+    inherit pkgs;
+    repoPaths = "~/repos";
+  };
   projectdo = import ../scripts/projectdo/default.nix { inherit pkgs; };
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
 
-      # Flatpak
-      ./flatpak.nix
-    ];
+    # Flatpak
+    ./flatpak.nix
+  ];
 
   nixpkgs = {
     overlays = [
@@ -54,11 +63,19 @@ in
   users.users.${config.user} = {
     isNormalUser = true;
     description = "Vincent Fortin";
-    extraGroups = [ "networkmanager" "wheel" "openrazer" "audio" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "openrazer"
+      "audio"
+    ];
+    packages = with pkgs; [ ];
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   programs.nh = {
     enable = true;
@@ -77,18 +94,19 @@ in
   # Enable automatic login for the user.
   services.getty.autologinUser = "${config.user}";
   services.getty.helpLine = lib.mkForce ""; # https://www.reddit.com/r/NixOS/comments/161uvb5/remove_nixoshelp_reminder_on_tty/
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = { };
   security.pam.services.hyprlock.nodelay = true;
   security.pam.services.sudo.nodelay = true;
 
   home-manager = {
     # Also pass inputs to home manager modules
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs;
+    };
     backupFileExtension = "backup";
     useGlobalPkgs = true;
     users.pearl = import ./home.nix;
   };
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

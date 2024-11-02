@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -6,8 +11,7 @@
   ];
 
   options = {
-    tmux.enable =
-      lib.mkEnableOption "enable tmux";
+    tmux.enable = lib.mkEnableOption "enable tmux";
   };
 
   config = lib.mkIf config.tmux.enable {

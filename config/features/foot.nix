@@ -1,9 +1,13 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   options = {
-    foot.enable =
-      lib.mkEnableOption "enables foot";
+    foot.enable = lib.mkEnableOption "enables foot";
   };
 
   config = lib.mkIf config.foot.enable {

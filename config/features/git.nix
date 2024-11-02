@@ -2,11 +2,9 @@
 
 {
   options = {
-    git.enable = 
-      lib.mkEnableOption "enables git configuration";
+    git.enable = lib.mkEnableOption "enables git configuration";
 
-    lazygit.enable =
-      lib.mkEnableOption "enables lazygit";
+    lazygit.enable = lib.mkEnableOption "enables lazygit";
   };
 
   config.hm.programs = lib.mkIf config.git.enable {

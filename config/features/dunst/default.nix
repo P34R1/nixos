@@ -1,9 +1,13 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   options = {
-    dunst.enable =
-      lib.mkEnableOption "enable dunst";
+    dunst.enable = lib.mkEnableOption "enable dunst";
   };
 
   # https://nix-community.github.io/home-manager/options.xhtml#opt-services.dunst.enable

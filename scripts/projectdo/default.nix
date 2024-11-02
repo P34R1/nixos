@@ -6,7 +6,7 @@ pkgs.stdenv.mkDerivation {
   name = "projectdo";
 
   src = builtins.path { path = ./.; };
-  buildInputs = [];
+  buildInputs = [ ];
 
   installPhase = ''
     mkdir -p $out/bin
@@ -18,4 +18,3 @@ pkgs.stdenv.mkDerivation {
   #   platforms = platforms.linux;
   # };
 }
-

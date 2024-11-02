@@ -1,4 +1,7 @@
-{ pkgs, repoPaths ? "~/repos" }:
+{
+  pkgs,
+  repoPaths ? "~/repos",
+}:
 
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-windowizer

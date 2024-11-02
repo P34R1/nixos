@@ -1,4 +1,10 @@
-{ config, pkgs, inputs, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 {
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fd.enable
@@ -44,7 +50,7 @@
   };
 
   programs.zoxide.enable = true;
-  programs.zoxide.options = [];
+  programs.zoxide.options = [ ];
 
   services.cliphist = {
     enable = true;

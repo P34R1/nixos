@@ -1,13 +1,17 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   justfileRaw = builtins.readFile ./justfile;
-  justfile = builtins.replaceStrings ["\n" ] ["\\n" ] justfileRaw;
+  justfile = builtins.replaceStrings [ "\n" ] [ "\\n" ] justfileRaw;
 in
 {
   options = {
-    fish.enable =
-      lib.mkEnableOption "enable fish configuration";
+    fish.enable = lib.mkEnableOption "enable fish configuration";
   };
 
   imports = [
@@ -53,7 +57,6 @@ in
 
           set -e loc # remove env variable
         '';
-
 
         justfile = ''
           set loc (git rev-parse --show-toplevel) # get root of project
@@ -125,7 +128,6 @@ in
         direnv hook fish | source
         zoxide init fish | source
       '';
-
 
       plugins = [
 

@@ -27,7 +27,6 @@ in
     };
   };
 
-
   environment.systemPackages = [
     slstatusPackage
     pkgs.dmenu

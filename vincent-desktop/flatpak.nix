@@ -8,7 +8,6 @@
     config.common.default = [ "gtk" ];
   };
 
-
   services.flatpak.packages = [
     "dev.vencord.Vesktop"
     "com.obsproject.Studio"

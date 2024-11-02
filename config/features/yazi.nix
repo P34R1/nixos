@@ -1,9 +1,13 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   options = {
-    yazi.enable =
-      lib.mkEnableOption "enable yazi configurations";
+    yazi.enable = lib.mkEnableOption "enable yazi configurations";
   };
 
   config = lib.mkIf config.yazi.enable {

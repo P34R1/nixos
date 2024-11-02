@@ -52,4 +52,3 @@ pkgs.writeShellScriptBin "volume" ''
     send_notification
   fi
 ''
-

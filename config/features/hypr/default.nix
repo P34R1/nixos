@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 let
   startup = pkgs.writeShellScriptBin "start" ''
@@ -10,7 +16,6 @@ let
     ${pkgs.hypridle}/bin/hypridle &
   '';
 
-
   # Determine which modules are enabled
   enabledOptions = lib.strings.concatStrings [
     (lib.strings.optionalString config.hyprland.enable "\\033[1m[h]\\033[0m - hyprland\\n")
@@ -19,8 +24,7 @@ let
 in
 {
   options = {
-    hyprland.enable =
-      lib.mkEnableOption "enables hyprland configuration";
+    hyprland.enable = lib.mkEnableOption "enables hyprland configuration";
   };
 
   config = lib.mkIf config.hyprland.enable {
@@ -107,7 +111,7 @@ in
           ];
 
           bindl = [
-            ", XF86AudioPlay, exec, playerctl play-pause" # the stupid key is called play , but it toggles 
+            ", XF86AudioPlay, exec, playerctl play-pause" # the stupid key is called play , but it toggles
             ", XF86AudioNext, exec, playerctl next"
             ", XF86AudioPrev, exec, playerctl previous"
             ", XF86AudioRaiseVolume, exec, volume up"
@@ -118,7 +122,7 @@ in
 
         systemd = {
           enable = true;
-          variables = ["--all"];
+          variables = [ "--all" ];
         };
       };
     };

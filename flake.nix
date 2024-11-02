@@ -25,15 +25,19 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.vincent-desktop = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./vincent-desktop/configuration.nix
-        ./config
-        inputs.nix-flatpak.nixosModules.nix-flatpak
-        inputs.nix-index-database.nixosModules.nix-index
-      ];
+  outputs =
+    { self, nixpkgs, ... }@inputs:
+    {
+      nixosConfigurations.vincent-desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./vincent-desktop/configuration.nix
+          ./config
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.nix-index-database.nixosModules.nix-index
+        ];
+      };
     };
-  };
 }

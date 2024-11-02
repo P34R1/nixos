@@ -9,14 +9,23 @@
       position = "top";
       height = 20;
 
-      modules-left = [ "hyprland/workspaces" "custom/arrow#right" "hyprland/window" ];
+      modules-left = [
+        "hyprland/workspaces"
+        "custom/arrow#right"
+        "hyprland/window"
+      ];
 
       modules-right = [
-        "custom/arrow#mpris"	"mpris" 	# music info
-        "custom/arrow#memory"	"memory"	# mem usage
-        "custom/arrow#date"	"clock#date"	# date
-        "custom/arrow#time"	"clock#time"	# time
-        "custom/arrow#tray"	"tray"  	# tray icons
+        "custom/arrow#mpris"
+        "mpris" # music info
+        "custom/arrow#memory"
+        "memory" # mem usage
+        "custom/arrow#date"
+        "clock#date" # date
+        "custom/arrow#time"
+        "clock#time" # time
+        "custom/arrow#tray"
+        "tray" # tray icons
       ];
 
       mpris = {
@@ -72,11 +81,9 @@
       "clock#time".tooltip = false;
       "clock#date".tooltip = false;
 
-
       # Arrows
       "custom/arrow#right".format = "";
       "custom/arrow#right".tooltip = false;
-
 
       "custom/arrow#tray".format = "";
       "custom/arrow#tray".tooltip = false;
@@ -95,5 +102,5 @@
     };
 
     style = ./waybar.css;
-  };  
+  };
 }

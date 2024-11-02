@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   cfg = config.desktop;
@@ -6,8 +11,7 @@ in
 {
   options = {
     desktop = {
-      enable =
-        lib.mkEnableOption "enable default desktop configuration";
+      enable = lib.mkEnableOption "enable default desktop configuration";
 
       nvidia = lib.mkOption {
         type = lib.types.bool;
@@ -37,7 +41,14 @@ in
 
     # https://github.com/ryanoasis/nerd-fonts
     fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "RobotoMono" "JetBrainsMono" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "DroidSansMono"
+          "RobotoMono"
+          "JetBrainsMono"
+        ];
+      })
       maple-mono
       corefonts
     ];
@@ -48,7 +59,7 @@ in
       enable32Bit = true;
     };
 
-    services.xserver.videoDrivers = lib.mkIf cfg.nvidia ["nvidia"];
+    services.xserver.videoDrivers = lib.mkIf cfg.nvidia [ "nvidia" ];
     programs.gamemode.enable = true;
 
     hardware.nvidia = lib.mkIf cfg.nvidia {
@@ -93,12 +104,6 @@ in
 
     # Enable Razer
     hardware.openrazer.enable = true;
-
-
-
-
-
-
 
     # DARKMODE
     hm = {

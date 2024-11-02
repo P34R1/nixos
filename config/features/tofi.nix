@@ -1,9 +1,13 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   options = {
-    tofi.enable =
-      lib.mkEnableOption "enable tofi configuration";
+    tofi.enable = lib.mkEnableOption "enable tofi configuration";
   };
 
   config = lib.mkIf config.tofi.enable {

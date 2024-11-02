@@ -20,10 +20,10 @@
           path = "$HOME/.local/share/wall.png";
           blur_size = 2;
           blur_passes = 1; # 0 disables blurring
-          noise = 0.0117;
-          contrast = 1.3000; # Vibrant!!!
-          brightness = 0.8000;
-          vibrancy = 0.2100;
+          noise = 1.17e-2;
+          contrast = 1.3; # Vibrant!!!
+          brightness = 0.8;
+          vibrancy = 0.21;
           vibrancy_darkness = 0.0;
         }
       ];
