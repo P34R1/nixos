@@ -131,17 +131,6 @@ in
 
       plugins = [
 
-        # https://github.com/meaningful-ooo/sponge
-        {
-          name = "sponge";
-          src = pkgs.fetchFromGitHub {
-            owner = "meaningful-ooo";
-            repo = "sponge";
-            rev = "main";
-            sha256 = "sha256-MdcZUDRtNJdiyo2l9o5ma7nAX84xEJbGFhAVhK+Zm1w=";
-          };
-        }
-
         # https://github.com/PatrickF1/fzf.fish
         {
           name = "fzf";
