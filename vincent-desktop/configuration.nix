@@ -43,6 +43,7 @@ in
   spicetify.enable = true;
   fish.enable = true;
   tmux.enable = true;
+  mpd.enable = true;
 
   desktop.enable = true;
   desktop.nvidia = true;
@@ -125,6 +126,7 @@ in
     udisks2 # auto mounting
     udiskie
     glow # markdown parser
+    audacious
 
     nvim-pkg
     nil
