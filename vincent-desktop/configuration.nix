@@ -126,7 +126,6 @@ in
     udisks2 # auto mounting
     udiskie
     glow # markdown parser
-    audacious
 
     nvim-pkg
     nil

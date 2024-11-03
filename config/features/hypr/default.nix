@@ -77,8 +77,6 @@ in
 
             "[workspace 1 silent] foot"
             "[workspace 2 silent] librewolf"
-            "[workspace 3 silent] spotify"
-            "[workspace 3 silent] audacious & disown"
             "[workspace 4 silent] flatpak run dev.vencord.Vesktop"
           ];
 
