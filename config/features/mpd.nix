@@ -34,15 +34,6 @@
     # https://nix-community.github.io/home-manager/options.xhtml#opt-services.mpd-mpris.enable
     hm.services.mpd-mpris.enable = true;
 
-    # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.ncmpcpp.enable
-    hm.programs.ncmpcpp = {
-      enable = true;
-
-      settings = {
-
-      };
-    };
-
     environment.systemPackages = [
       pkgs.mpc-cli
     ];
