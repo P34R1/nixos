@@ -19,6 +19,13 @@ in
 
   config = lib.mkIf config.pass.enable {
 
+    # https://search.nixos.org/options?channel=unstable&show=programs.gnupg.agent.enable&from=0&size=50&sort=relevance&type=packages&query=programs.gnupg
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryPackage = pkgs.pinentry-gtk2; # https://discourse.nixos.org/t/cant-get-gnupg-to-work-no-pinentry/15373/4
+    };
+
     # Overlay to disable everything
     # Needed to remove extra pkgs and passmenu 🤢
     # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/tools/security/pass/default.nix#L6
@@ -41,6 +48,8 @@ in
 
     environment.systemPackages = [
       pkgs.pass
+      pkgs.pinentry-gtk2
+
       passScripts
     ];
   };

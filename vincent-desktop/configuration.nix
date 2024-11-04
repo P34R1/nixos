@@ -127,7 +127,6 @@ in
     udisks2 # auto mounting
     udiskie
     glow # markdown parser
-    pinentry-gtk2
 
     nvim-pkg
     nil
@@ -147,11 +146,6 @@ in
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-gtk2;
-  };
 
   # List services that you want to enable:
 
