@@ -44,6 +44,7 @@ in
   fish.enable = true;
   tmux.enable = true;
   mpd.enable = true;
+  pass.enable = true;
 
   desktop.enable = true;
   desktop.nvidia = true;
@@ -126,6 +127,7 @@ in
     udisks2 # auto mounting
     udiskie
     glow # markdown parser
+    pinentry-gtk2
 
     nvim-pkg
     nil
@@ -148,7 +150,7 @@ in
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-curses;
+    pinentryPackage = pkgs.pinentry-gtk2;
   };
 
   # List services that you want to enable:
