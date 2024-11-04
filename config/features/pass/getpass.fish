@@ -8,9 +8,10 @@ else
   set menu fzf
 end
 
-pass -c (basename -s ".gpg" (ls ~/.password-store/*.gpg) | $menu)
+cd ~/.password-store/
+pass -c (string replace ".gpg" "" (ls **.gpg) | $menu) &>/dev/null
 
-# Lists all *.gpg
-# Removes ".gpg" and path
+# Lists all **.gpg
+# Removes ".gpg"
 # Lets you choose one in tofi/dmenu
 # pass -c to copy to clipboard
