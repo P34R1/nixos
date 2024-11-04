@@ -1,3 +1,8 @@
 #!/usr/bin/env fish
 
-set chosen_passwd (basename -s ".gpg" (ls ~/.password-store/*.gpg) | tofi)
+pass -c (basename -s ".gpg" (ls ~/.password-store/*.gpg) | tofi)
+
+# Lists all *.gpg
+# Removes ".gpg" and path
+# Lets you choose one in tofi
+# pass -c to copy to clipboard
