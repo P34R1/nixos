@@ -14,6 +14,7 @@ pkgs.stdenv.mkDerivation {
   buildInputs = [
     pkgs.pass
     pkgs.coreutils
+    pkgs.fzf
   ] ++ lib.optional config.hyprland.enable [ pkgs.tofi ]
   # ++ lib.optional config.dwm.enable [ pkgs.dmenu ]
   ;
