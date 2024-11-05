@@ -21,6 +21,12 @@ let
     (lib.strings.optionalString config.hyprland.enable "\\033[1m[h]\\033[0m - hyprland\\n")
     #(lib.strings.optionalString config.dwm.enable "\\033[1m[d]\\033[0m - dwm\\n")
   ];
+
+  # Determine which modules are enabled
+  enabledCases = lib.strings.concatStringsSep "\n" [
+    (lib.strings.optionalString config.hyprland.enable "h|H) exec Hyprland;;")
+    # (lib.strings.optionalString config.dwm.enable "d|D) exec dwm;;")
+  ];
 in
 {
   options = {
@@ -59,8 +65,7 @@ in
           stty icanon echo
 
           case "$choice" in
-            h|H) exec Hyprland;;
-            d|D) exec dwm;;
+            ${enabledCases}
           esac
         fi
       '';
