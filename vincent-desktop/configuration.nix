@@ -18,7 +18,6 @@ let
     inherit pkgs;
     repoPaths = "~/repos";
   };
-  projectdo = import ../scripts/projectdo/default.nix { inherit pkgs; };
 in
 {
   imports = [
@@ -142,7 +141,6 @@ in
     volume
     toficlip
     tmuxdrv
-    projectdo
   ];
 
   services.udisks2.enable = true;

@@ -97,10 +97,8 @@ in
           setCursor = "|";
         };
 
-        r = "projectdo -q run";
-        b = "projectdo -q build";
-        t = "projectdo -q test";
-        p = "projectdo -q tool";
+        r = "just release";
+        w = "just watch";
       };
 
       interactiveShellInit = ''
