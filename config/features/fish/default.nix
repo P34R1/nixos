@@ -98,7 +98,6 @@ in
         };
 
         r = "just release";
-        w = "just watch";
       };
 
       interactiveShellInit = ''
