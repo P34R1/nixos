@@ -16,18 +16,36 @@ let
     ${pkgs.hypridle}/bin/hypridle &
   '';
 
-  # \033[1m => bold        \033[0m => unbold
-  # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStrings
-  enabledOptions = lib.strings.concatMapStrings (s: "\\033[1m" + s + "\\n") [
-    (lib.strings.optionalString config.hyprland.enable "[h]\\033[0m - hyprland")
-    #(lib.strings.optionalString config.dwm.enable "[d]\\033[0m - dwm")
+  inherit (lib.strings)
+    concatMapStrings
+    concatMapStringsSep
+    optionalString
+    toLower
+    ;
+
+  wms = [
+    {
+      command = "Hyprland";
+      indicator = "h";
+      enable = config.hyprland.enable;
+    }
+    # {
+    #   command = "dwm";
+    #   indicator = "d";
+    #   enable = config.dwm.enable;
+    # }
   ];
 
-  # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatLines
-  enabledCases = lib.strings.concatLines [
-    (lib.strings.optionalString config.hyprland.enable "h|H) exec Hyprland;;")
-    # (lib.strings.optionalString config.dwm.enable "d|D) exec dwm;;")
-  ];
+  # \033[1m => bold        \033[0m => unbold
+  # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStrings
+  enabledOptions = concatMapStrings (
+    opt: optionalString opt.enable "\\033[1m[${opt.indicator}]\\033[0m - ${toLower opt.command}\\n"
+  ) wms;
+
+  # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStringsSep
+  enabledCases = concatMapStringsSep "\n" (
+    opt: optionalString opt.enable "${opt.indicator}) exec ${opt.command};;"
+  ) wms;
 in
 {
   options = {
