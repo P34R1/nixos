@@ -81,21 +81,21 @@ in
       # Find abbrModule = types.submodule {
       shellAbbrs = {
         rb = "nh os switch";
-
-        ga = "git add .";
-        gc = {
-          expansion = "git commit -m \"|\"";
-          setCursor = "|";
-        };
-        g = "git";
-
-        gd = "git diff --cached";
+        tre = "ls --git-ignore -aT";
 
         v = "nvim";
         l = "ls -al";
 
         ts = "tmux-sessionizer";
         tw = "tmux-windowizer";
+
+        g = "git";
+        ga = "git add .";
+        gd = "git diff --cached";
+        gc = {
+          expansion = "git commit -m \"|\"";
+          setCursor = "|";
+        };
 
         r = "projectdo -q run";
         b = "projectdo -q build";
