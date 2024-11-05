@@ -13,9 +13,14 @@
     git = {
       enable = true;
       userEmail = "undeadgamer279@gmail.com";
-      userName = "p34r1";
+      userName = "pearl";
       delta.enable = true;
       lfs.enable = true;
+
+      signing = {
+        signByDefault = true;
+        key = "D4F0D505725B265F";
+      };
 
       extraConfig = {
         # Use main instead of master
