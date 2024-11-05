@@ -16,14 +16,15 @@ let
     ${pkgs.hypridle}/bin/hypridle &
   '';
 
-  # Determine which modules are enabled
-  enabledOptions = lib.strings.concatStrings [
-    (lib.strings.optionalString config.hyprland.enable "\\033[1m[h]\\033[0m - hyprland\\n")
-    #(lib.strings.optionalString config.dwm.enable "\\033[1m[d]\\033[0m - dwm\\n")
+  # \033[1m => bold        \033[0m => unbold
+  # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStrings
+  enabledOptions = lib.strings.concatMapStrings (s: "\\033[1m" + s + "\\n") [
+    (lib.strings.optionalString config.hyprland.enable "[h]\\033[0m - hyprland")
+    #(lib.strings.optionalString config.dwm.enable "[d]\\033[0m - dwm")
   ];
 
-  # Determine which modules are enabled
-  enabledCases = lib.strings.concatStringsSep "\n" [
+  # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatLines
+  enabledCases = lib.strings.concatLines [
     (lib.strings.optionalString config.hyprland.enable "h|H) exec Hyprland;;")
     # (lib.strings.optionalString config.dwm.enable "d|D) exec dwm;;")
   ];
