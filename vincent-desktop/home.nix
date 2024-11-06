@@ -41,17 +41,6 @@
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.ripgrep.enable
   programs.ripgrep.enable = true;
 
-  programs.direnv = {
-    enable = true;
-
-    config = {
-      hide_env_diff = true;
-    };
-  };
-
-  programs.zoxide.enable = true;
-  programs.zoxide.options = [ ];
-
   services.cliphist = {
     enable = true;
     allowImages = true;
