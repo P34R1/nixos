@@ -95,6 +95,7 @@ in
           # My main moniter, max hz
           monitor = "HDMI-A-4, highrr, 0x0, 1";
           cursor.no_hardware_cursors = true;
+          render.explicit_sync = false;
 
           exec-once = [
             "${startup}/bin/start"
