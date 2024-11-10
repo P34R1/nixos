@@ -14,6 +14,7 @@ let
     sleep 2
     ${pkgs.waybar}/bin/waybar & disown
     ${pkgs.hypridle}/bin/hypridle &
+    ${pkgs.swww}/bin/swww-daemon & disown
   '';
 
   inherit (lib.strings)
