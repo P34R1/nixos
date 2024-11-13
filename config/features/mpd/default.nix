@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  buildGoModule,
   ...
 }:
 
@@ -36,6 +37,7 @@
 
     environment.systemPackages = [
       pkgs.mpc-cli
+      (pkgs.callPackage ./mpdlrc.nix { })
     ];
   };
 }
