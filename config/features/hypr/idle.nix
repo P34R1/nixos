@@ -3,7 +3,7 @@
 {
   # https://nix-community.github.io/home-manager/options.xhtml#opt-services.hypridle.enable
   services.hypridle = {
-    enable = true;
+    # enable = true;
 
     # https://github.com/ericmurphyxyz/dotfiles/blob/master/.config/hypr/hypridle.conf
     settings = {
