@@ -45,7 +45,7 @@ in
 
     services.xserver = {
       enable = true;
-      # autorun = false;
+
       displayManager.sx.enable = true;
       windowManager.dwm = {
         enable = true;
