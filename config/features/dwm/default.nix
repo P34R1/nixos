@@ -44,9 +44,9 @@ in
     # foot.enable = true;
 
     services.xserver = {
-      # enable = true;
+      enable = true;
       # autorun = false;
-      # displayManager.startx.enable = false;
+      displayManager.sx.enable = true;
       windowManager.dwm = {
         enable = true;
         package = pkgs.dwm.overrideAttrs (old: {
