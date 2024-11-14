@@ -5,6 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nvim.url = "github:P34R1/nvim";
+    # dwm.url = "github:P34R1/dwm";
+    # slstatus.url = "github:P34R1/slstatus";
 
     home-manager = {
       url = "github:nix-community/home-manager";

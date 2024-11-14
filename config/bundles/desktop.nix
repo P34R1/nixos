@@ -21,11 +21,11 @@ let
       indicator = "h";
       enable = config.hyprland.enable;
     }
-    # {
-    #   command = "dwm";
-    #   indicator = "d";
-    #   enable = config.dwm.enable;
-    # }
+    {
+      command = "dwm";
+      indicator = "d";
+      enable = config.dwm.enable;
+    }
   ];
 
   # \033[1m => bold        \033[0m => unbold
@@ -52,6 +52,7 @@ in
 
   config = lib.mkIf cfg.enable {
     hyprland.enable = lib.mkDefault true;
+    dwm.enable = lib.mkDefault true;
 
     git.enable = lib.mkDefault true;
     lazygit.enable = lib.mkDefault true;
