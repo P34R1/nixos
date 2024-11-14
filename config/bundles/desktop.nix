@@ -7,6 +7,37 @@
 
 let
   cfg = config.desktop;
+
+  inherit (lib.strings)
+    concatMapStrings
+    concatMapStringsSep
+    optionalString
+    toLower
+    ;
+
+  wms = [
+    {
+      command = "Hyprland";
+      indicator = "h";
+      enable = config.hyprland.enable;
+    }
+    # {
+    #   command = "dwm";
+    #   indicator = "d";
+    #   enable = config.dwm.enable;
+    # }
+  ];
+
+  # \033[1m => bold        \033[0m => unbold
+  # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStrings
+  enabledOptions = concatMapStrings (
+    opt: optionalString opt.enable "\\033[1m[${opt.indicator}]\\033[0m - ${toLower opt.command}\\n"
+  ) wms;
+
+  # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStringsSep
+  enabledCases = concatMapStringsSep "\n" (
+    opt: optionalString opt.enable "${opt.indicator}) exec ${opt.command};;"
+  ) wms;
 in
 {
   options = {
@@ -102,8 +133,23 @@ in
       jack.enable = true;
     };
 
+    # https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login
+    hm.home.file.".bash_profile".text = ''
+      if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+        printf "${enabledOptions}"
+
+        stty -icanon -echo
+        choice=$(dd bs=1 count=1 2>/dev/null)
+        stty icanon echo
+
+        case "$choice" in
+          ${enabledCases}
+        esac
+      fi
+    '';
+
     # Enable Razer
-    hardware.openrazer.enable = true;
+    hardware.openrazer.enable = lib.mkDefault true;
 
     # DARKMODE
     hm = {
