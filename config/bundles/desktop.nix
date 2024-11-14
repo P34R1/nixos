@@ -12,17 +12,18 @@ let
     concatMapStrings
     concatMapStringsSep
     optionalString
-    toLower
     ;
 
   wms = [
     {
+      name = "hyprland";
       command = "Hyprland";
       indicator = "h";
       enable = config.hyprland.enable;
     }
     {
-      command = "dwm";
+      name = "dwm";
+      command = "sx dwm";
       indicator = "d";
       enable = config.dwm.enable;
     }
@@ -31,7 +32,7 @@ let
   # \033[1m => bold        \033[0m => unbold
   # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStrings
   enabledOptions = concatMapStrings (
-    opt: optionalString opt.enable "\\033[1m[${opt.indicator}]\\033[0m - ${toLower opt.command}\\n"
+    opt: optionalString opt.enable "\\033[1m[${opt.indicator}]\\033[0m - ${opt.name}\\n"
   ) wms;
 
   # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStringsSep
