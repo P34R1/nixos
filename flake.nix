@@ -41,5 +41,15 @@
           inputs.nix-index-database.nixosModules.nix-index
         ];
       };
+      nixosConfigurations.pearl-laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./laptop/configuration.nix
+          ./config
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+        ];
+      };
     };
 }
