@@ -31,8 +31,8 @@
   config = lib.mkIf config.dwm.enable {
 
     # tofi.enable = true;
-    # dunst.enable = true;
-    # foot.enable = true;
+    dunst.enable = true;
+    alacritty.enable = true;
 
     services.xserver = {
       enable = true;
@@ -55,7 +55,6 @@
       # slstatusPackage
       pkgs.dmenu
       pkgs.picom
-      pkgs.alacritty
     ];
   };
 }
