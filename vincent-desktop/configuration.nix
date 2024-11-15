@@ -40,6 +40,9 @@ in
   };
 
   user = "pearl"; # set default user here
+  git.userEmail = "undeadgamer279@gmail.com";
+  git.userName = "pearl";
+  git.signingKey = "D4F0D505725B265F";
 
   hyprland.enable = true;
 
