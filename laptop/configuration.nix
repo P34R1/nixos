@@ -40,7 +40,7 @@ in
   };
 
   user = "pearl"; # set default user here
-  git.userEmail = "undeadgamer279@gmail.com";
+  git.userEmail = "vincent.fortin279@gmail.com";
   git.userName = "pearl";
   git.signingKey = "940A57535F901655";
 
