@@ -46,7 +46,7 @@
             green = "#${base0B}"; # green
             yellow = "#${base09}"; # yellow
             blue = "#${base0D}"; # blue
-            purple = "#${base0E}"; # purple
+            magenta = "#${base0E}"; # purple
             cyan = "#${base0C}"; # aqua/cyan
             white = "#${base07}"; # white
           };
@@ -58,7 +58,7 @@
             green = "#${base14}"; # green
             yellow = "#${base13}"; # yellow
             blue = "#${base16}"; # blue
-            purple = "#${base17}"; # purple
+            magenta = "#${base17}"; # purple
             cyan = "#${base15}"; # aqua/cyan
             white = "#${base07}"; # white
           };
