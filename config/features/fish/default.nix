@@ -50,7 +50,7 @@ in
               return 1
             end
 
-            printf ".direnv\n.envrc\nflake.nix\nflake.lock\n" >> $loc/.git/info/exclude # Ignore flake and env
+            printf ".envrc\nflake.nix\nflake.lock\n" >> $loc/.git/info/exclude # Ignore flake and env
 
             if not [ -f "$loc/.envrc" ]
               printf "use flake path:$loc" > $loc/.envrc
