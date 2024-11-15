@@ -7,10 +7,10 @@
     lazygit.enable = lib.mkEnableOption "enables lazygit";
   };
 
-  config.hm.programs = lib.mkIf config.git.enable {
+  config.hm = lib.mkIf config.git.enable {
 
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.git.enable
-    git = {
+    programs.git = {
       enable = true;
       userEmail = "undeadgamer279@gmail.com";
       userName = "pearl";
@@ -32,6 +32,8 @@
 
         # https://www.youtube.com/watch?v=HJtxQPJUcJc
         rerere.enabled = true;
+
+        core.excludesFile = "~/.config/git/ignore";
       };
 
       aliases = {
@@ -51,8 +53,12 @@
       };
     };
 
+    home.file.".config/git/ignore".text = ''
+      .direnv/
+    '';
+
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.lazygit.enable
-    lazygit = lib.mkIf config.lazygit.enable {
+    programs.lazygit = lib.mkIf config.lazygit.enable {
       enable = true;
 
       # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
