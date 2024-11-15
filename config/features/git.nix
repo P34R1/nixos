@@ -1,10 +1,19 @@
 { config, lib, ... }:
 
 {
-  options = {
-    git.enable = lib.mkEnableOption "enables git configuration";
+  options = with lib; {
+    git = {
+      enable = mkEnableOption "enables git configuration";
 
-    lazygit.enable = lib.mkEnableOption "enables lazygit";
+      userEmail = mkOption { type = types.str; };
+      userName = mkOption { type = types.str; };
+      signingKey = mkOption {
+        type = types.str;
+        default = ""; # Make optional
+      };
+    };
+
+    lazygit.enable = mkEnableOption "enables lazygit";
   };
 
   config.hm = lib.mkIf config.git.enable {
@@ -12,14 +21,15 @@
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.git.enable
     programs.git = {
       enable = true;
-      userEmail = "undeadgamer279@gmail.com";
-      userName = "pearl";
+      userEmail = config.git.userEmail;
+      userName = config.git.userName;
+
       delta.enable = true;
       lfs.enable = true;
 
-      signing = {
+      signing = lib.mkIf (config.git.signingKey != "") {
         signByDefault = true;
-        key = "D4F0D505725B265F";
+        key = config.git.signingKey;
       };
 
       extraConfig = {
