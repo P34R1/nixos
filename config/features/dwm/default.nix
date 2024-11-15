@@ -6,32 +6,23 @@
   ...
 }:
 
-let
-  # startup = pkgs.writeShellScriptBin "start" ''
-  #   ${pkgs.udiskie}/bin/udiskie &
-  #   ${pkgs.dunst}/bin/dunst &
-  #   ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store &
-  #   sleep 2
-  #   ${pkgs.waybar}/bin/waybar & disown
-  #   ${pkgs.hypridle}/bin/hypridle &
-  #   ${pkgs.swww}/bin/swww-daemon & disown
-  # '';
-  filesIn = dir: (map (fname: dir + "/${fname}") (builtins.attrNames (builtins.readDir dir)));
-  patches = (filesIn ./patches);
-
-  buildInputs = with pkgs; [
-    xorg.libX11.dev
-    xorg.libXft
-    imlib2
-    xorg.libXinerama
-  ];
-
-in
-# slstatusPackage = pkgs.dwmblocks.overrideAttrs (old: {
-# src = /home/pearl/repos/slstatus;
-# src = inputs.slstatus;
-# nativeBuildInputs = buildInputs;
-# });
+# let
+#   startup = pkgs.writeShellScriptBin "start" ''
+#     ${pkgs.udiskie}/bin/udiskie &
+#     ${pkgs.dunst}/bin/dunst &
+#     ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store &
+#     sleep 2
+#     ${pkgs.waybar}/bin/waybar & disown
+#     ${pkgs.hypridle}/bin/hypridle &
+#     ${pkgs.swww}/bin/swww-daemon & disown
+#   '';
+#
+#   slstatusPackage = pkgs.dwmblocks.overrideAttrs (old: {
+#     src = /home/pearl/repos/slstatus;
+#     src = inputs.slstatus;
+#     nativeBuildInputs = buildInputs;
+#   });
+# in
 {
   options = {
     dwm.enable = lib.mkEnableOption "enables dwm";
@@ -50,9 +41,12 @@ in
       windowManager.dwm = {
         enable = true;
         package = pkgs.dwm.overrideAttrs (old: {
-          # src = inputs.dwm;
-          patches = patches;
-          nativeBuildInputs = buildInputs;
+          src = pkgs.fetchFromGitHub {
+            owner = "P34R1";
+            repo = "dwm";
+            rev = "master";
+            hash = "sha256-GDPZoTo/59xVlTRz1IduvP5JSw31oL/Zb7XkCrBSJO0=";
+          };
         });
       };
     };
