@@ -102,8 +102,12 @@ in
     networkmanager.enable = true;
   };
 
-  # Enable automatic login for the user.
-  services.getty.autologinUser = "${config.user}";
+  # Enable username (only ask for password)
+  services.getty.extraArgs = [
+    "--skip-login"
+    "--login-options"
+    "${config.user}"
+  ];
   services.getty.helpLine = lib.mkForce ""; # https://www.reddit.com/r/NixOS/comments/161uvb5/remove_nixoshelp_reminder_on_tty/
   security.pam.services.sudo.nodelay = true;
 

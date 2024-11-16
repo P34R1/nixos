@@ -103,6 +103,8 @@ in
   # Enable automatic login for the user.
   services.getty.autologinUser = "${config.user}";
   services.getty.helpLine = lib.mkForce ""; # https://www.reddit.com/r/NixOS/comments/161uvb5/remove_nixoshelp_reminder_on_tty/
+
+  # Make incorrect password reset immediately
   security.pam.services.hyprlock = { };
   security.pam.services.hyprlock.nodelay = true;
   security.pam.services.sudo.nodelay = true;
