@@ -40,6 +40,8 @@
       displayManager.sx.enable = true;
       windowManager.dwm = {
         enable = true;
+
+        # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/applications/window-managers/dwm/default.nix
         package = pkgs.dwm.overrideAttrs (old: {
           src = pkgs.fetchFromGitHub {
             owner = "P34R1";
@@ -55,6 +57,7 @@
       # slstatusPackage
       pkgs.dmenu
       pkgs.picom
+      pkgs.hsetroot
     ];
   };
 }
