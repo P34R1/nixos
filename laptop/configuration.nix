@@ -44,7 +44,7 @@ in
   git.userName = "pearl";
   git.signingKey = "940A57535F901655";
 
-  hyprland.enable = false;
+  hyprland.enable = true;
   dwm.enable = true;
 
   yazi.enable = true;
