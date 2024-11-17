@@ -31,11 +31,6 @@ in
   nixpkgs = {
     overlays = [
       inputs.nvim.overlays.default
-
-      # https://github.com/NixOS/nixpkgs/issues/353119 Remove once nixpkgs unstable updates
-      (final: prev: {
-        _7zz = prev._7zz.override { useUasm = true; };
-      })
     ];
   };
 
