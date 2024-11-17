@@ -20,7 +20,6 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     nix-colors.url = "github:misterio77/nix-colors";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
@@ -49,6 +48,7 @@
           ./laptop/configuration.nix
           ./config
           inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.nix-index-database.nixosModules.nix-index
         ];
       };
     };
