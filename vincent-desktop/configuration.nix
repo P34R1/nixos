@@ -45,6 +45,7 @@ in
   git.signingKey = "D4F0D505725B265F";
 
   hyprland.enable = true;
+  dwm.enable = false;
 
   yazi.enable = true;
   spicetify.enable = true;
