@@ -7,16 +7,6 @@
 }:
 
 # let
-#   startup = pkgs.writeShellScriptBin "start" ''
-#     ${pkgs.udiskie}/bin/udiskie &
-#     ${pkgs.dunst}/bin/dunst &
-#     ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store &
-#     sleep 2
-#     ${pkgs.waybar}/bin/waybar & disown
-#     ${pkgs.hypridle}/bin/hypridle &
-#     ${pkgs.swww}/bin/swww-daemon & disown
-#   '';
-#
 #   slstatusPackage = pkgs.dwmblocks.overrideAttrs (old: {
 #     src = /home/pearl/repos/slstatus;
 #     src = inputs.slstatus;
@@ -53,10 +43,16 @@
       };
     };
 
+    # https://nix-community.github.io/home-manager/options.xhtml#opt-services.picom.enable
+    hm.services.picom = {
+      enable = true;
+
+      backend = "xrender"; # Not hardware accelerated
+    };
+
     environment.systemPackages = [
       # slstatusPackage
       pkgs.dmenu
-      pkgs.picom
       pkgs.hsetroot
     ];
   };
