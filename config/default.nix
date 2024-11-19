@@ -48,7 +48,7 @@ in
     home.username = "${config.user}";
     home.homeDirectory = "/home/${config.user}";
 
-    home.stateVersion = "24.05"; # Don't Change.
+    home.stateVersion = "25.05"; # Don't Change.
 
     # https://github.com/tinted-theming/schemes/tree/spec-0.11/base16
     colorScheme = import ./gruvbox.nix;
