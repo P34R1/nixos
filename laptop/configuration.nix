@@ -41,6 +41,7 @@ in
 
   hyprland.enable = false;
   dwm.enable = true;
+  librewolf.enable = true;
 
   yazi.enable = true;
   spicetify.enable = false;
@@ -119,7 +120,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    librewolf
     htop
 
     trashy # trash-cli replacment
