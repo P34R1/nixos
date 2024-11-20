@@ -6,13 +6,25 @@
   ...
 }:
 
-# let
-#   slstatusPackage = pkgs.dwmblocks.overrideAttrs (old: {
-#     src = /home/pearl/repos/slstatus;
-#     src = inputs.slstatus;
-#     nativeBuildInputs = buildInputs;
-#   });
-# in
+let
+  dwm = pkgs.dwm.overrideAttrs (old: {
+    src = pkgs.fetchFromGitHub {
+      owner = "P34R1";
+      repo = "dwm";
+      rev = "master";
+      hash = "sha256-FJ7RO/bdprWL6IgN+9iEfDp0pqc2YO8JP98eNZd7+Yk=";
+    };
+  });
+
+  slstatus = pkgs.slstatus.overrideAttrs (old: {
+    src = pkgs.fetchFromGitHub {
+      owner = "P34R1";
+      repo = "slstatus";
+      rev = "main";
+      hash = "sha256-d+/kngpR4c5Z91lh2RZ+r5RoJWr0LU7lbscJrGaJN68=";
+    };
+  });
+in
 {
   options = {
     dwm.enable = lib.mkEnableOption "enables dwm";
@@ -32,14 +44,7 @@
         enable = true;
 
         # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/applications/window-managers/dwm/default.nix
-        package = pkgs.dwm.overrideAttrs (old: {
-          src = pkgs.fetchFromGitHub {
-            owner = "P34R1";
-            repo = "dwm";
-            rev = "master";
-            hash = "sha256-FJ7RO/bdprWL6IgN+9iEfDp0pqc2YO8JP98eNZd7+Yk=";
-          };
-        });
+        package = dwm;
       };
     };
 
@@ -51,7 +56,7 @@
     };
 
     environment.systemPackages = [
-      # slstatusPackage
+      slstatus
       pkgs.dmenu
       pkgs.hsetroot
     ];
