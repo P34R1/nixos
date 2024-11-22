@@ -31,6 +31,8 @@ in
     programs.hyprland.enable = true;
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+    environment.systemPackages = [ pkgs.swww ];
+
     # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
     # https://nix-community.github.io/home-manager/options.xhtml#opt-wayland.windowManager.hyprland.enable
     hm = {

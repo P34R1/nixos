@@ -133,7 +133,6 @@ in
     udisks2 # auto mounting
     udiskie
     glow # markdown parser
-    swww
 
     nvim-pkg
     nil
