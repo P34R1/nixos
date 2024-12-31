@@ -11,6 +11,6 @@
   services.flatpak.packages = [
     "dev.vencord.Vesktop"
     "com.obsproject.Studio"
-    "org.blender.Blender"
+    # "org.blender.Blender"
   ];
 }

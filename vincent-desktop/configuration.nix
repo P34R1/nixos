@@ -137,6 +137,8 @@ in
     nil
     nixfmt-rfc-style
 
+    blender # was using flatpak, needed to downgrade
+
     # My Scripts
     screenshot
     volume
