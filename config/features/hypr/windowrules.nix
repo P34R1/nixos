@@ -5,6 +5,7 @@
     windowrulev2 = [
       "workspace 4 silent, class:vesktop"
       "workspace special:scratchpad silent, title:App" # for bevy (i'll improve on this later)
+      "workspace 5 silent, class:five" # for bevy (i'll improve on this later)
 
       "suppressevent maximize, class:.*" # You'll probably like this.
     ];
