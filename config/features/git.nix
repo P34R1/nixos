@@ -56,6 +56,7 @@
 
         # https://www.youtube.com/watch?v=xN1-2p06Urc
         pr = "pull --rebase";
+        puf = "push --force-with-lease";
         amend = "commit -a --amend --no-edit";
         unadd = "reset HEAD";
 
