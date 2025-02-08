@@ -17,7 +17,7 @@
       enable = true;
       settings = with config.colours; {
         # RobotoMonoNerdFontProportional
-        font = "${pkgs.nerdfonts}/share/fonts/truetype/NerdFonts/RobotoMonoNerdFontPropo-Medium.ttf";
+        font = "${pkgs.nerd-fonts.roboto-mono}/share/fonts/truetype/NerdFonts/RobotoMonoNerdFontPropo-Medium.ttf";
         # #282828 alpha 75%
         background-color = "#${base00}BF";
         border-color = "#${base0E}";

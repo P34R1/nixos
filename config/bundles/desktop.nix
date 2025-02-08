@@ -74,14 +74,10 @@ in
 
     # https://github.com/ryanoasis/nerd-fonts
     fonts.packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "DroidSansMono"
-          "RobotoMono"
-          "JetBrainsMono"
-        ];
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.roboto-mono
+      nerd-fonts.jetbrains-mono
       maple-mono
       corefonts
     ];
