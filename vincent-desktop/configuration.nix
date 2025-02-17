@@ -49,6 +49,7 @@ in
   tmux.enable = true;
   mpd.enable = true;
   pass.enable = true;
+  irssi.enable = true;
 
   desktop.enable = true;
   desktop.nvidia = true;

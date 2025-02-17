@@ -2,12 +2,10 @@
 
 {
   options = with lib; {
-    librewolf.enable = mkEnableOption "enables git configuration";
-
+    librewolf.enable = mkEnableOption "enables librewolf";
   };
 
   config.hm = lib.mkIf config.librewolf.enable {
-
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.librewolf.enable
     programs.librewolf = {
       enable = true;
