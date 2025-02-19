@@ -1,14 +1,13 @@
 { config, lib, ... }:
 
 {
-  options = with lib; {
-    irssi.enable = mkEnableOption "enables irssi";
+  options = {
+    irssi.enable = lib.mkEnableOption "enables irssi";
   };
 
-  config.hm = lib.mkIf config.irssi.enable {
-    # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.irssi.enable
-    programs.irssi = {
-      enable = true;
+  config = lib.mkIf config.irssi.enable {
+    hm.programs.irssi = {
+      enable = true; # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.irssi.enable
 
       extraConfig = ''
         settings = {
@@ -38,5 +37,33 @@
         };
       };
     };
+
+    # https://blog.stigok.com/2020/04/16/building-a-custom-perl-package-for-nixos.html
+    nixpkgs.config.packageOverrides =
+      pkgs:
+      let
+        perlDeps = with pkgs.perlPackages; [
+          Glib
+          HTMLParser
+          GlibObjectIntrospection
+        ];
+
+        typelibs = with pkgs; [
+          libnotify
+          gdk-pixbuf
+          glib.out # .out instead of .bin for Gio.typelib
+        ];
+      in
+      {
+        irssi = pkgs.irssi.overrideAttrs (old: {
+          buildInputs = old.buildInputs ++ [ pkgs.makeWrapper ];
+
+          postFixup = ''
+            wrapProgram "$out/bin/irssi" \
+              --prefix PERL5LIB : "${pkgs.perlPackages.makePerlPath perlDeps}" \
+              --prefix GI_TYPELIB_PATH : "${lib.makeSearchPath "lib/girepository-1.0" typelibs}"
+          '';
+        });
+      };
   };
 }
