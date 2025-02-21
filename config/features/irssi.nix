@@ -14,6 +14,10 @@
           core = {
             real_name = "pearl";
           };
+
+          "fe-common/core" = {
+            autolog = "yes";
+          };
         };
       '';
 
