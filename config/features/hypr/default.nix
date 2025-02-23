@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }:
 
@@ -23,7 +22,6 @@ in
   };
 
   config = lib.mkIf config.hyprland.enable {
-
     tofi.enable = true;
     dunst.enable = true;
     foot.enable = true;

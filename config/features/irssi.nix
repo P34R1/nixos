@@ -29,7 +29,7 @@
           server = {
             address = "irc.libera.chat";
             port = 6697;
-            autoConnect = true;
+            autoConnect = false;
 
             ssl.certificateFile = "${config.hm.home.homeDirectory}/.irssi/certs/libera.pem";
           };
