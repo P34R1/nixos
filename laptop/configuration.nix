@@ -89,7 +89,7 @@ in
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/${config.user}/nixos";
+    flake = "${config.hm.home.homeDirectory}/nixos";
   };
 
   # Enable networking
@@ -109,14 +109,24 @@ in
   security.pam.services.sudo.nodelay = true;
 
   home-manager = {
+    useGlobalPkgs = true;
+    backupFileExtension = "backup";
+
     # Also pass inputs to home manager modules
     extraSpecialArgs = {
       inherit inputs;
     };
-    backupFileExtension = "backup";
-    useGlobalPkgs = true;
-    users.pearl = import ./home.nix;
   };
+
+  hm.home.file =
+    let
+      homeDir = config.hm.home.homeDirectory;
+      link = config.hm.lib.file.mkOutOfStoreSymlink;
+    in
+    {
+      ".local/share/colorscripts/".source = link "${homeDir}/repos/shell-color-scripts/colorscripts";
+      ".local/share/wall.png".source = link "${homeDir}/backgrounds/nix-wallpaper-simple-blue.png";
+    };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

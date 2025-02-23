@@ -60,6 +60,43 @@ in
     fish.enable = lib.mkDefault true;
     tmux.enable = lib.mkDefault true;
 
+    hm.programs = {
+
+      fd.enable = true; # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fd.enable
+      fd.ignores = [ ".git/" ];
+
+      bat.enable = true; # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.bat.enable
+      eza.enable = true; # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.eza.enable
+      jq.enable = true; # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.jq.enable
+      ripgrep.enable = true; # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.ripgrep.enable
+
+      fzf = {
+        enable = true; # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fzf.enable
+        defaultCommand = "fd --color=always";
+
+        # https://github.com/PatrickF1/fzf.fish/blob/main/functions/_fzf_wrapper.fish
+        defaultOptions = [
+          "--cycle" # allows jumping between the first and last results, making scrolling faster
+          "--layout=reverse" # lists results top to bottom, mimicking the familiar layouts of git log, history, and env
+          "--border" # shows where the fzf window begins and ends
+          "--height=90%" # leaves space to see the current command and some scrollback, maintaining context of work
+          "--preview-window=wrap" # wraps long lines in the preview window, making reading easier
+          "--marker=\"*\"" # makes the multi-select marker more distinguishable from the pointer (since both default to >)
+          "--ansi" # enable ansi color code parsing
+        ];
+      };
+    };
+
+    hm.services.cliphist = {
+      enable = true;
+      allowImages = true;
+    };
+
+    hm.home.sessionVariables = {
+      VISUAL = "nvim";
+      EDITOR = "nvim";
+    };
+
     time.timeZone = "America/Toronto";
     i18n.defaultLocale = "en_CA.UTF-8";
 
