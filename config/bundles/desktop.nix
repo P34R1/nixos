@@ -115,7 +115,7 @@ in
       nerd-fonts.droid-sans-mono
       nerd-fonts.roboto-mono
       nerd-fonts.jetbrains-mono
-      maple-mono
+      maple-mono.truetype
       corefonts
     ];
 
