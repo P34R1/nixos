@@ -148,6 +148,10 @@ in
     nixfmt-rfc-style
 
     # blender # was using flatpak, needed to downgrade
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
 
     # My Scripts
     screenshot

@@ -9,7 +9,7 @@
   };
 
   services.flatpak.packages = [
-    "dev.vencord.Vesktop"
+    # "dev.vencord.Vesktop"
     "com.obsproject.Studio"
     # "org.blender.Blender"
   ];

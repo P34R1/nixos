@@ -56,7 +56,8 @@ in
 
             "[workspace 1 silent] foot"
             "[workspace 2 silent] librewolf"
-            "[workspace 4 silent] flatpak run dev.vencord.Vesktop"
+            # "[workspace 4 silent] flatpak run dev.vencord.Vesktop"
+            "[workspace 4 silent] discord"
           ];
 
           "$mod" = "SUPER";
