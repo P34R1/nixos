@@ -149,6 +149,11 @@ in
     nil
     nixfmt-rfc-style
 
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
+
     # My Scripts
     screenshot
     volume
