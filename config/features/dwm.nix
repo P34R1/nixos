@@ -12,7 +12,7 @@ let
       owner = "P34R1";
       repo = "dwm";
       rev = "master";
-      hash = "sha256-hHiboyemiH93/F6EtTtmPJsq802n+oanM5aX64mVyj8=";
+      hash = "sha256-Qpo0p1WIwqGTtCDgzgKtiRaYfhemRKr+ylEPt04FCx8=";
     };
   });
 
