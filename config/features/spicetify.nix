@@ -28,8 +28,7 @@
           shuffle # shuffle+ (special characters are sanitized out of extension names)
           betterGenres
         ];
-        theme = spicePkgs.themes.blossom;
-        # colorScheme = "mocha";
+        theme = spicePkgs.themes.text;
       };
   };
 }
