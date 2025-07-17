@@ -40,7 +40,7 @@ in
   git.signingKey = "D4F0D505725B265F";
 
   hyprland.enable = true;
-  dwm.enable = false;
+  dwm.enable = true;
   librewolf.enable = true;
 
   yazi.enable = true;

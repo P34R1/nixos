@@ -7,15 +7,6 @@
 }:
 
 let
-  dwm = pkgs.dwm.overrideAttrs (old: {
-    src = pkgs.fetchFromGitHub {
-      owner = "P34R1";
-      repo = "dwm";
-      rev = "master";
-      hash = "sha256-Qpo0p1WIwqGTtCDgzgKtiRaYfhemRKr+ylEPt04FCx8=";
-    };
-  });
-
   slstatus = pkgs.slstatus.overrideAttrs (old: {
     src = pkgs.fetchFromGitHub {
       owner = "P34R1";
@@ -44,7 +35,7 @@ in
         enable = true;
 
         # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/applications/window-managers/dwm/default.nix
-        package = dwm;
+        package = inputs.dwm;
       };
     };
 
