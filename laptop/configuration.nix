@@ -55,6 +55,7 @@ in
   desktop.nvidia = false;
 
   programs.dconf.enable = true;
+  programs.light.enable = true;
 
   # Bootloader.
   boot.loader.grub = {
@@ -76,6 +77,7 @@ in
       "networkmanager"
       "wheel"
       "audio"
+      "video"
     ];
     packages = with pkgs; [ ];
   };
@@ -140,14 +142,11 @@ in
     wl-clipboard
     chafa # terminal imgs
     playerctl
-    openrazer-daemon
     udisks2 # auto mounting
     udiskie
     glow # markdown parser
 
     nvim-pkg
-    nil
-    nixfmt-rfc-style
 
     (discord.override {
       withOpenASAR = true;
