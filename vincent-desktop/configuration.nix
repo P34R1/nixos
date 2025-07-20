@@ -54,6 +54,8 @@ in
   desktop.enable = true;
   desktop.nvidia = true;
 
+  razer.enable = true;
+
   # Bootloader.
   boot.loader.grub = {
     enable = true;
@@ -73,7 +75,6 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
-      "openrazer"
       "audio"
     ];
     packages = with pkgs; [ ];
@@ -138,7 +139,6 @@ in
     wl-clipboard
     chafa # terminal imgs
     playerctl
-    openrazer-daemon
     udisks2 # auto mounting
     udiskie
     glow # markdown parser

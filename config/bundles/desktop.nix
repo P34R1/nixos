@@ -183,9 +183,6 @@ in
       fi
     '';
 
-    # Enable Razer
-    hardware.openrazer.enable = lib.mkDefault true;
-
     # DARKMODE
     hm = {
       dconf.settings = {
