@@ -29,12 +29,12 @@
       ];
 
       mpris = {
-        format = "{title} {status_icon} {artist}";
+        format = "{artist} {status_icon} {title}";
 
         status-icons = {
-          playing = "";
-          paused = "";
-          stopped = "";
+          playing = "";
+          paused = "┃";
+          stopped = "■";
         };
 
         # ignored-players = ["firefox" "librewolf"];
@@ -48,6 +48,7 @@
       "hyprland/workspaces" = {
         disable-scroll = true;
         all-outputs = true;
+        format = "{icon}";
 
         # Leave empty for number
         format-icons = {
