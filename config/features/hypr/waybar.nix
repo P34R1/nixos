@@ -32,9 +32,9 @@
         format = "{artist} {status_icon} {title}";
 
         status-icons = {
-          playing = "";
-          paused = "┃";
-          stopped = "■";
+          playing = "";
+          paused = "│";
+          stopped = "─";
         };
 
         # ignored-players = ["firefox" "librewolf"];
