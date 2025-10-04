@@ -19,6 +19,5 @@ buildGoModule rec {
   env.GOWORK = "off";
 
   # doCheck = false;
-
   # subPackages = [ "cmd/${pname}" ];
 }
