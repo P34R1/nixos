@@ -21,17 +21,28 @@
       };
 
       settings = {
-
+        plugin.prepend_previewers = [
+          {
+            url = "*.md";
+            run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
+          }
+          {
+            mime = "audio/ogg";
+            run = "piper -- vorbiscomment \"$1\" | grep -iE '^(TITLE|ALBUM|ARTIST|ALBUMARTIST)='";
+          }
+        ];
       };
 
-      plugins = {
-        glow = pkgs.fetchFromGitHub {
-          owner = "Reledia";
-          repo = "glow.yazi";
-          rev = "main";
-          sha256 = "sha256-fKJ5ld5xc6HsM/h5j73GABB5i3nmcwWCs+QSdDPA9cU=";
-        };
+      plugins = with pkgs; {
+        piper = yaziPlugins.piper;
+        smart-paste = yaziPlugins.smart-paste;
       };
+
+      extraPackages = with pkgs; [
+        glow
+        vorbis-tools
+        gnugrep
+      ];
     };
   };
 }
