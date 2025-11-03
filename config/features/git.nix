@@ -19,48 +19,56 @@
   config.hm = lib.mkIf config.git.enable {
 
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.git.enable
-    programs.git = {
-      enable = true;
-      userEmail = config.git.userEmail;
-      userName = config.git.userName;
-
-      delta.enable = true;
-      lfs.enable = true;
-
-      signing = lib.mkIf (config.git.signingKey != "") {
-        signByDefault = true;
-        key = config.git.signingKey;
+    programs = {
+      delta = {
+        enable = true;
+        enableGitIntegration = true;
       };
 
-      extraConfig = {
-        # Use main instead of master
-        init.defaultBranch = "main";
+      git = {
+        enable = true;
 
-        # Use SSH
-        url."ssh://git@github.com/".insteadOf = "https://github.com/";
-        url."ssh://git@codeberg.org/".insteadOf = "https://codeberg.org/";
+        lfs.enable = true;
 
-        # https://www.youtube.com/watch?v=HJtxQPJUcJc
-        rerere.enabled = true;
+        signing = lib.mkIf (config.git.signingKey != "") {
+          signByDefault = true;
+          key = config.git.signingKey;
+        };
 
-        core.excludesFile = "~/.config/git/ignore";
-      };
+        settings = {
+          user.email = config.git.userEmail;
+          user.name = config.git.userName;
 
-      aliases = {
-        st = "status -s";
-        sta = "status";
+          # Use main instead of master
+          init.defaultBranch = "main";
 
-        br = "branch";
-        bra = "branch -a";
-        co = "checkout";
+          # Use SSH
+          url."ssh://git@github.com/".insteadOf = "https://github.com/";
+          url."ssh://git@codeberg.org/".insteadOf = "https://codeberg.org/";
 
-        # https://www.youtube.com/watch?v=xN1-2p06Urc
-        pr = "pull --rebase";
-        puf = "push --force-with-lease";
-        amend = "commit --amend --no-edit";
-        unadd = "reset HEAD";
+          # https://www.youtube.com/watch?v=HJtxQPJUcJc
+          rerere.enabled = true;
 
-        lo = "log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit";
+          core.excludesFile = "~/.config/git/ignore";
+
+          aliases = {
+            st = "status -s";
+            sta = "status";
+
+            br = "branch";
+            bra = "branch -a";
+            co = "checkout";
+
+            # https://www.youtube.com/watch?v=xN1-2p06Urc
+            pr = "pull --rebase";
+            puf = "push --force-with-lease";
+            amend = "commit --amend --no-edit";
+            unadd = "reset HEAD";
+
+            lo = "log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit";
+          };
+
+        };
       };
     };
 

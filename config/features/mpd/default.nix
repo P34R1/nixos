@@ -35,7 +35,7 @@
     hm.services.mpdris2.enable = true;
 
     environment.systemPackages = [
-      pkgs.mpc-cli
+      pkgs.mpc
       (pkgs.callPackage ./mpdlrc.nix { })
     ];
   };
