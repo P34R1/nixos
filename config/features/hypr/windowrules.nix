@@ -2,13 +2,13 @@
 
 {
   wayland.windowManager.hyprland.settings = {
-    windowrulev2 = [
-      "workspace 4 silent, class:vesktop"
-      "workspace 4, class:discord"
-      "workspace special:scratchpad silent, title:App" # for bevy (i'll improve on this later)
-      "workspace 5 silent, class:five" # for bevy (i'll improve on this later)
+    windowrule = [
+      "match:class vesktop, workspace 4 silent"
+      "match:class discord, workspace 4"
+      "match:title App, workspace special:scratchpad silent" # for bevy (i'll improve on this later)
+      "match:class five, workspace 5 silent" # for bevy (i'll improve on this later)
 
-      "suppressevent maximize, class:.*" # You'll probably like this.
+      "match:class .*, suppress_event maximize" # You'll probably like this.
     ];
 
     workspace = [
