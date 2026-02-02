@@ -35,6 +35,8 @@
           key = config.git.signingKey;
         };
 
+        ignores = [ ".direnv/" ];
+
         settings = {
           user.email = config.git.userEmail;
           user.name = config.git.userName;
@@ -49,9 +51,7 @@
           # https://www.youtube.com/watch?v=HJtxQPJUcJc
           rerere.enabled = true;
 
-          core.excludesFile = "~/.config/git/ignore";
-
-          aliases = {
+          alias = {
             st = "status -s";
             sta = "status";
 
@@ -71,10 +71,6 @@
         };
       };
     };
-
-    home.file.".config/git/ignore".text = ''
-      .direnv/
-    '';
 
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.lazygit.enable
     programs.lazygit = lib.mkIf config.lazygit.enable {
