@@ -97,7 +97,7 @@ in
   # Enable networking
   networking = {
     hostName = "pearl-laptop";
-    enableIPv6 = false;
+    enableIPv6 = true;
     networkmanager.enable = true;
   };
 
