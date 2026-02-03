@@ -17,7 +17,7 @@ let
   wms = [
     {
       name = "hyprland";
-      command = "Hyprland";
+      command = "start-hyprland";
       indicator = "h";
       enable = config.hyprland.enable;
     }
