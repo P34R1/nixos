@@ -35,7 +35,7 @@ in
         enable = true;
 
         # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/applications/window-managers/dwm/default.nix
-        package = inputs.dwm.packages.${pkgs.system}.default;
+        package = inputs.dwm.packages.${pkgs.stdenv.hostPlatform.system}.default;
       };
     };
 
