@@ -94,7 +94,7 @@ in
 
   # Enable networking
   networking = {
-    hostName = "vincent-desktop";
+    hostName = "pearl-desktop";
     enableIPv6 = true;
     networkmanager.enable = true;
   };

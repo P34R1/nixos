@@ -29,7 +29,7 @@
   outputs =
     { self, nixpkgs, ... }@inputs:
     {
-      nixosConfigurations.vincent-desktop = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.pearl-desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
         };
