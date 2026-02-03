@@ -145,7 +145,6 @@ in
 
     nvim-pkg
     nil
-    nixfmt-rfc-style
 
     # blender # was using flatpak, needed to downgrade
     (discord.override {
