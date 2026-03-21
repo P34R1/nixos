@@ -8,6 +8,11 @@
     dwm.url = "github:P34R1/dwm";
     # slstatus.url = "github:P34R1/slstatus";
 
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

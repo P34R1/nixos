@@ -42,6 +42,7 @@ in
   hyprland.enable = true;
   dwm.enable = true;
   librewolf.enable = true;
+  zen.enable = true;
 
   yazi.enable = true;
   spicetify.enable = true;

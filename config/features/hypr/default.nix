@@ -54,7 +54,8 @@ in
             "${startup}/bin/start"
 
             "[workspace 1 silent] foot"
-            "[workspace 2 silent] librewolf"
+            # "[workspace 2 silent] librewolf"
+            "[workspace 2 silent] zen"
             # "[workspace 4 silent] flatpak run dev.vencord.Vesktop"
             "[workspace 4] discord"
           ];
