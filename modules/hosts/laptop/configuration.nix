@@ -103,7 +103,7 @@
         nvim-pkg
 
         (discord.override {
-          withOpenASAR = true;
+          # withOpenASAR = true;
           withVencord = true;
         })
 

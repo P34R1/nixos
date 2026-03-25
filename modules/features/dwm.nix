@@ -23,14 +23,9 @@
         };
       };
 
-      # https://nix-community.github.io/home-manager/options.xhtml#opt-services.picom.enable
-      services.picom = {
-        enable = true;
-        # backend = "xrender"; # Not hardware accelerated
-      };
-
       environment.systemPackages = [
         self.packages.${pkgs.stdenv.hostPlatform.system}.slstatus
+        self.packages.${pkgs.stdenv.hostPlatform.system}.picom
         pkgs.dmenu
         pkgs.hsetroot
       ];
@@ -47,5 +42,15 @@
           hash = "sha256-EeLlLJTh9WLzKyPZmNsZFPhkk82jVI96xw1fPQPkCVQ=";
         };
       });
+
+      packages.picom = inputs.wrapper-modules.lib.wrapPackage ({ ... }:
+        {
+          inherit pkgs;
+          package = pkgs.picom;
+          flags = {
+            "--backend" = "xrender";
+          };
+        }
+      );
     };
 }
