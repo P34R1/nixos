@@ -13,6 +13,7 @@
         fzf
         zen
         btop
+        dunst
 
         loginScreen
         volume

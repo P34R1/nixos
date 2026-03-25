@@ -26,7 +26,7 @@
       # https://nix-community.github.io/home-manager/options.xhtml#opt-services.picom.enable
       services.picom = {
         enable = true;
-        backend = "xrender"; # Not hardware accelerated
+        # backend = "xrender"; # Not hardware accelerated
       };
 
       environment.systemPackages = [

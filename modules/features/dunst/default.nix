@@ -1,10 +1,9 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModule.dunst =
+  flake.nixosModules.dunst =
     { pkgs, lib, ... }:
     {
-
       # https://nix-community.github.io/home-manager/options.xhtml#opt-services.dunst.enable
       # https://mynixos.com/home-manager/options/services.dunst
       hm.home.file.".local/share/icons/dunst/".source = ./icons;
