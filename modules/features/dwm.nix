@@ -43,7 +43,8 @@
         };
       });
 
-      packages.picom = inputs.wrapper-modules.lib.wrapPackage ({ ... }:
+      packages.picom = inputs.wrapper-modules.lib.wrapPackage (
+        { ... }:
         {
           inherit pkgs;
           package = pkgs.picom;

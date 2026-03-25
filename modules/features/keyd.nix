@@ -9,9 +9,9 @@
       ...
     }:
 
-let
-cfg = config.keyd;
-in
+    let
+      cfg = config.keyd;
+    in
     {
       options.keyd = with lib; {
         users = mkOption { type = types.listOf types.str; };
