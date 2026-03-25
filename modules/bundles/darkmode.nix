@@ -17,6 +17,8 @@
             name = "Adwaita-dark";
             package = pkgs.gnome-themes-extra;
           };
+
+          gtk4.theme = null;
         };
 
         # Wayland, X, etc. support for session vars

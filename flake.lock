@@ -6,11 +6,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1774402636,
-        "narHash": "sha256-o1QWsWX+LJGiXgrMa9p09m8uimgl0d6F/DlCNFO7i7k=",
+        "lastModified": 1774404681,
+        "narHash": "sha256-MhswYOkM2TmAs839UUDRltsgSZzrMdF1B9rEUh0EHds=",
         "owner": "P34R1",
         "repo": "dwm",
-        "rev": "859e15c5fe46677eeea359c26e8638587503b359",
+        "rev": "597f5f2dff7398ec5edce3ee91d787ceaec52818",
         "type": "github"
       },
       "original": {
