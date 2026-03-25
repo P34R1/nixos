@@ -15,6 +15,7 @@
         btop
 
         loginScreen
+        volume
         networkManager
         flatpak
       ];
