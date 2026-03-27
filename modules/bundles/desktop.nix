@@ -14,6 +14,7 @@
         zen
         btop
         dunst
+        mpd
 
         loginScreen
         volume
