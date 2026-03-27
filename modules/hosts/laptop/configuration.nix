@@ -29,7 +29,6 @@
 
         self.nixosModules.desktopBundle
         self.nixosModules.gamingBundle
-        self.nixosModules.darkmodeBundle
 
         inputs.nix-index-database.nixosModules.nix-index
       ];

@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.darkmodeBundle =
+  flake.nixosModules.darkmode =
     { config, pkgs, ... }:
     {
       hm = {

@@ -16,6 +16,7 @@
         dunst
         mpd
 
+        darkmode
         loginScreen
         volume
         networkManager
