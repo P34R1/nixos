@@ -4,14 +4,27 @@
   flake.nixosModules.dunst =
     { pkgs, lib, ... }:
     {
-      # https://nix-community.github.io/home-manager/options.xhtml#opt-services.dunst.enable
-      # https://mynixos.com/home-manager/options/services.dunst
-      hm.home.file.".local/share/icons/dunst/".source = ./icons;
-      hm.services.dunst = {
+      services.dunst = {
         enable = true;
-
-        # https://github.com/ericmurphyxyz/dotfiles/blob/master/.config/dunst/dunstrc
-        configFile = ./dunstrc;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.dunst;
       };
+    };
+
+  perSystem =
+    { pkgs, ... }:
+    {
+      packages.dunst = inputs.wrapper-modules.lib.wrapPackage (
+        { ... }:
+        {
+          inherit pkgs;
+          package = pkgs.dunst;
+
+          env.ICONS = ./icons;
+          flags = {
+            # https://github.com/ericmurphyxyz/dotfiles/blob/master/.config/dunst/dunstrc
+            "--config" = ./dunstrc;
+          };
+        }
+      );
     };
 }

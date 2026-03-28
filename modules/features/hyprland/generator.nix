@@ -6,42 +6,6 @@
 }:
 
 {
-  flake.nixosModules.hyprGenerator =
-    { config, pkgs, ... }:
-    let
-      cfg = config.hyprland;
-      gen = self.lib.generators;
-    in
-    {
-      options.hyprland = with lib; {
-        settings = mkOption { };
-        extraConfig = mkOption {
-          type = types.str;
-          default = "";
-        };
-      };
-
-      config =
-        let
-          conf = pkgs.writeText "hyprland.conf" (gen.toHyprconf { attrs = cfg.settings; }) + cfg.extraConfig;
-        in
-        {
-          programs.hyprland = {
-            enable = true;
-            package = inputs.wrapper-modules.lib.wrapPackage (
-              { ... }:
-              {
-                inherit pkgs;
-                package = pkgs.hyprland;
-                flags = {
-                  "-c" = "${conf}";
-                };
-              }
-            );
-          };
-        };
-    };
-
   # FULL CREDIT TO
   # https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/hyprland.nix
   flake.lib.generators.toHyprconf =

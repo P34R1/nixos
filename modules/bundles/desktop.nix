@@ -6,15 +6,12 @@
     {
       imports = with self.nixosModules; [
         alacritty
-        foot
-        tofi
         tmux
         fish
         git
         fzf
         zen
         btop
-        dunst
         mpd
 
         darkmode

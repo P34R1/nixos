@@ -3,25 +3,13 @@
 {
   flake.nixosModules.hyprland =
     { pkgs, lib, ... }:
-    let
-      startup = pkgs.writeShellScriptBin "start" ''
-        udiskie &
-        dunst &
-        wl-paste --type text --watch cliphist store &
-        sleep 2
-        waybar & disown
-        hypridle &
-        swww-daemon & disown
-      '';
-    in
     {
       imports = with self.nixosModules; [
-        hyprGenerator
-        waybar
-        hyprVisuals
-        hyprWindowrules
         hyprLock
-        # hyprIdle
+        waybar
+        dunst
+        foot
+        tofi
       ];
 
       loginScreen.window-managers = [
@@ -38,79 +26,128 @@
         wl-clipboard
       ];
 
-      # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
-      # https://nix-community.github.io/home-manager/options.xhtml#opt-wayland.windowManager.hyprland.enable
-
-      hyprland.settings = {
-        # My main moniter, max hz
-        # monitor = "HDMI-A-4, 1920x1080@75, 0x0, 1";
-        cursor.no_hardware_cursors = true;
-
-        exec-once = [
-          "${startup}/bin/start"
-
-          "[workspace 1 silent] foot"
-          # "[workspace 2 silent] librewolf"
-          "[workspace 2 silent] zen"
-          # "[workspace 4 silent] flatpak run dev.vencord.Vesktop"
-          "[workspace 4] discord"
-        ];
-
-        "$mod" = "SUPER";
-        "$TERMINAL" = "foot";
-        "$MENU" = "tofi-drun --drun-launch=true";
-
-        # Bind +
-        # m -> mouse
-        # l -> do stuff even when locked
-        # e -> repeats when key is held
-
-        bind = [
-          "$mod, RETURN, exec, $TERMINAL"
-          "$mod, C, killactive,"
-          "$mod, M, exit,"
-          "$mod, E, exec, $fileManager"
-          "$mod, V, togglefloating,"
-          "$mod, R, exec, $MENU"
-
-          # Example special workspace (scratchpad)
-          "$mod, S, togglespecialworkspace, scratchpad"
-          "$mod SHIFT, S, movetoworkspace, special:scratchpad"
-
-          ", Print, exec, screenshot"
-        ]
-        ++ builtins.concatLists (
-          builtins.genList (
-            i:
-            let
-              button = toString i;
-              workspace = if i == 0 then "10" else toString i;
-            in
-            [
-              "$mod, ${button}, workspace, ${workspace}"
-              "$mod SHIFT, ${button}, movetoworkspace, ${workspace}"
-            ]
-          ) 10
-        );
-
-        bindm = [
-          "$mod, mouse:272, movewindow"
-          "$mod, mouse:273, resizewindow"
-        ];
-
-        bindl = [
-          ", XF86AudioPlay, exec, playerctl play-pause"
-          ", XF86AudioNext, exec, playerctl next"
-          ", XF86AudioPrev, exec, playerctl previous"
-          ", XF86AudioRaiseVolume, exec, volume up"
-          ", XF86AudioLowerVolume, exec, volume down"
-          ", XF86AudioMute, exec, volume mute"
-        ];
+      programs.hyprland = {
+        enable = true;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       };
+    };
 
-      # systemd = {
-      #   enable = true;
-      #   variables = [ "--all" ];
-      # };
+  perSystem =
+    {
+      self',
+      pkgs,
+      lib,
+      ...
+    }:
+    {
+      packages.hyprland = inputs.wrapper-modules.lib.wrapPackage (
+        { config, ... }:
+        let
+          gen = self.lib.generators;
+
+          startup =
+            with self'.packages;
+            pkgs.writeShellScriptBin "start" ''
+              udiskie &
+              ${lib.getExe dunst} &
+              wl-paste --type text --watch cliphist store &
+              sleep 1
+              ${lib.getExe waybar} & disown
+              # hypridle &
+              swww-daemon & disown
+            '';
+
+          conf = pkgs.writeText "hyprland.conf" (gen.toHyprconf { attrs = config.hyprland.settings; });
+        in
+        {
+          imports = with self.nixosModules; [
+            hyprVisuals
+            hyprWindowrules
+          ];
+
+          options.hyprland = with lib; {
+            settings = mkOption { };
+          };
+
+          config = {
+            inherit pkgs;
+            package = pkgs.hyprland;
+            flags = {
+              "-c" = "${conf}";
+            };
+
+            hyprland.settings = {
+              # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
+              # https://nix-community.github.io/home-manager/options.xhtml#opt-wayland.windowManager.hyprland.enable
+              monitor = [
+                "eDP-1, preferred, auto, 1"
+                "HDMI-A-4, preferred, auto, 1"
+                ", 1920x1080@75, 0x0, 1"
+              ];
+
+              cursor.no_hardware_cursors = true;
+              exec-once = [
+                "${startup}/bin/start"
+
+                "[workspace 1 silent] foot"
+                "[workspace 2 silent] zen"
+                "[workspace 4 silent] discord"
+              ];
+
+              "$mod" = "SUPER";
+              "$TERMINAL" = "foot";
+              "$MENU" = "tofi-drun --drun-launch=true";
+
+              # bind  ->
+              # bindm -> mouse
+              # bindl -> do stuff even when locked
+              # binde -> repeats when key is held
+
+              bind = [
+                "$mod, RETURN, exec, $TERMINAL"
+                "$mod, C, killactive,"
+                "$mod, M, exit,"
+                "$mod, E, exec, $fileManager"
+                "$mod, V, togglefloating,"
+                "$mod, R, exec, $MENU"
+
+                # Example special workspace (scratchpad)
+                "$mod, S, togglespecialworkspace, scratchpad"
+                "$mod SHIFT, S, movetoworkspace, special:scratchpad"
+
+                ", Print, exec, screenshot"
+              ]
+              ++ builtins.concatLists (
+                builtins.genList (
+                  i:
+                  let
+                    button = toString i;
+                    workspace = if i == 0 then "10" else toString i;
+                  in
+                  [
+                    "$mod, ${button}, workspace, ${workspace}"
+                    "$mod SHIFT, ${button}, movetoworkspace, ${workspace}"
+                  ]
+                ) 10
+              );
+
+              bindm = [
+                "$mod, mouse:272, movewindow"
+                "$mod, mouse:273, resizewindow"
+              ];
+
+              bindl = [
+                ", XF86AudioPlay, exec, playerctl play-pause"
+                ", XF86AudioNext, exec, playerctl next"
+                ", XF86AudioPrev, exec, playerctl previous"
+                ", XF86AudioRaiseVolume, exec, volume up"
+                ", XF86AudioLowerVolume, exec, volume down"
+                ", XF86AudioMute, exec, volume mute"
+              ];
+            };
+
+          };
+        }
+      );
     };
 }

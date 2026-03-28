@@ -76,9 +76,6 @@
       tmux.reposPath = "/home/pearl/repos/";
       mpd.musicPath = "/home/pearl/Music/";
 
-      hyprland.settings.monitor = "eDP-1, preferred, auto, 1";
-      # hyprland.settings.monitor = "HDMI-A-4, 1920x1080@75, 0x0, 1";
-
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.pearl = {
         isNormalUser = true;
