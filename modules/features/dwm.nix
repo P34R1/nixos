@@ -40,7 +40,7 @@
           owner = "P34R1";
           repo = "slstatus";
           rev = "main";
-          hash = "sha256-XsEzsGUDfOu/KHYT6Nr5OB372o879ekeRwlLjrQDEUQ=";
+          hash = "sha256-99NUaF3gQurfm6aQK07RWhyJVyCv2gJiz3aJLQh1vvg=";
         };
       });
 
