@@ -79,10 +79,10 @@
             flags = {
               "-c" = "${conf}";
             };
-          
+
             hyprland.debug = lib.mkDefault true;
             hyprland.settings = {
-              
+
               # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
               # https://nix-community.github.io/home-manager/options.xhtml#opt-wayland.windowManager.hyprland.enable
               monitor = [
@@ -94,11 +94,17 @@
               cursor.no_hardware_cursors = true;
               exec-once = [
                 "${startup}/bin/start"
-
-                "[workspace 1 silent] foot"
-                "[workspace 2 silent] zen"
-                "[workspace 4 silent] discord"
-              ];
+              ]
+              ++ (
+                if cfg.debug then
+                  [ "" ]
+                else
+                  [
+                    "[workspace 1 silent] foot"
+                    "[workspace 2 silent] zen"
+                    "[workspace 4 silent] discord"
+                  ]
+              );
 
               "$mod" = if cfg.debug then "ALT" else "SUPER";
               "$TERMINAL" = "foot";
