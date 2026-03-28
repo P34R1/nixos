@@ -13,19 +13,11 @@
       gen = self.lib.generators;
     in
     {
-      options.hyprland = {
-        settings = lib.mkOption {
-          default = { };
-          description = ''
-            hyprland configuration
-          '';
-        };
-
-        extraConfig = lib.mkOption {
+      options.hyprland = with lib; {
+        settings = mkOption { };
+        extraConfig = mkOption {
+          type = types.str;
           default = "";
-          description = ''
-            hyprland configuration string
-          '';
         };
       };
 

@@ -27,7 +27,7 @@
 
         keyd
         hmSetup
-      
+
         hyprland
         dwm
 
@@ -58,6 +58,14 @@
 
       keyd = {
         users = [ "pearl" ];
+        settings = {
+          capslock = "leftmeta";
+          leftmeta = "capslock";
+          
+          switchvideomode = "previoussong";
+          wlan = "playpause";
+          config = "nextsong";
+        };
       };
 
       networkManager = {

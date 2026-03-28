@@ -15,6 +15,7 @@
     {
       options.keyd = with lib; {
         users = mkOption { type = types.listOf types.str; };
+        settings = mkOption { };
       };
 
       config = {
@@ -22,17 +23,16 @@
           extraGroups = [ "keyd" ];
         });
 
+        environment.systemPackages = with pkgs; [
+          keyd
+        ];
+
         # https://wiki.nixos.org/wiki/Keyd
         services.keyd = {
           enable = true;
-          keyboards = {
-            default = {
-              ids = [ "*" ];
-
-              settings = {
-                main.capslock = "overload(control, esc)";
-              };
-            };
+          keyboards.default = {
+            ids = [ "*" ];
+            settings.main = cfg.settings;
           };
         };
       };
