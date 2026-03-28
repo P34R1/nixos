@@ -37,13 +37,15 @@
         };
 
         window-managers = mkOption {
-          type = types.listOf (types.submodule {
-            options = {
-              name = mkOption { type = types.str; };
-              command = mkOption { type = types.str; };
-              indicator = mkOption { type = types.str; };
-            };
-          });
+          type = types.listOf (
+            types.submodule {
+              options = {
+                name = mkOption { type = types.str; };
+                command = mkOption { type = types.str; };
+                indicator = mkOption { type = types.str; };
+              };
+            }
+          );
         };
       };
 

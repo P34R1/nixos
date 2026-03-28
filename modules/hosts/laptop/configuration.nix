@@ -61,7 +61,7 @@
         settings = {
           capslock = "leftmeta";
           leftmeta = "capslock";
-          
+
           switchvideomode = "previoussong";
           wlan = "playpause";
           config = "nextsong";
