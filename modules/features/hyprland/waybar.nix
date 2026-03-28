@@ -37,18 +37,46 @@
           modules-right = [
             "custom/arrow#mpris"
             "mpris" # music info
+            "custom/arrow#battery"
+            "battery#BAT0"
+            "battery#BAT1"
             "custom/arrow#memory"
             "memory" # mem usage
             "custom/arrow#date"
-            "clock#date" # date
+            "clock#date"
             "custom/arrow#time"
-            "clock#time" # time
+            "clock#time"
             "custom/arrow#tray"
             "tray" # tray icons
           ];
 
+          "battery#BAT0" = {
+            format = "{capacity}%";
+            tooltip = false;
+
+            bat = "BAT0";
+            interval = 5;
+            states = {
+              warning = 50;
+              critical = 20;
+            };
+          };
+
+          "battery#BAT1" = {
+            format = " + {capacity}%";
+            tooltip = false;
+
+            bat = "BAT1";
+            interval = 5;
+            states = {
+              warning = 50;
+              critical = 20;
+            };
+          };
+
           mpris = {
             format = "{artist} {status_icon} {title}";
+            tooltip = false;
 
             status-icons = {
               playing = "";
@@ -60,8 +88,6 @@
 
             on-scroll-up = "playerctld shift";
             on-scroll-down = "playerctld unshift";
-
-            tooltip = false;
           };
 
           "hyprland/workspaces" = {
@@ -72,7 +98,7 @@
             # Leave empty for number
             format-icons = {
               "2" = "";
-              "3" = "";
+              # "3" = "";
               #"4" = "";
               #"5" = "";
               #"6" = "";
@@ -80,13 +106,13 @@
           };
 
           memory = {
-            interval = 5;
             format = "Mem {}%";
+            tooltip = false;
+            interval = 5;
             states = {
               warning = 70;
               critical = 90;
             };
-            tooltip = false;
           };
 
           tray = {
@@ -94,30 +120,51 @@
           };
 
           # Time & Date
-          "clock#time".format = "{:%I:%M}";
-          "clock#date".format = "{:%a, %b %d}";
+          "clock#time" = {
+            format = "{:%I:%M}";
+            tooltip = false;
+          };
 
-          "clock#time".tooltip = false;
-          "clock#date".tooltip = false;
+          "clock#date" = {
+            format = "{:%a, %b %d}";
+            tooltip = false;
+          };
 
           # Arrows
-          "custom/arrow#right".format = "";
-          "custom/arrow#right".tooltip = false;
+          "custom/arrow#right" = {
+            format = "";
+            tooltip = false;
+          };
 
-          "custom/arrow#tray".format = "";
-          "custom/arrow#tray".tooltip = false;
+          "custom/arrow#tray" = {
+            format = "";
+            tooltip = false;
+          };
 
-          "custom/arrow#time".format = "";
-          "custom/arrow#time".tooltip = false;
+          "custom/arrow#time" = {
+            format = "";
+            tooltip = false;
+          };
 
-          "custom/arrow#date".format = "";
-          "custom/arrow#date".tooltip = false;
+          "custom/arrow#date" = {
+            format = "";
+            tooltip = false;
+          };
 
-          "custom/arrow#memory".format = "";
-          "custom/arrow#memory".tooltip = false;
+          "custom/arrow#memory" = {
+            format = "";
+            tooltip = false;
+          };
 
-          "custom/arrow#mpris".format = "";
-          "custom/arrow#mpris".tooltip = false;
+          "custom/arrow#battery" = {
+            format = "";
+            tooltip = false;
+          };
+
+          "custom/arrow#mpris" = {
+            format = "";
+            tooltip = false;
+          };
         };
 
         "style.css".path = ./waybar.css;

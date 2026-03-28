@@ -37,6 +37,7 @@
 @define-color time	@white;
 @define-color date	@black;
 @define-color memory	@braqua;
+@define-color battery	@focused;
 @define-color mpris	@brblue;
 
 /* Reset all styles */
@@ -61,12 +62,19 @@
 }
 
 /* Each module */
+#tray,
 #clock,
 #memory,
-#tray,
-#user,
 #mpris {
   padding-left: 8pt;
+  padding-right: 8pt;
+}
+
+#battery.BAT0 {
+  padding-left: 8pt;
+}
+
+#battery.BAT1 {
   padding-right: 8pt;
 }
 
@@ -79,8 +87,16 @@
   animation-duration: 1s;
 }
 
+#battery.critical {
+  color: @critical;
+}
+
 /* Each warning */
 #memory.warning {
+  color: @warning;
+}
+
+#battery.warning {
   color: @warning;
 }
 
@@ -139,6 +155,11 @@
   color: @black;
 }
 
+#battery {
+  background: @battery;
+  color: @black;
+}
+
 #mpris {
   background: @mpris;
   color: @black;
@@ -172,6 +193,11 @@
 
 #custom-arrow.memory {
   color: @memory;
+  background: @battery;
+}
+
+#custom-arrow.battery {
+  color: @battery;
   background: @mpris;
 }
 
