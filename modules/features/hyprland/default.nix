@@ -28,9 +28,7 @@
 
       programs.hyprland = {
         enable = true;
-        package = self.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.wrap {
-          hyprland.debug = false;
-        };
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       };
     };
 
@@ -42,7 +40,11 @@
       ...
     }:
     {
-      packages.hyprland = inputs.wrapper-modules.lib.wrapPackage (
+      packages.hyprland = self'.packages.hyprland-debug.wrap {
+        hyprland.debug = false;
+      };
+
+      packages.hyprland-debug = inputs.wrapper-modules.lib.wrapPackage (
         { config, ... }:
         let
           cfg = config.hyprland;

@@ -20,7 +20,7 @@
         windowManager.dwm = {
           enable = true;
           # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/applications/window-managers/dwm/default.nix
-          package = inputs.dwm.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          package = self.packages.${pkgs.stdenv.hostPlatform.system}.dwm;
         };
       };
 
@@ -35,6 +35,7 @@
   perSystem =
     { pkgs, ... }:
     {
+      packages.dwm = inputs.dwm.packages.${pkgs.stdenv.hostPlatform.system}.default;
       packages.slstatus = pkgs.slstatus.overrideAttrs (old: {
         src = pkgs.fetchFromGitHub {
           owner = "P34R1";
@@ -54,5 +55,6 @@
           };
         }
       );
+
     };
 }
