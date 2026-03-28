@@ -5,6 +5,7 @@
     modules = [
       self.nixosModules.laptopConfiguration
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+      inputs.nix-index-database.nixosModules.nix-index
     ];
   };
 
@@ -21,16 +22,17 @@
     #     toficlip = import ../scripts/tofi-clip.nix { inherit pkgs; };
     # in
     {
-      imports = [
-        self.nixosModules.laptopHardware
+      imports = with self.nixosModules; [
+        laptopHardware
 
-        self.nixosModules.keyd
-        self.nixosModules.hmSetup
+        keyd
+        hmSetup
+      
+        hyprland
+        dwm
 
-        self.nixosModules.desktopBundle
-        self.nixosModules.gamingBundle
-
-        inputs.nix-index-database.nixosModules.nix-index
+        desktopBundle
+        gamingBundle
       ];
 
       nixpkgs = {
@@ -65,6 +67,9 @@
 
       tmux.reposPath = "/home/pearl/repos/";
       mpd.musicPath = "/home/pearl/Music/";
+
+      hyprland.settings.monitor = "eDP-1, preferred, auto, 1";
+      # hyprland.settings.monitor = "HDMI-A-4, 1920x1080@75, 0x0, 1";
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.pearl = {

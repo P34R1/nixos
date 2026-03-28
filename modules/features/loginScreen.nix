@@ -15,18 +15,18 @@
         concatMapStringsSep
         ;
 
+      cfg = config.loginScreen;
+
       # \033[1m => bold        \033[0m => unbold
       # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStrings
       enabledOptions = concatMapStrings (
         opt: "\\033[1m[${opt.indicator}]\\033[0m - ${opt.name}\\n"
-      ) self.window-managers;
+      ) cfg.window-managers;
 
       # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStringsSep
       enabledCases = concatMapStringsSep "\n" (
         opt: "${opt.indicator}) exec ${opt.command};;"
-      ) self.window-managers;
-
-      cfg = config.loginScreen;
+      ) cfg.window-managers;
     in
     {
       options.loginScreen = with lib; {
@@ -34,6 +34,16 @@
         user = mkOption {
           type = types.str;
           default = "";
+        };
+
+        window-managers = mkOption {
+          type = types.listOf (types.submodule {
+            options = {
+              name = mkOption { type = types.str; };
+              command = mkOption { type = types.str; };
+              indicator = mkOption { type = types.str; };
+            };
+          });
         };
       };
 

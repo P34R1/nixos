@@ -6,10 +6,11 @@
     {
       imports = with self.nixosModules; [
         alacritty
+        foot
+        tofi
         tmux
         fish
         git
-        dwm
         fzf
         zen
         btop

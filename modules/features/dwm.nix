@@ -1,17 +1,18 @@
 { self, inputs, ... }:
 
 {
-  flake.window-managers = [
-    {
-      name = "dwm";
-      command = "sx dwm";
-      indicator = "d";
-    }
-  ];
 
   flake.nixosModules.dwm =
     { pkgs, lib, ... }:
     {
+      loginScreen.window-managers = [
+        {
+          name = "dwm";
+          command = "sx dwm";
+          indicator = "d";
+        }
+      ];
+
       services.xserver = {
         enable = true;
 
