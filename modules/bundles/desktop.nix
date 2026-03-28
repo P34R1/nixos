@@ -13,6 +13,7 @@
         zen
         btop
         mpd
+        yazi
 
         darkmode
         loginScreen
