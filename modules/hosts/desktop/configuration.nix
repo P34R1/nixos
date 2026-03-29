@@ -7,6 +7,7 @@
       inputs.nixos-hardware.nixosModules.common-cpu-intel-skylake
       inputs.nixos-hardware.nixosModules.common-gpu-nvidia
       inputs.nixos-hardware.nixosModules.common-pc-ssd
+      inputs.nix-index-database.nixosModules.nix-index
     ];
   };
 
@@ -19,16 +20,15 @@
     }:
 
     {
-      imports = [
-        self.nixosModules.desktopHardware
+      imports = with self.nixosModules; [
+        desktopHardware
 
-        self.nixosModules.hmSetup
+        hyprland
+        dwm
 
-        self.nixosModules.desktopBundle
-        self.nixosModules.nvidiaBundle
-        self.nixosModules.gamingBundle
-
-        inputs.nix-index-database.nixosModules.nix-index
+        desktopBundle
+        gamingBundle
+        nvidiaBundle
       ];
 
       nixpkgs = {
@@ -52,14 +52,18 @@
         user = "pearl";
       };
 
+      keyd = {
+        users = [ "pearl" ];
+        settings = { };
+      };
+
       networkManager = {
         hostName = "pearl-desktop";
         users = [ "pearl" ];
       };
 
       tmux.reposPath = "/home/pearl/repos/";
-
-      # razer.enable = true;
+      mpd.musicPath = "/home/pearl/Music/";
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.pearl = {
@@ -88,8 +92,6 @@
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
-        htop
-
         just
         wl-clipboard
         chafa # terminal imgs
@@ -116,16 +118,20 @@
       ];
 
       # Bootloader.
-      boot.loader.grub = {
-        enable = true;
-        useOSProber = true;
-        copyKernels = true;
-        efiSupport = true;
-        devices = [ "nodev" ];
-      };
+      boot.loader = {
+        efi = {
+          efiSysMountPoint = "/boot/efi";
+          canTouchEfiVariables = true;
+        };
 
-      boot.loader.efi.efiSysMountPoint = "/boot/efi";
-      boot.loader.efi.canTouchEfiVariables = true;
+        grub = {
+          enable = true;
+          useOSProber = true;
+          copyKernels = true;
+          efiSupport = true;
+          devices = [ "nodev" ];
+        };
+      };
 
       security.pam.services = {
         sudo.nodelay = true;

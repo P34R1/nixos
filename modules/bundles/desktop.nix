@@ -14,7 +14,9 @@
         btop
         mpd
         yazi
+        keyd
 
+        hmSetup
         darkmode
         loginScreen
         volume

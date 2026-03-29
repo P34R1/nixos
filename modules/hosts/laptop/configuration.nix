@@ -25,9 +25,6 @@
       imports = with self.nixosModules; [
         laptopHardware
 
-        keyd
-        hmSetup
-
         hyprland
         dwm
 
@@ -127,19 +124,22 @@
       ];
 
       # Bootloader.
-      boot.loader.grub = {
-        enable = true;
-        useOSProber = true;
-        copyKernels = true;
-        efiSupport = true;
-        devices = [ "nodev" ];
+      boot.loader = {
+        efi = {
+          efiSysMountPoint = "/boot/efi";
+          canTouchEfiVariables = true;
+        };
+
+        grub = {
+          enable = true;
+          useOSProber = true;
+          copyKernels = true;
+          efiSupport = true;
+          devices = [ "nodev" ];
+        };
       };
 
-      boot.loader.efi.efiSysMountPoint = "/boot/efi";
-      boot.loader.efi.canTouchEfiVariables = true;
-
       security.pam.services.sudo.nodelay = true;
-
       system.stateVersion = "24.05"; # Don't change for simplicity!
     };
 }
