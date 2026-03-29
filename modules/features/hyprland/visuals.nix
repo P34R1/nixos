@@ -60,14 +60,14 @@
         animations = {
           enabled = true;
 
-          # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+          # https://wiki.hyprland.org/Configuring/Animations/
           animation = [
-            "windows, 1, 8, default, popin 80%"
-            "windowsOut, 1, 8, default, popin 80%"
+            "windows, 1, 4, default, popin 80%"
+            "windowsOut, 1, 4, default, popin 80%"
             "border, 1, 10, default"
             "borderangle, 1, 8, default"
             "fade, 1, 7, default"
-            "workspaces, 1, 6, default"
+            "workspaces, 1, 4, default"
           ];
         };
 
