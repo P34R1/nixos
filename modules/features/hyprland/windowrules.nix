@@ -6,8 +6,9 @@
     {
       hyprland.settings = {
         windowrule = [
-          "match:class vesktop, workspace 4 silent"
+          "match:class steam, workspace 3 silent"
           "match:class discord, workspace 4 silent"
+
           "match:title App, workspace special:scratchpad silent" # for bevy (i'll improve on this later)
           "match:class five, workspace 5 silent" # for bevy (i'll improve on this later)
 

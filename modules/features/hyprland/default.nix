@@ -90,7 +90,7 @@
               monitor = [
                 "eDP-1, preferred, auto, 1"
                 "HDMI-A-4, preferred, auto, 1"
-                ", 1920x1080@75, 0x0, 1"
+                ", preferred, auto, 1"
               ];
 
               cursor.no_hardware_cursors = true;
@@ -104,6 +104,7 @@
                   [
                     "[workspace 1 silent] foot"
                     "[workspace 2 silent] zen"
+                    "[workspace 3 silent] steam"
                     "[workspace 4 silent] discord"
                   ]
               );
@@ -121,7 +122,6 @@
                 "$mod, RETURN, exec, $TERMINAL"
                 "$mod, C, killactive,"
                 "$mod, M, exit,"
-                "$mod, E, exec, $fileManager"
                 "$mod, V, togglefloating,"
                 "$mod, R, exec, $MENU"
 

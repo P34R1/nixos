@@ -23,149 +23,118 @@
     {
       packages.waybar = inputs.wrapper-modules.wrappers.waybar.wrap {
         inherit pkgs;
-        settings = {
-          layer = "top";
-          position = "top";
-          height = 20;
-
-          modules-left = [
-            "hyprland/workspaces"
-            "custom/arrow#right"
-            "hyprland/window"
-          ];
-
-          modules-right = [
-            "custom/arrow#mpris"
-            "mpris" # music info
-            "custom/arrow#battery"
-            "battery#BAT0"
-            "battery#BAT1"
-            "custom/arrow#memory"
-            "memory" # mem usage
-            "custom/arrow#date"
-            "clock#date"
-            "custom/arrow#time"
-            "clock#time"
-            "custom/arrow#tray"
-            "tray" # tray icons
-          ];
-
-          "battery#BAT0" = {
-            format = "{capacity}%";
-            tooltip = false;
-
-            bat = "BAT0";
-            interval = 5;
-            states = {
-              warning = 50;
-              critical = 20;
-            };
-          };
-
-          "battery#BAT1" = {
-            format = " + {capacity}%";
-            tooltip = false;
-
-            bat = "BAT1";
-            interval = 5;
-            states = {
-              warning = 50;
-              critical = 20;
-            };
-          };
-
-          mpris = {
-            format = "{artist} {status_icon} {title}";
-            tooltip = false;
-
-            status-icons = {
-              playing = "";
-              paused = "│";
-              stopped = "─";
+        settings =
+          let
+            mkArrow = format: {
+              inherit format;
+              tooltip = false;
             };
 
-            # ignored-players = ["firefox" "librewolf"];
+            mkBat = bat: {
+              inherit bat;
+              format = if (bat == "BAT0") then "{capacity}%" else " + {capacity}%";
+              tooltip = false;
 
-            on-scroll-up = "playerctld shift";
-            on-scroll-down = "playerctld unshift";
-          };
-
-          "hyprland/workspaces" = {
-            disable-scroll = true;
-            all-outputs = true;
-            format = "{icon}";
-
-            # Leave empty for number
-            format-icons = {
-              "2" = "";
-              # "3" = "";
-              #"4" = "";
-              #"5" = "";
-              #"6" = "";
+              interval = 5;
+              states = {
+                warning = 50;
+                critical = 20;
+              };
             };
-          };
+          in
+          {
+            layer = "top";
+            position = "top";
+            height = 20;
 
-          memory = {
-            format = "Mem {}%";
-            tooltip = false;
-            interval = 5;
-            states = {
-              warning = 70;
-              critical = 90;
+            modules-left = [
+              "hyprland/workspaces"
+              "custom/arrow#right"
+              "hyprland/window"
+            ];
+
+            modules-right = [
+              "custom/arrow#mpris"
+              "mpris" # music info
+              "custom/arrow#battery"
+              "battery#BAT0"
+              "battery#BAT1"
+              "custom/arrow#memory"
+              "memory" # mem usage
+              "custom/arrow#date"
+              "clock#date"
+              "custom/arrow#time"
+              "clock#time"
+              "custom/arrow#tray"
+              "tray" # tray icons
+            ];
+
+            "hyprland/workspaces" = {
+              disable-scroll = true;
+              all-outputs = true;
+              format = "{icon}";
+
+              # Leave empty for number
+              format-icons = {
+                "2" = "";
+                "3" = "";
+                "4" = "";
+              };
             };
-          };
 
-          tray = {
-            icon-size = 18;
-          };
+            mpris = {
+              format = "{artist} {status_icon} {title}";
+              tooltip = false;
 
-          # Time & Date
-          "clock#time" = {
-            format = "{:%I:%M}";
-            tooltip = false;
-          };
+              status-icons = {
+                playing = "";
+                paused = "│";
+                stopped = "─";
+              };
 
-          "clock#date" = {
-            format = "{:%a, %b %d}";
-            tooltip = false;
-          };
+              on-scroll-up = "playerctld shift";
+              on-scroll-down = "playerctld unshift";
+            };
 
-          # Arrows
-          "custom/arrow#right" = {
-            format = "";
-            tooltip = false;
-          };
+            "battery#BAT0" = mkBat "BAT0";
+            "battery#BAT1" = mkBat "BAT1";
 
-          "custom/arrow#tray" = {
-            format = "";
-            tooltip = false;
-          };
+            memory = {
+              format = "Mem {}%";
+              tooltip = false;
 
-          "custom/arrow#time" = {
-            format = "";
-            tooltip = false;
-          };
+              interval = 5;
+              states = {
+                warning = 70;
+                critical = 90;
+              };
+            };
 
-          "custom/arrow#date" = {
-            format = "";
-            tooltip = false;
-          };
+            # Time & Date
+            "clock#time" = {
+              format = "{:%I:%M}";
+              tooltip = false;
+            };
 
-          "custom/arrow#memory" = {
-            format = "";
-            tooltip = false;
-          };
+            "clock#date" = {
+              format = "{:%a, %b %d}";
+              tooltip = false;
+            };
 
-          "custom/arrow#battery" = {
-            format = "";
-            tooltip = false;
-          };
+            tray = {
+              icon-size = 18;
+              spacing = 10;
+            };
 
-          "custom/arrow#mpris" = {
-            format = "";
-            tooltip = false;
+            # Arrows
+            "custom/arrow#right" = mkArrow "";
+            "custom/arrow#tray" = mkArrow "";
+            "custom/arrow#time" = mkArrow "";
+            "custom/arrow#date" = mkArrow "";
+            "custom/arrow#memory" = mkArrow "";
+            "custom/arrow#battery" = mkArrow "";
+            "custom/arrow#mpris" = mkArrow "";
           };
-        };
 
         "style.css".path = ./waybar.css;
       };
