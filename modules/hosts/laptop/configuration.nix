@@ -75,10 +75,8 @@
         description = "Vincent Fortin";
         extraGroups = [
           "wheel"
-          "audio"
           "video"
         ];
-        packages = with pkgs; [ ];
       };
 
       nix.settings.experimental-features = [

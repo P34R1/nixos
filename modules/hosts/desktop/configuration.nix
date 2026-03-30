@@ -31,12 +31,6 @@
         nvidiaBundle
       ];
 
-      nixpkgs = {
-        overlays = [
-          inputs.nvim.overlays.default
-        ];
-      };
-
       loginScreen = {
         autoLogin = true;
         user = "pearl";
@@ -57,7 +51,8 @@
         settings = { };
       };
 
-      networkManager = {
+      audio.users = [ "pearl" ];
+      network = {
         hostName = "pearl-desktop";
         users = [ "pearl" ];
       };
@@ -71,10 +66,8 @@
         description = "Vincent Fortin";
         extraGroups = [
           "wheel"
-          "audio"
           "video"
         ];
-        packages = with pkgs; [ ];
       };
 
       nix.settings.experimental-features = [
@@ -92,14 +85,6 @@
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
-        just
-        wl-clipboard
-        chafa # terminal imgs
-        playerctl
-        glow # markdown parser
-
-        nvim-pkg
-
         # blender # was using flatpak, needed to downgrade
         (discord.override {
           # withOpenASAR = true;
