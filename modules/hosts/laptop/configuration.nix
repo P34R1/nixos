@@ -132,10 +132,8 @@
 
         grub = {
           enable = true;
-          useOSProber = true;
-          copyKernels = true;
           efiSupport = true;
-          devices = [ "nodev" ];
+          device = "nodev";
         };
       };
 
