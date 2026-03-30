@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.networkManager =
+  flake.nixosModules.network =
     {
       config,
       pkgs,
@@ -10,10 +10,10 @@
     }:
 
     let
-      cfg = config.networkManager;
+      cfg = config.network;
     in
     {
-      options.networkManager = with lib; {
+      options.network = with lib; {
         hostName = mkOption { type = types.str; };
         users = mkOption { type = types.listOf types.str; };
       };

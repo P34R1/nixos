@@ -33,12 +33,6 @@
         gamingBundle
       ];
 
-      nixpkgs = {
-        overlays = [
-          inputs.nvim.overlays.default
-        ];
-      };
-
       loginScreen = {
         autoLogin = false;
         user = "pearl";
@@ -66,7 +60,8 @@
         };
       };
 
-      networkManager = {
+      audio.users = [ "pearl" ];
+      network = {
         hostName = "pearl-laptop";
         users = [ "pearl" ];
       };
@@ -101,14 +96,6 @@
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
-        just
-        wl-clipboard
-        chafa # terminal imgs
-        playerctl
-        glow # markdown parser
-
-        nvim-pkg
-
         (discord.override {
           # withOpenASAR = true;
           withVencord = true;

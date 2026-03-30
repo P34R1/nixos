@@ -39,8 +39,9 @@
         # https://nix-community.github.io/home-manager/options.xhtml#opt-services.mpdris2.enable
         hm.services.mpdris2.enable = true;
 
-        environment.systemPackages = [
-          pkgs.mpc
+        environment.systemPackages = with pkgs; [
+          playerctl
+          mpc
           self.packages.${pkgs.stdenv.hostPlatform.system}.mpdlrc
         ];
       };

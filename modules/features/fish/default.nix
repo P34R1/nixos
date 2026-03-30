@@ -15,6 +15,21 @@
       };
     in
     {
+      imports = with self.nixosModules; [
+        fzf
+        tmux
+        yazi
+      ];
+
+      environment.systemPackages = with pkgs; [
+        just
+        entr
+        bat
+        eza
+        jq
+        fd
+        ripgrep
+      ];
 
       # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fish.enable
       hm = {

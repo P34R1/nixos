@@ -5,6 +5,10 @@
   flake.nixosModules.dwm =
     { pkgs, lib, ... }:
     {
+      imports = with self.nixosModules; [
+        alacritty
+      ];
+
       loginScreen.window-managers = [
         {
           name = "dwm";
@@ -24,11 +28,11 @@
         };
       };
 
-      environment.systemPackages = [
+      environment.systemPackages = with pkgs; [
         self.packages.${pkgs.stdenv.hostPlatform.system}.slstatus
         self.packages.${pkgs.stdenv.hostPlatform.system}.picom
-        pkgs.dmenu
-        pkgs.hsetroot
+        dmenu
+        hsetroot
       ];
     };
 

@@ -5,36 +5,27 @@
     { pkgs, ... }:
     {
       imports = with self.nixosModules; [
-        alacritty
-        tmux
-        fish
         git
-        fzf
+        nvim
+        fish
+
         zen
         btop
         mpd
-        yazi
         keyd
 
         hmSetup
         darkmode
         loginScreen
-        volume
-        networkManager
+        audio
+        network
         flatpak
       ];
 
       nixpkgs.config.allowUnfree = true;
       environment.systemPackages = with pkgs; [
-        bat
-        eza # ls
-        jq # json
-        ripgrep
-        fd
-
         trashy
         tlrc
-        entr
         udisks2 # mounting
         udiskie
 
@@ -74,16 +65,6 @@
       hardware.graphics = {
         enable = true;
         enable32Bit = true;
-      };
-
-      # Enable Sound
-      security.rtkit.enable = true;
-      services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        jack.enable = true;
       };
 
       hardware.acpilight.enable = true;
