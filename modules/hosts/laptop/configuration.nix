@@ -24,6 +24,7 @@
     {
       imports = with self.nixosModules; [
         laptopHardware
+        bluetooth
 
         hyprland
         dwm
