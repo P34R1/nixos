@@ -42,15 +42,12 @@
     }:
     {
       packages.hyprland = self'.packages.hyprland-debug.wrap {
-        hyprland.debug = false;
+        debug = false;
       };
 
-      packages.hyprland-debug = inputs.wrapper-modules.lib.wrapPackage (
+      packages.hyprland-debug = self.lib.wrappers.hyprland.config.wrap (
         { config, ... }:
         let
-          cfg = config.hyprland;
-          gen = self.lib.generators;
-
           startup =
             with self'.packages;
             pkgs.writeShellScriptBin "start" ''
@@ -62,8 +59,6 @@
               # hypridle &
               swww-daemon & disown
             '';
-
-          conf = pkgs.writeText "hyprland.conf" (gen.toHyprconf { attrs = cfg.settings; });
         in
         {
           imports = with self.nixosModules; [
@@ -71,23 +66,12 @@
             hyprWindowrules
           ];
 
-          options.hyprland = with lib; {
-            settings = mkOption { };
-            debug = mkEnableOption "debug mode";
-          };
-
+          options.debug = lib.mkEnableOption "debug mode";
           config = {
             inherit pkgs;
-            package = pkgs.hyprland;
-            flags = {
-              "-c" = "${conf}";
-            };
 
-            hyprland.debug = lib.mkDefault true;
-            hyprland.settings = {
-
-              # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
-              # https://nix-community.github.io/home-manager/options.xhtml#opt-wayland.windowManager.hyprland.enable
+            debug = lib.mkDefault true;
+            settings = {
               monitor = [
                 "eDP-1, preferred, auto, 1"
                 "HDMI-A-4, preferred, auto, 1"
@@ -99,7 +83,7 @@
                 "${startup}/bin/start"
               ]
               ++ (
-                if cfg.debug then
+                if config.debug then
                   [ "" ]
                 else
                   [
@@ -110,7 +94,7 @@
                   ]
               );
 
-              "$mod" = if cfg.debug then "ALT" else "SUPER";
+              "$mod" = if config.debug then "ALT" else "SUPER";
               "$TERMINAL" = "foot";
               "$MENU" = "tofi-drun --drun-launch=true";
 

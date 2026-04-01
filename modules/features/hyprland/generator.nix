@@ -6,6 +6,36 @@
 }:
 
 {
+  flake.lib.wrappers.hyprland = inputs.wrapper-modules.lib.evalModule (
+    {
+      config,
+      wlib,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      conf = pkgs.writeText "hyprland.conf" (self.lib.generators.toHyprconf { attrs = config.settings; });
+    in
+    {
+      imports = [ wlib.modules.default ];
+      options.settings = lib.mkOption { };
+      config = {
+        package = pkgs.hyprland;
+
+        # drv.installPhase = ''
+        #   runHook preInstall
+        #   ${lib.getExe config.package} --verify-config --config ${conf}
+        #   runHook postInstall
+        # '';
+
+        flags = {
+          "--config" = "${conf}";
+        };
+      };
+    }
+  );
+
   # FULL CREDIT TO
   # https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/hyprland.nix
   flake.lib.generators.toHyprconf =

@@ -4,7 +4,7 @@
   flake.nixosModules.hyprWindowrules =
     { pkgs, lib, ... }:
     {
-      hyprland.settings = {
+      settings = {
         windowrule = [
           "match:class steam, workspace 3 silent"
           "match:class discord, workspace 4 silent"

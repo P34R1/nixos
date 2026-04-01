@@ -6,7 +6,7 @@
     { pkgs, lib, ... }:
     {
       # Refer to https://wiki.hyprland.org/Configuring/Variables/
-      hyprland.settings = {
+      settings = {
         # https://wiki.hyprland.org/Configuring/Variables/#general
         general = with self.themeNoHash; {
           gaps_in = 5;
