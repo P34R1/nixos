@@ -24,6 +24,7 @@
       environment.systemPackages = with pkgs; [
         swww
         wl-clipboard
+        (writeShellScriptBin "screenshot" ''${grim}/bin/grim -g "$(${slurp}/bin/slurp -d)" - | ${wl-clipboard}/bin/wl-copy'')
       ];
 
       programs.hyprland = {

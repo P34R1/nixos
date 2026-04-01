@@ -4,9 +4,17 @@
   flake.nixosModules.tofi =
     { pkgs, lib, ... }:
     {
-      environment.systemPackages = [
-        self.packages.${pkgs.stdenv.hostPlatform.system}.tofi
-      ];
+      environment.systemPackages =
+        let
+          selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
+        in
+        with pkgs;
+        [
+          selfPkgs.tofi
+          (writeShellScriptBin "tofi-clip" ''
+            ${cliphist}/bin/cliphist list | ${selfPkgs.tofi}/bin/tofi | ${cliphist}/bin/cliphist decode | ${wl-clipboard}/bin/wl-copy
+          '')
+        ];
     };
 
   perSystem =
