@@ -23,11 +23,11 @@
       config = {
         package = pkgs.hyprland;
 
-        # drv.installPhase = ''
-        #   runHook preInstall
-        #   ${lib.getExe config.package} --verify-config --config ${conf}
-        #   runHook postInstall
-        # '';
+        drv.installPhase = ''
+          runHook preInstall
+          XDG_RUNTIME_DIR=/tmp ${lib.getExe config.package} --verify-config --config ${conf}
+          runHook postInstall
+        '';
 
         flags = {
           "--config" = "${conf}";
