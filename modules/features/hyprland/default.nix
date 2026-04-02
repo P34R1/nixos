@@ -22,7 +22,7 @@
 
       environment.sessionVariables.NIXOS_OZONE_WL = "1";
       environment.systemPackages = with pkgs; [
-        swww
+        awww
         wl-clipboard
         (writeShellScriptBin "screenshot" ''${grim}/bin/grim -g "$(${slurp}/bin/slurp -d)" - | ${wl-clipboard}/bin/wl-copy'')
       ];
@@ -57,7 +57,7 @@
               sleep 1
               ${lib.getExe waybar} & disown
               # hypridle &
-              swww-daemon & disown
+              awww-daemon & disown
             '';
         in
         {
