@@ -17,10 +17,6 @@
       ...
     }:
 
-    # let
-    #     screenshot = import ../scripts/screenshot.nix { inherit pkgs; };
-    #     toficlip = import ../scripts/tofi-clip.nix { inherit pkgs; };
-    # in
     {
       imports = with self.nixosModules; [
         laptopHardware
@@ -98,10 +94,6 @@
           # withOpenASAR = true;
           withVencord = true;
         })
-
-        # My Scripts
-        # screenshot
-        # toficlip
       ];
 
       services.flatpak.packages = [
@@ -111,15 +103,10 @@
 
       # Bootloader.
       boot.loader = {
-        efi = {
-          efiSysMountPoint = "/boot/efi";
-          canTouchEfiVariables = true;
-        };
-
-        grub = {
+        efi.canTouchEfiVariables = true;
+        systemd-boot = {
           enable = true;
-          efiSupport = true;
-          device = "nodev";
+          configurationLimit = 10;
         };
       };
 
