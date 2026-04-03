@@ -19,5 +19,7 @@
         gamescopeSession.enable = true;
         localNetworkGameTransfers.openFirewall = true;
       };
+
+      boot.kernelModules = [ "ntsync" ];
     };
 }

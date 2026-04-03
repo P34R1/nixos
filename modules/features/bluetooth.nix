@@ -18,6 +18,10 @@
       environment.systemPackages = with pkgs; [
         bluetui
       ];
-    };
 
+      boot.kernelModules = [
+        "bluetooth"
+        "btusb"
+      ];
+    };
 }
