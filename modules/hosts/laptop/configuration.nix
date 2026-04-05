@@ -57,11 +57,13 @@
       };
 
       audio.users = [ "pearl" ];
+      brightness.users = [ "pearl" ];
       network = {
         hostName = "pearl-laptop";
         users = [ "pearl" ];
       };
 
+      nix.flakePath = "/home/pearl/nixos/";
       tmux.reposPath = "/home/pearl/repos/";
       mpd.musicPath = "/home/pearl/Music/";
 
@@ -69,22 +71,7 @@
       users.users.pearl = {
         isNormalUser = true;
         description = "Vincent Fortin";
-        extraGroups = [
-          "wheel"
-          "video"
-        ];
-      };
-
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-
-      programs.nh = {
-        enable = true;
-        clean.enable = true;
-        clean.extraArgs = "--keep-since 4d --keep 3";
-        flake = "/home/pearl/nixos";
+        extraGroups = [ "wheel" ];
       };
 
       # List packages installed in system profile. To search, run:

@@ -14,10 +14,12 @@
         mpd
         keyd
 
+        nix
         hmSetup
         darkmode
         loginScreen
         audio
+        brightness
         network
         flatpak
       ];
@@ -66,7 +68,5 @@
         enable = true;
         enable32Bit = true;
       };
-
-      hardware.acpilight.enable = true;
     };
 }
