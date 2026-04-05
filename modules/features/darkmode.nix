@@ -4,31 +4,26 @@
   flake.nixosModules.darkmode =
     { config, pkgs, ... }:
     {
-      hm = {
-        dconf.settings = {
-          "org/gnome/desktop/interface" = {
-            color-scheme = "prefer-dark";
+      programs.dconf.profiles.user.databases = [
+        {
+          lockAll = true; # prevents overriding
+          settings = {
+            "org/gnome/desktop/interface" = {
+              color-scheme = "prefer-dark";
+              gtk-theme = "adw-gtk3-dark";
+            };
           };
-        };
-
-        gtk = {
-          enable = true;
-          theme = {
-            name = "Adwaita-dark";
-            package = pkgs.gnome-themes-extra;
-          };
-
-          gtk4.theme = null;
-        };
-
-        # Wayland, X, etc. support for session vars
-        systemd.user.sessionVariables = config.hm.home.sessionVariables;
-      };
+        }
+      ];
 
       qt = {
         enable = true;
         platformTheme = "gnome";
         style = "adwaita-dark";
       };
+
+      environment.systemPackages = with pkgs; [
+        adw-gtk3
+      ];
     };
 }

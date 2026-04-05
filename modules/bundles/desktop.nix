@@ -38,7 +38,7 @@
       services.udisks2.enable = true;
       services.gvfs.enable = true;
 
-      hm.home.sessionVariables = {
+      environment.variables = {
         VISUAL = "nvim";
         EDITOR = "nvim";
       };
