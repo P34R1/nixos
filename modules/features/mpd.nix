@@ -13,31 +13,36 @@
     in
     {
       options.mpd = with lib; {
-        musicPath = mkOption { type = types.str; };
+        user = mkOption { type = types.str; };
       };
 
       config = {
-        # https://nix-community.github.io/home-manager/options.xhtml#opt-services.mpd.enable
-        hm.services.mpd = {
+        systemd.services.mpd.environment.XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${cfg.user}.uid}";
+        services.mpd = {
           enable = true;
-          musicDirectory = cfg.musicPath;
-
-          extraConfig = ''
-            audio_output {
-              type "pipewire"
-              name "PipeWire Output"
-            }
-          '';
-
-          network = {
-            # listenAddress = "any"; # if you want to allow non-localhost connections
-            # port = 6600;
-            startWhenNeeded = true; # systemd feature: only start MPD service upon connection to its socket
+          startWhenNeeded = true;
+          user = cfg.user;
+          settings = {
+            music_directory = "/home/${cfg.user}/Music";
+            audio_output = [
+              {
+                name = "PipeWire Output";
+                type = "pipewire";
+              }
+            ];
           };
         };
 
-        # https://nix-community.github.io/home-manager/options.xhtml#opt-services.mpdris2.enable
-        hm.services.mpdris2.enable = true;
+        systemd.user.services.mpdris2-rs = {
+          description = "Music Player Daemon D-Bus Bridge";
+          wantedBy = [ "default.target" ];
+          after = [ "mpd.service" ];
+
+          serviceConfig = {
+            ExecStart = "${lib.getExe pkgs.mpdris2-rs}";
+            Restart = "on-failure";
+          };
+        };
 
         environment.systemPackages = with pkgs; [
           playerctl

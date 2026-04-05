@@ -56,6 +56,7 @@
         };
       };
 
+      mpd.user = "pearl";
       audio.users = [ "pearl" ];
       brightness.users = [ "pearl" ];
       network = {
@@ -65,12 +66,12 @@
 
       nix.flakePath = "/home/pearl/nixos/";
       tmux.reposPath = "/home/pearl/repos/";
-      mpd.musicPath = "/home/pearl/Music/";
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.pearl = {
         isNormalUser = true;
         description = "Vincent Fortin";
+        uid = 1000;
         extraGroups = [ "wheel" ];
       };
 
