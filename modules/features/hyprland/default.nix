@@ -108,6 +108,7 @@
                 "$mod, C, killactive,"
                 "$mod, M, exit,"
                 "$mod, V, togglefloating,"
+                "$mod, B, fullscreen,"
                 "$mod, R, exec, $MENU"
 
                 # Example special workspace (scratchpad)
