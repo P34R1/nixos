@@ -137,12 +137,16 @@
               ];
 
               bindl = [
+                ", XF86AudioPrev, exec, playerctl previous"
                 ", XF86AudioPlay, exec, playerctl play-pause"
                 ", XF86AudioNext, exec, playerctl next"
-                ", XF86AudioPrev, exec, playerctl previous"
+
                 ", XF86AudioRaiseVolume, exec, volume up"
                 ", XF86AudioLowerVolume, exec, volume down"
-                ", XF86AudioMute, exec, volume mute"
+                ", XF86AudioMute,        exec, volume mute"
+
+                ", XF86MonBrightnessUp,   exec, xbacklight -inc 5"
+                ", XF86MonBrightnessDown, exec, xbacklight -dec 5"
               ];
             };
 
