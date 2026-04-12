@@ -58,6 +58,7 @@
       pkgs,
       lib,
       self,
+      self',
       ...
     }:
     {
@@ -68,7 +69,7 @@
           withSixel = true;
         });
 
-        shell = "${pkgs.fish}/bin/fish";
+        shell = "${lib.getExe self'.packages.fish}";
         terminal = "tmux-256color";
         mouse = true;
         prefix = "C-Space";

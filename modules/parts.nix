@@ -2,7 +2,7 @@
 {
   options = {
     flake = inputs.flake-parts.lib.mkSubmoduleOptions {
-      wrapperModules = inputs.nixpkgs.lib.mkOption {
+      wrappers = inputs.nixpkgs.lib.mkOption {
         default = { };
       };
     };

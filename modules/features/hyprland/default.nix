@@ -45,7 +45,7 @@
         debug = false;
       };
 
-      packages.hyprland-debug = self.lib.wrappers.hyprland.config.wrap (
+      packages.hyprland-debug = self.wrappers.hyprland.config.wrap (
         { config, ... }:
         let
           startup =

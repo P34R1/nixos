@@ -15,7 +15,12 @@
     };
 
   perSystem =
-    { pkgs, ... }:
+    {
+      pkgs,
+      lib,
+      self',
+      ...
+    }:
     {
       packages.foot = inputs.wrapper-modules.wrappers.foot.wrap {
         inherit pkgs;
@@ -24,7 +29,7 @@
         # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.foot.enable
         settings = {
           main = {
-            shell = "${pkgs.fish}/bin/fish";
+            shell = "${lib.getExe self'.packages.fish}";
             font = "JetBrainsMonoNF:size=11";
           };
 

@@ -3,17 +3,6 @@
 {
   flake.nixosModules.fish =
     { pkgs, lib, ... }:
-    let
-      justfileRaw = builtins.readFile ./justfile;
-      justfile = builtins.replaceStrings [ "\n" ] [ "\\n" ] justfileRaw;
-
-      colorscripts = pkgs.fetchFromGitHub {
-        owner = "P34R1";
-        repo = "shell-colour-scripts";
-        rev = "main";
-        hash = "sha256-rkyIybfheDSLalTbbSte9KKehxSevxe+XI6I+b9loRY=";
-      };
-    in
     {
       imports = with self.nixosModules; [
         fzf
@@ -29,99 +18,111 @@
         jq
         fd
         ripgrep
+        zoxide
       ];
 
-      # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fish.enable
-      hm = {
-        programs.fish = {
-          enable = true;
+      programs.direnv = {
+        enable = true;
+        nix-direnv.enable = true;
 
-          # Completions
-          # trash completions fish > ~/.config/fish/completions/trash.fish
-          # nh completions --shell fish > ~/.config/fish/completions/nh.fish
+        settings = {
+          hide_env_diff = true;
+        };
+      };
 
-          functions = {
-            gitignore = "curl -sL https://www.gitignore.io/api/$argv";
-            ls = "eza $argv";
+      programs.fish = {
+        enable = true;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.fish;
+      };
+    };
 
-            y = ''
-              set tmp (mktemp -t "yazi-cwd.XXXXXX")
-              yazi $argv --cwd-file="$tmp"
-              if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-                      builtin cd -- "$cwd"
-              end
-              rm -f -- "$tmp"
-            '';
+  perSystem =
+    {
+      self',
+      pkgs,
+      lib,
+      ...
+    }:
+    {
+      packages.fish = self.wrappers.fish.config.wrap (
+        { config, ... }:
+        let
+          justfileRaw = builtins.readFile ./justfile;
+          justfile = builtins.replaceStrings [ "\n" ] [ "\\n" ] justfileRaw;
 
-            # https://discourse.nixos.org/t/can-i-use-flakes-within-a-git-repo-without-committing-flake-nix/18196
-            # https://discourse.nixos.org/t/adding-flake-nix-with-out-git-tracking-it/42806/2
-            envrc = ''
-              set loc (git rev-parse --show-toplevel) # get root of project
-
-              if test $status -ne 0
-                return 1
-              end
-
-              printf ".envrc\nflake.nix\nflake.lock\n" >> $loc/.git/info/exclude # Ignore flake and env
-
-              if not [ -f "$loc/.envrc" ]
-                printf "use flake path:$loc" > $loc/.envrc
-              end
-
-              set -e loc # remove env variable
-            '';
-
-            justfile = ''
-              set loc (git rev-parse --show-toplevel) # get root of project
-
-              if test $status -ne 0
-                return 1
-              end
-
-              printf "justfile\n" >> $loc/.git/info/exclude # Ignore justfile
-
-              if not [ -f "$loc/justfile" ]
-                printf '${justfile}' > $loc/justfile
-              end
-
-              set -e loc # remove env variable
-            '';
+          colorscripts = pkgs.fetchFromGitHub {
+            owner = "P34R1";
+            repo = "shell-colour-scripts";
+            rev = "main";
+            hash = "sha256-rkyIybfheDSLalTbbSte9KKehxSevxe+XI6I+b9loRY=";
           };
 
-          # https://fishshell.com/docs/current/cmds/abbr.html
-          # https://github.com/nix-community/home-manager/blob/master/modules/programs/fish.nix#L141
-          # Line might change in the future
-          # Find abbrModule = types.submodule {
-          shellAbbrs = {
-            rb = "nh os switch";
-            tre = "ls --git-ignore -aT";
-
-            v = "nvim";
-            l = "ls -al";
-
-            ts = "tmux-sessionizer";
-            tw = "tmux-windowizer";
-
-            g = "git";
-            ga = "git add .";
-            gd = "git diff --cached";
-            gc = {
-              expansion = "git commit -m \"|\"";
-              setCursor = "|";
-            };
-
-            r = "just release";
+          # https://github.com/jorgebucaran/hydro
+          hydro = pkgs.fetchFromGitHub {
+            owner = "jorgebucaran";
+            repo = "hydro";
+            rev = "main";
+            sha256 = "sha256-Dfq974KpD1mtQKznIlkXfZfDnSF/4MfLTA18Ak0LADE=";
           };
 
-          # \c for control
-          # \e\c for ctrl + alt
-          # i think shift is impossible
-          interactiveShellInit = ''
-            bind -ea # reset binds
-            bind \ct _fzf_search_directory
-            bind \cf tmux-sessionizer
-            bind \e\cn "tmux-sessionizer ~/nixos"
-            bind \cw "just watch"
+          # https://github.com/PatrickF1/fzf.fish
+          fzf = pkgs.fetchFromGitHub {
+            owner = "PatrickF1";
+            repo = "fzf.fish";
+            rev = "main";
+            sha256 = "sha256-T8KYLA/r/gOKvAivKRoeqIwE2pINlxFQtZJHpOy9GMM=";
+          };
+        in
+        {
+          inherit pkgs;
+
+          # https://discourse.nixos.org/t/can-i-use-flakes-within-a-git-repo-without-committing-flake-nix/18196
+          # https://discourse.nixos.org/t/adding-flake-nix-with-out-git-tracking-it/42806/2
+          functions = ''
+            function gitignore
+              curl -sL https://www.gitignore.io/api/$argv
+            end
+
+            function justfile
+                set loc (git rev-parse --show-toplevel) # get root of project
+
+                if test $status -ne 0
+                    return 1
+                end
+
+                printf "justfile\n" >>$loc/.git/info/exclude # Ignore justfile
+                if not [ -f "$loc/justfile" ]
+                  printf '${justfile}' > $loc/justfile
+                end
+
+                set -e loc # remove env variable
+            end
+
+            function y
+                set tmp (mktemp -t "yazi-cwd.XXXXXX")
+                yazi $argv --cwd-file="$tmp"
+                if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+                    builtin cd -- "$cwd"
+                end
+
+                rm -f -- "$tmp"
+            end
+
+            function envrc
+                set loc (git rev-parse --show-toplevel) # get root of project
+
+                if test $status -ne 0
+                    return 1
+                end
+
+                printf ".envrc\nflake.nix\nflake.lock\n" >>$loc/.git/info/exclude # Ignore flake and env
+
+                if not [ -f "$loc/.envrc" ]
+                    printf "use flake path:$loc" >$loc/.envrc
+                end
+
+                set -e loc # remove env variable
+            end
 
             function fish_greeting
               set DIR_COLORSCRIPTS "${colorscripts}/colorscripts"
@@ -141,53 +142,55 @@
                 tmux -u attach -t default 2>/dev/null || tmux new-session -s default && kill $fish_pid
               end
             end
-
-            set fish_tmux_autostart true
-
-            direnv hook fish | source
-            zoxide init fish | source
           '';
 
-          plugins = [
+          # \c for control
+          # \e\c for ctrl + alt
+          # i think shift is impossible
+          binds = ''
+            bind \ct _fzf_search_directory
+            bind \cf tmux-sessionizer
+            bind \e\cn "tmux-sessionizer ~/nixos"
+            bind \cw "just watch"
+          '';
 
-            # https://github.com/PatrickF1/fzf.fish
-            {
-              name = "fzf";
-              src = pkgs.fetchFromGitHub {
-                owner = "PatrickF1";
-                repo = "fzf.fish";
-                rev = "main";
-                sha256 = "sha256-T8KYLA/r/gOKvAivKRoeqIwE2pINlxFQtZJHpOy9GMM=";
-              };
-            }
+          # https://fishshell.com/docs/current/cmds/abbr.html
+          abbrs = ''
+            abbr -a -- nv nvim
+            abbr -a -- ns nh os switch
 
-            # https://github.com/jorgebucaran/hydro
-            {
-              name = "hydro";
-              src = pkgs.fetchFromGitHub {
-                owner = "jorgebucaran";
-                repo = "hydro";
-                rev = "main";
-                sha256 = "sha256-0MMiM0NRbjZPJLAMDXb+Frgm+du80XpAviPqkwoHjDA=";
-              };
-            }
+            abbr -a -- g git
+            abbr -a -- ga git add .
+            abbr -a -- gd git diff
+            abbr -a -- gdc git diff --cached
+            abbr -a --set-cursor='|' -- gc 'git commit -m "|"'
 
-          ];
-        };
+            abbr -a -- l ls -al
+            abbr -a -- tre ls --git-ignore -aT
 
-        # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.direnv.enable
-        programs.direnv = {
-          enable = true;
-          nix-direnv.enable = true;
+            abbr -a -- ts tmux-sessionizer
+            abbr -a -- tw tmux-windowizer
 
-          config = {
-            hide_env_diff = true;
-          };
-        };
+            alias ls eza
+          '';
 
-        # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.zoxide.enable
-        programs.zoxide.enable = true;
-        programs.zoxide.options = [ ];
-      };
+          interactiveShellInit = ''
+            set fish_tmux_autostart true
+            direnv hook fish | source
+            zoxide init fish | source
+
+            set --local plugins \
+              ${hydro} \
+              ${fzf}
+
+            for p in $plugins
+                set -a fish_function_path $p/functions
+                for f in $p/conf.d/*.fish
+                    source $f
+                end
+            end
+          '';
+        }
+      );
     };
 }

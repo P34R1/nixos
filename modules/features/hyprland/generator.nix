@@ -6,7 +6,7 @@
 }:
 
 {
-  flake.lib.wrappers.hyprland = inputs.wrapper-modules.lib.evalModule (
+  flake.wrappers.hyprland = inputs.wrapper-modules.lib.evalModule (
     {
       config,
       wlib,
