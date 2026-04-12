@@ -21,15 +21,21 @@
         };
       };
 
-      config.programs.git = {
-        enable = true;
-        package = self.packages.${pkgs.stdenv.hostPlatform.system}.gitInitial.wrap {
-          settings = {
-            user.email = cfg.userEmail;
-            user.name = cfg.userName;
-            signing = lib.mkIf (cfg.signingKey != "") {
-              signByDefault = true;
-              key = cfg.signingKey;
+      config = {
+        environment.systemPackages = with pkgs; [
+          (writeShellScriptBin "gitignore" ''${curl}/bin/curl -sL https://www.gitignore.io/api/$argv'')
+        ];
+
+        programs.git = {
+          enable = true;
+          package = self.packages.${pkgs.stdenv.hostPlatform.system}.gitInitial.wrap {
+            settings = {
+              user.email = cfg.userEmail;
+              user.name = cfg.userName;
+              signing = lib.mkIf (cfg.signingKey != "") {
+                signByDefault = true;
+                key = cfg.signingKey;
+              };
             };
           };
         };

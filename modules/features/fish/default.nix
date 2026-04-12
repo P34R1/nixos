@@ -79,10 +79,6 @@
           # https://discourse.nixos.org/t/can-i-use-flakes-within-a-git-repo-without-committing-flake-nix/18196
           # https://discourse.nixos.org/t/adding-flake-nix-with-out-git-tracking-it/42806/2
           functions = ''
-            function gitignore
-              curl -sL https://www.gitignore.io/api/$argv
-            end
-
             function justfile
                 set loc (git rev-parse --show-toplevel) # get root of project
 
@@ -179,20 +175,14 @@
             direnv hook fish | source
             zoxide init fish | source
 
-            set --local plugins \
-              ${hydro} \
-              ${fzf}
-
-            for p in $plugins
-                set -a fish_function_path $p/functions
-                for f in $p/conf.d/*.fish
-                    source $f
-                end
-            end
-
             set --global fish_color_command blue
             set --global fish_color_quote yellow
           '';
+
+          plugins = [
+            hydro
+            fzf
+          ];
         }
       );
     };
