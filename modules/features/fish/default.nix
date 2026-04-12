@@ -70,7 +70,7 @@
             owner = "PatrickF1";
             repo = "fzf.fish";
             rev = "main";
-            sha256 = "sha256-T8KYLA/r/gOKvAivKRoeqIwE2pINlxFQtZJHpOy9GMM=";
+            sha256 = "sha256-H7HgYT+okuVXo2SinrSs+hxAKCn4Q4su7oMbebKd/7s=";
           };
         in
         {
@@ -115,7 +115,7 @@
                     return 1
                 end
 
-                printf ".envrc\nflake.nix\nflake.lock\n" >>$loc/.git/info/exclude # Ignore flake and env
+                printf ".envrc" >>$loc/.git/info/exclude # Ignore flake and env
 
                 if not [ -f "$loc/.envrc" ]
                     printf "use flake path:$loc" >$loc/.envrc
@@ -189,6 +189,9 @@
                     source $f
                 end
             end
+
+            set --global fish_color_command blue
+            set --global fish_color_quote yellow
           '';
         }
       );
