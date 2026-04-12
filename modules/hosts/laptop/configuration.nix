@@ -40,10 +40,6 @@
         signingKey = "940A57535F901655";
       };
 
-      hmSetup = {
-        user = "pearl";
-      };
-
       keyd = {
         users = [ "pearl" ];
         settings = {

@@ -15,7 +15,6 @@
         keyd
 
         nix
-        hmSetup
         darkmode
         loginScreen
         audio
