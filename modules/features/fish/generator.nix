@@ -6,7 +6,7 @@
 }:
 
 {
-  flake.wrappers.fish = inputs.wrapper-modules.lib.evalModule (
+  flake.wrappers.fish = inputs.wrapper-modules.lib.wrapModule (
     {
       config,
       wlib,
@@ -51,8 +51,6 @@
       '';
     in
     {
-      imports = [ wlib.modules.default ];
-
       options = with lib; {
         functions = mkOption { type = types.str; };
         binds = mkOption { type = types.str; };

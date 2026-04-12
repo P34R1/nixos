@@ -6,7 +6,7 @@
 }:
 
 {
-  flake.wrappers.hyprland = inputs.wrapper-modules.lib.evalModule (
+  flake.wrappers.hyprland = inputs.wrapper-modules.lib.wrapModule (
     {
       config,
       wlib,
@@ -18,7 +18,6 @@
       conf = pkgs.writeText "hyprland.conf" (self.lib.generators.toHyprconf { attrs = config.settings; });
     in
     {
-      imports = [ wlib.modules.default ];
       options.settings = lib.mkOption { };
       config = {
         package = pkgs.hyprland;

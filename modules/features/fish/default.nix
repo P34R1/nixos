@@ -44,7 +44,7 @@
       ...
     }:
     {
-      packages.fish = self.wrappers.fish.config.wrap (
+      packages.fish = self.wrappers.fish.wrap (
         { config, ... }:
         let
           justfileRaw = builtins.readFile ./justfile;
