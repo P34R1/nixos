@@ -51,19 +51,22 @@
 
       config = {
         # https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login
-        hm.home.file.".bash_profile".text = ''
-          if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-            printf "${enabledOptions}"
+        programs.bash = {
+          enable = true;
+          loginShellInit = ''
+            if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+              printf "${enabledOptions}"
 
-            stty -icanon -echo
-            choice=$(dd bs=1 count=1 2>/dev/null)
-            stty icanon echo
+              stty -icanon -echo
+              choice=$(dd bs=1 count=1 2>/dev/null)
+              stty icanon echo
 
-            case "$choice" in
-              ${enabledCases}
-            esac
-          fi
-        '';
+              case "$choice" in
+                ${enabledCases}
+              esac
+            fi
+          '';
+        };
 
         services.getty = {
           # https://www.reddit.com/r/NixOS/comments/161uvb5/remove_nixoshelp_reminder_on_tty/
