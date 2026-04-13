@@ -49,17 +49,25 @@
       packages.hyprland-debug = self.wrappers.hyprland.wrap (
         { config, ... }:
         let
-          startup =
-            with self'.packages;
-            pkgs.writeShellScriptBin "start" ''
-              udiskie &
-              ${lib.getExe dunst} &
-              ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store &
-              sleep 1
-              ${lib.getExe waybar} & disown
-              ${lib.getExe hypridle} &
-              ${pkgs.awww}/bin/awww-daemon & disown
-            '';
+          selfPkgs = self'.packages;
+          dunst = lib.getExe selfPkgs.dunst;
+          waybar = lib.getExe selfPkgs.waybar;
+          hypridle = lib.getExe selfPkgs.hypridle;
+          hyprlock = lib.getExe selfPkgs.hyprlock;
+          foot = lib.getExe selfPkgs.foot;
+          tofi-drun = "${selfPkgs.foot}/bin/tofi-drun";
+          wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
+          awww-daemon = "${pkgs.awww}/bin/awww-daemon";
+
+          startup = pkgs.writeShellScriptBin "startup" ''
+            udiskie &
+            ${dunst} &
+            ${wl-paste} --type text --watch cliphist store &
+            sleep 1
+            ${waybar} & disown
+            ${hypridle} &
+            ${awww-daemon} & disown
+          '';
         in
         {
           imports = with self.nixosModules; [
@@ -81,14 +89,14 @@
 
               cursor.no_hardware_cursors = true;
               exec-once = [
-                "${startup}/bin/start"
+                "${startup}/bin/startup"
               ]
               ++ (
                 if config.debug then
                   [ "" ]
                 else
                   [
-                    "[workspace 1 silent] foot"
+                    "[workspace 1 silent] $TERMINAL"
                     "[workspace 2 silent] zen"
                     "[workspace 3 silent] steam"
                     "[workspace 4 silent] discord"
@@ -96,15 +104,14 @@
               );
 
               "$mod" = if config.debug then "ALT" else "SUPER";
-              "$TERMINAL" = "foot";
-              "$MENU" = "tofi-drun --drun-launch=true";
-              "$LOCK" = "hyprlock";
+              "$TERMINAL" = "${foot}";
+              "$MENU" = "${tofi-drun} --drun-launch=true";
+              "$LOCK" = "${hyprlock}";
 
               # bind  ->
               # bindm -> mouse
               # bindl -> do stuff even when locked
               # binde -> repeats when key is held
-
               bind = [
                 "$mod, M, exit,"
                 "$mod, C, killactive,"
