@@ -1,8 +1,7 @@
 { self, inputs, ... }:
 
 {
-
-  flake.nixosModules.hyprLock =
+  flake.nixosModules.hyprlock =
     { config, pkgs, ... }:
     {
       programs.hyprlock = {
@@ -30,7 +29,7 @@
 
                 background = [
                   {
-                    # path = "$HOME/.local/share/wall.png";
+                    path = "$HOME/Pictures/backgrounds/blue_swirl.png";
                     blur_size = 2;
                     blur_passes = 1; # 0 disables blurring
                     noise = 1.17e-2;
@@ -87,7 +86,6 @@
           inherit pkgs;
           package = pkgs.hyprlock;
 
-          # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.hyprlock.enable
           # https://github.com/ericmurphyxyz/dotfiles/blob/master/.config/hypr/hyprlock.conf
           # https://github.com/justinmdickey/publicdots/blob/main/.config/hypr/hyprlock.conf
           flags = {

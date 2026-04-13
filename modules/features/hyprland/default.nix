@@ -5,7 +5,8 @@
     { pkgs, lib, ... }:
     {
       imports = with self.nixosModules; [
-        hyprLock
+        hyprlock
+        hypridle
         waybar
         dunst
         foot
@@ -53,11 +54,11 @@
             pkgs.writeShellScriptBin "start" ''
               udiskie &
               ${lib.getExe dunst} &
-              wl-paste --type text --watch cliphist store &
+              ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store &
               sleep 1
               ${lib.getExe waybar} & disown
-              # hypridle &
-              awww-daemon & disown
+              ${lib.getExe hypridle} &
+              ${pkgs.awww}/bin/awww-daemon & disown
             '';
         in
         {
