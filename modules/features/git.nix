@@ -23,7 +23,7 @@
 
       config = {
         environment.systemPackages = with pkgs; [
-          (writeShellScriptBin "gitignore" ''${curl}/bin/curl -sL https://www.gitignore.io/api/$argv'')
+          (writeShellScriptBin "gitignore" "${curl}/bin/curl -sL https://www.gitignore.io/api/$argv")
         ];
 
         programs.git = {

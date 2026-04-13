@@ -42,44 +42,27 @@
         signingKey = "D4F0D505725B265F";
       };
 
-      hmSetup = {
-        user = "pearl";
-      };
-
       keyd = {
         users = [ "pearl" ];
         settings = { };
       };
 
+      mpd.user = "pearl";
       audio.users = [ "pearl" ];
       network = {
         hostName = "pearl-desktop";
         users = [ "pearl" ];
       };
 
+      nix.flakePath = "/home/pearl/nixos/";
       tmux.reposPath = "/home/pearl/repos/";
-      mpd.musicPath = "/home/pearl/Music/";
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.pearl = {
         isNormalUser = true;
         description = "Vincent Fortin";
-        extraGroups = [
-          "wheel"
-          "video"
-        ];
-      };
-
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-
-      programs.nh = {
-        enable = true;
-        clean.enable = true;
-        clean.extraArgs = "--keep-since 4d --keep 3";
-        flake = "/home/pearl/nixos";
+        uid = 1000;
+        extraGroups = [ "wheel" ];
       };
 
       # List packages installed in system profile. To search, run:
@@ -90,10 +73,6 @@
           # withOpenASAR = true;
           withVencord = true;
         })
-
-        # My Scripts
-        # screenshot
-        # toficlip
       ];
 
       services.flatpak.packages = [
