@@ -98,6 +98,7 @@
               "$mod" = if config.debug then "ALT" else "SUPER";
               "$TERMINAL" = "foot";
               "$MENU" = "tofi-drun --drun-launch=true";
+              "$LOCK" = "hyprlock";
 
               # bind  ->
               # bindm -> mouse
@@ -105,12 +106,14 @@
               # binde -> repeats when key is held
 
               bind = [
-                "$mod, RETURN, exec, $TERMINAL"
-                "$mod, C, killactive,"
                 "$mod, M, exit,"
+                "$mod, C, killactive,"
                 "$mod, V, togglefloating,"
                 "$mod, B, fullscreen,"
+
+                "$mod, RETURN, exec, $TERMINAL"
                 "$mod, R, exec, $MENU"
+                "$mod, L, exec, $LOCK"
 
                 # Example special workspace (scratchpad)
                 "$mod, S, togglespecialworkspace, scratchpad"
