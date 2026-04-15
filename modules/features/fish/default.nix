@@ -71,27 +71,12 @@
       packages.fish = self.wrappers.fish.wrap (
         { config, ... }:
         let
+          # https://github.com/P34R1/shell-colour-scripts
           colorscripts = pkgs.fetchFromGitHub {
             owner = "P34R1";
             repo = "shell-colour-scripts";
             rev = "main";
             hash = "sha256-rkyIybfheDSLalTbbSte9KKehxSevxe+XI6I+b9loRY=";
-          };
-
-          # https://github.com/jorgebucaran/hydro
-          hydro = pkgs.fetchFromGitHub {
-            owner = "jorgebucaran";
-            repo = "hydro";
-            rev = "main";
-            sha256 = "sha256-Dfq974KpD1mtQKznIlkXfZfDnSF/4MfLTA18Ak0LADE=";
-          };
-
-          # https://github.com/PatrickF1/fzf.fish
-          fzf = pkgs.fetchFromGitHub {
-            owner = "PatrickF1";
-            repo = "fzf.fish";
-            rev = "main";
-            sha256 = "sha256-H7HgYT+okuVXo2SinrSs+hxAKCn4Q4su7oMbebKd/7s=";
           };
         in
         {
@@ -114,27 +99,12 @@
               set DIR_COLORSCRIPTS "${colorscripts}/colorscripts"
               bash "$DIR_COLORSCRIPTS/$(basename (random choice $(ls $DIR_COLORSCRIPTS)))"
             end
-
-            function _fish_tmux_plugin_run_autostart --on-variable fish_tmux_autostart # https://github.com/P34R1/tmux.fish/blob/main/conf.d/tmux.fish
-              if test "$fish_tmux_autostart" = true && \
-              test -z "$TMUX" && \
-              test -z "$INSIDE_EMACS" && \
-              test -z "$EMACS" && \
-              test -z "$NVIM" && \
-              test -z "$VSCODE_RESOLVING_ENVIRONMENT" && \
-              test "$TERM_PROGRAM" != 'vscode'
-
-                # tmux a          default   silent  if fail   new sesh named default    kill old fish (auto close when tmux closes)
-                tmux -u attach -t default 2>/dev/null || tmux new-session -s default && kill $fish_pid
-              end
-            end
           '';
 
           # \c for control
           # \e\c for ctrl + alt
           # i think shift is impossible
           binds = ''
-            bind \ct _fzf_search_directory
             bind \cf tmux-sessionizer
             bind \e\cn "tmux-sessionizer ~/nixos"
             bind \cw "just watch"
@@ -161,7 +131,8 @@
           '';
 
           interactiveShellInit = ''
-            set fish_tmux_autostart true
+            source ${./tmux.fish}
+            source ${./prompt.fish}
             direnv hook fish | source
             zoxide init fish | source
 
@@ -170,8 +141,8 @@
           '';
 
           plugins = [
-            hydro
-            fzf
+            # hydro
+            # prompt
           ];
         }
       );
