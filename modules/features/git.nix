@@ -22,14 +22,25 @@
       };
 
       config = {
+        programs.gnupg.agent = {
+          enable = true;
+          pinentryPackage = pkgs.pinentry-curses;
+        };
+
         environment.systemPackages = with pkgs; [
           (writeShellScriptBin "gitignore" "${curl}/bin/curl -sL https://www.gitignore.io/api/$argv")
           (self.packages.${pkgs.stdenv.hostPlatform.system}.jujutsuInitial.wrap {
             settings = {
               user.name = cfg.userName;
               user.email = cfg.userEmail;
-              signing.key = lib.mkIf (cfg.signingKey != "") cfg.signingKey;
+
               git.sign-on-push = lib.mkIf (cfg.signingKey != "") true;
+              signing = lib.mkIf (cfg.signingKey != "") {
+                behavior = "drop";
+                backend = "gpg";
+                backends.gpg.program = lib.getExe pkgs.gnupg;
+                key = cfg.signingKey;
+              };
             };
           })
         ];
@@ -40,6 +51,7 @@
             settings = {
               user.name = cfg.userName;
               user.email = cfg.userEmail;
+
               signing = lib.mkIf (cfg.signingKey != "") {
                 signByDefault = true;
                 key = cfg.signingKey;
@@ -84,9 +96,7 @@
             '';
           in
           {
-            # Use main instead of master
             init.defaultBranch = "main";
-
             core.excludesfile = "${gitignore}";
 
             # Use SSH
