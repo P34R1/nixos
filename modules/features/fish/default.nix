@@ -10,16 +10,40 @@
         yazi
       ];
 
-      environment.systemPackages = with pkgs; [
-        just
-        entr
-        bat
-        eza
-        jq
-        fd
-        ripgrep
-        zoxide
-      ];
+      environment.systemPackages =
+        with pkgs;
+        let
+          justfileRaw = builtins.readFile ./justfile;
+          justfile = builtins.replaceStrings [ "\n" ] [ "\\n" ] justfileRaw;
+        in
+        [
+          just
+          entr
+          bat
+          eza
+          jq
+          fd
+          ripgrep
+          zoxide
+
+          (writeShellScriptBin "justfile" ''
+            loc=$(git rev-parse --show-toplevel) || exit 1
+
+            printf "justfile\n" >> "$loc/.git/info/exclude"
+            if [ ! -f "$loc/justfile" ]; then
+              printf "${justfile}" > "$loc/justfile"
+            fi
+          '')
+
+          (writeShellScriptBin "envrc" ''
+            loc=$(git rev-parse --show-toplevel) || exit 1
+
+            printf ".envrc\n" >> "$loc/.git/info/exclude"
+            if [ ! -f "$loc/.envrc" ]; then
+              printf "use flake path:$loc" > "$loc/.envrc"
+            fi
+          '')
+        ];
 
       programs.direnv = {
         enable = true;
@@ -47,9 +71,6 @@
       packages.fish = self.wrappers.fish.wrap (
         { config, ... }:
         let
-          justfileRaw = builtins.readFile ./justfile;
-          justfile = builtins.replaceStrings [ "\n" ] [ "\\n" ] justfileRaw;
-
           colorscripts = pkgs.fetchFromGitHub {
             owner = "P34R1";
             repo = "shell-colour-scripts";
@@ -79,21 +100,6 @@
           # https://discourse.nixos.org/t/can-i-use-flakes-within-a-git-repo-without-committing-flake-nix/18196
           # https://discourse.nixos.org/t/adding-flake-nix-with-out-git-tracking-it/42806/2
           functions = ''
-            function justfile
-                set loc (git rev-parse --show-toplevel) # get root of project
-
-                if test $status -ne 0
-                    return 1
-                end
-
-                printf "justfile\n" >>$loc/.git/info/exclude # Ignore justfile
-                if not [ -f "$loc/justfile" ]
-                  printf '${justfile}' > $loc/justfile
-                end
-
-                set -e loc # remove env variable
-            end
-
             function y
                 set tmp (mktemp -t "yazi-cwd.XXXXXX")
                 yazi $argv --cwd-file="$tmp"
@@ -102,22 +108,6 @@
                 end
 
                 rm -f -- "$tmp"
-            end
-
-            function envrc
-                set loc (git rev-parse --show-toplevel) # get root of project
-
-                if test $status -ne 0
-                    return 1
-                end
-
-                printf ".envrc" >>$loc/.git/info/exclude # Ignore flake and env
-
-                if not [ -f "$loc/.envrc" ]
-                    printf "use flake path:$loc" >$loc/.envrc
-                end
-
-                set -e loc # remove env variable
             end
 
             function fish_greeting

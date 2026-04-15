@@ -19,6 +19,9 @@
 
       config = {
         environment.systemPackages = [
+          # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
+          # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-windowizer
+          # https://nixos.wiki/wiki/Shell_Scripts
           (pkgs.stdenv.mkDerivation {
             name = "tmux-scripts";
 
@@ -47,11 +50,6 @@
         };
       };
     };
-
-  # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
-  # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-windowizer
-
-  # https://nixos.wiki/wiki/Shell_Scripts
 
   perSystem =
     {
