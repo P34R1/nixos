@@ -24,14 +24,22 @@
       config = {
         environment.systemPackages = with pkgs; [
           (writeShellScriptBin "gitignore" "${curl}/bin/curl -sL https://www.gitignore.io/api/$argv")
+          (self.packages.${pkgs.stdenv.hostPlatform.system}.jujutsuInitial.wrap {
+            settings = {
+              user.name = cfg.userName;
+              user.email = cfg.userEmail;
+              signing.key = lib.mkIf (cfg.signingKey != "") cfg.signingKey;
+              git.sign-on-push = lib.mkIf (cfg.signingKey != "") true;
+            };
+          })
         ];
 
         programs.git = {
           enable = true;
           package = self.packages.${pkgs.stdenv.hostPlatform.system}.gitInitial.wrap {
             settings = {
-              user.email = cfg.userEmail;
               user.name = cfg.userName;
+              user.email = cfg.userEmail;
               signing = lib.mkIf (cfg.signingKey != "") {
                 signByDefault = true;
                 key = cfg.signingKey;
@@ -45,6 +53,20 @@
   perSystem =
     { pkgs, ... }:
     {
+      packages.jujutsuInitial = inputs.wrapper-modules.wrappers.jujutsu.wrap {
+        inherit pkgs;
+        settings = {
+          ui.default-command = [
+            "log"
+            "--no-pager"
+            "--reversed"
+            "--summary"
+            "--limit"
+            "15"
+          ];
+        };
+      };
+
       packages.gitInitial = inputs.wrapper-modules.wrappers.git.wrap {
         inherit pkgs;
 
@@ -58,6 +80,7 @@
           let
             gitignore = pkgs.writeText "globalignore" ''
               .direnv/
+              .jj/
             '';
           in
           {
