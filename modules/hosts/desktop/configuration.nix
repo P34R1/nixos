@@ -7,7 +7,6 @@
       inputs.nixos-hardware.nixosModules.common-cpu-intel-skylake
       inputs.nixos-hardware.nixosModules.common-gpu-nvidia
       inputs.nixos-hardware.nixosModules.common-pc-ssd
-      inputs.nix-index-database.nixosModules.nix-index
     ];
   };
 

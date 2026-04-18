@@ -5,7 +5,6 @@
     modules = [
       self.nixosModules.laptopConfiguration
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
-      inputs.nix-index-database.nixosModules.nix-index
     ];
   };
 
