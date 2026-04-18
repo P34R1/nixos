@@ -115,11 +115,9 @@
             abbr -a -- nv nvim
             abbr -a -- ns nh os switch
 
-            abbr -a -- g git
-            abbr -a -- ga git add .
-            abbr -a -- gd git diff
-            abbr -a -- gdc git diff --cached
-            abbr -a --set-cursor='|' -- gc 'git commit -m "|"'
+            abbr -a --set-cursor='|' -- jjd 'jj desc -m "|"'
+            abbr -a --set-cursor='|' -- jjc 'jj ci -m "|"'
+            abbr -a --set-cursor='|' -- jjn 'jj new -m "|"'
 
             abbr -a -- l ls -al
             abbr -a -- tre ls --git-ignore -aT

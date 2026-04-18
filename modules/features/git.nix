@@ -68,6 +68,10 @@
       packages.jujutsuInitial = inputs.wrapper-modules.wrappers.jujutsu.wrap {
         inherit pkgs;
         settings = {
+          aliases = {
+            d = [ "diff" ];
+          };
+
           ui.default-command = [
             "log"
             "--no-pager"
