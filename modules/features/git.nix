@@ -70,6 +70,8 @@
         settings = {
           aliases = {
             d = [ "diff" ];
+            ba = [ "b" "a" ];
+            br = [ "b" "m" "main" "-Bt" "main@origin" ];
           };
 
           ui.default-command = [
