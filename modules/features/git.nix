@@ -63,15 +63,27 @@
     };
 
   perSystem =
-    { pkgs, ... }:
+    { pkgs, self', ... }:
     {
       packages.jujutsuInitial = inputs.wrapper-modules.wrappers.jujutsu.wrap {
         inherit pkgs;
+        env.GIT_CONFIG_GLOBAL = "${self'.packages.gitInitial}/gitconfig";
+
         settings = {
           aliases = {
             d = [ "diff" ];
-            ba = [ "b" "a" ];
-            br = [ "b" "m" "main" "-Bt" "main@origin" ];
+            ba = [
+              "b"
+              "a"
+            ];
+
+            br = [
+              "b"
+              "m"
+              "main"
+              "-Bt"
+              "main@origin"
+            ];
           };
 
           ui.default-command = [
@@ -88,48 +100,43 @@
       packages.gitInitial = inputs.wrapper-modules.wrappers.git.wrap {
         inherit pkgs;
 
-        # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.git.enable
-        # delta = {
-        #   enable = true;
-        #   enableGitIntegration = true;
-        # };
+        constructFiles.gitignore = {
+          relPath = ".gitignore";
+          content = ''
+            .direnv/
+            .jj/
+          '';
+        };
 
-        settings =
-          let
-            gitignore = pkgs.writeText "globalignore" ''
-              .direnv/
-              .jj/
-            '';
-          in
-          {
-            init.defaultBranch = "main";
-            core.excludesfile = "${gitignore}";
+        settings = {
+          init.defaultBranch = "main";
+          core.excludesfile = "${placeholder "out"}/.gitignore";
 
-            # Use SSH
-            url."ssh://git@github.com/".insteadOf = "https://github.com/";
-            url."ssh://git@codeberg.org/".insteadOf = "https://codeberg.org/";
+          # Use SSH
+          url."ssh://git@github.com/".insteadOf = "https://github.com/";
+          url."ssh://git@codeberg.org/".insteadOf = "https://codeberg.org/";
 
-            # https://www.youtube.com/watch?v=HJtxQPJUcJc
-            rerere.enabled = true;
-            lfs.enable = true;
+          # https://www.youtube.com/watch?v=HJtxQPJUcJc
+          rerere.enabled = true;
+          lfs.enable = true;
 
-            alias = {
-              st = "status -s";
-              sta = "status";
+          alias = {
+            st = "status -s";
+            sta = "status";
 
-              br = "branch";
-              bra = "branch -a";
-              co = "checkout";
+            br = "branch";
+            bra = "branch -a";
+            co = "checkout";
 
-              # https://www.youtube.com/watch?v=xN1-2p06Urc
-              pr = "pull --rebase";
-              puf = "push --force-with-lease";
-              amend = "commit --amend --no-edit";
-              unadd = "reset HEAD";
+            # https://www.youtube.com/watch?v=xN1-2p06Urc
+            pr = "pull --rebase";
+            puf = "push --force-with-lease";
+            amend = "commit --amend --no-edit";
+            unadd = "reset HEAD";
 
-              lo = "log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit";
-            };
+            lo = "log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit";
           };
+        };
       };
     };
 }
