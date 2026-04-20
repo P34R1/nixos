@@ -49,24 +49,14 @@
       packages.hyprland-debug = self.wrappers.hyprland.wrap (
         { config, ... }:
         let
-          selfPkgs = self'.packages;
-          dunst = lib.getExe selfPkgs.dunst;
-          waybar = lib.getExe selfPkgs.waybar;
-          hypridle = lib.getExe selfPkgs.hypridle;
-          hyprlock = lib.getExe selfPkgs.hyprlock;
-          foot = lib.getExe selfPkgs.foot;
-          tofi-drun = "${selfPkgs.foot}/bin/tofi-drun";
-          wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
-          awww-daemon = "${pkgs.awww}/bin/awww-daemon";
-
           startup = pkgs.writeShellScriptBin "startup" ''
             udiskie &
-            ${dunst} &
-            ${wl-paste} --type text --watch cliphist store &
+            dunst &
+            wl-paste --type text --watch cliphist store &
             sleep 1
-            ${waybar} & disown
-            ${hypridle} &
-            ${awww-daemon} & disown
+            ${lib.getExe self'.packages.waybar} & disown
+            hypridle &
+            awww-daemon & disown
           '';
         in
         {
@@ -89,24 +79,19 @@
 
               cursor.no_hardware_cursors = true;
               exec-once = [
-                "${startup}/bin/startup"
+                "${lib.getExe startup}"
               ]
-              ++ (
-                if config.debug then
-                  [ "" ]
-                else
-                  [
-                    "[workspace 1 silent] $TERMINAL"
-                    "[workspace 2 silent] zen"
-                    "[workspace 3 silent] steam"
-                    "[workspace 4 silent] discord"
-                  ]
-              );
+              ++ (lib.optionals (!config.debug) [
+                "[workspace 1 silent] $TERMINAL"
+                "[workspace 2 silent] zen"
+                "[workspace 3 silent] steam"
+                "[workspace 4 silent] discord"
+              ]);
 
               "$mod" = if config.debug then "ALT" else "SUPER";
-              "$TERMINAL" = "${foot}";
-              "$MENU" = "${tofi-drun} --drun-launch=true";
-              "$LOCK" = "${hyprlock}";
+              "$TERMINAL" = "foot";
+              "$MENU" = "tofi-drun --drun-launch=true";
+              "$LOCK" = "hyprlock";
 
               # bind  ->
               # bindm -> mouse
