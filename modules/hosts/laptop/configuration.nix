@@ -69,13 +69,15 @@
         isNormalUser = true;
         description = "Vincent Fortin";
         uid = 1000;
-        extraGroups = [ "wheel" ];
+        extraGroups = [ "wheel" "dialout" ];
       };
 
       services.flatpak.packages = [
         # "dev.vencord.Vesktop"
         "com.obsproject.Studio"
       ];
+
+      services.udev.packages = [ pkgs.platformio-core.udev ];
 
       # Bootloader.
       boot.loader = {
