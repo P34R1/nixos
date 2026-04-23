@@ -70,6 +70,12 @@
         env.GIT_CONFIG_GLOBAL = self'.packages.gitInitial.configuration.constructFiles.gitconfig.outPath;
 
         settings = {
+          # https://docs.jj-vcs.dev/latest/config/#bookmark-advance-default-targets
+          revsets.bookmark-advance-to = "closest_pushable(@)";
+          revset-aliases."closest_pushable(to)" = ''
+            heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))
+          '';
+
           aliases = {
             d = [ "diff" ];
             ba = [
@@ -80,9 +86,10 @@
             br = [
               "b"
               "m"
-              "main"
+              "-f"
+              "bookmarks() & ancestors(@)"
               "-Bt"
-              "main@origin"
+              "trunk()"
             ];
           };
 
