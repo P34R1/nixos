@@ -67,7 +67,7 @@
     {
       packages.jujutsuInitial = inputs.wrapper-modules.wrappers.jujutsu.wrap {
         inherit pkgs;
-        env.GIT_CONFIG_GLOBAL = "${self'.packages.gitInitial}/gitconfig";
+        env.GIT_CONFIG_GLOBAL = self'.packages.gitInitial.configuration.constructFiles.gitconfig.outPath;
 
         settings = {
           aliases = {
@@ -97,46 +97,49 @@
         };
       };
 
-      packages.gitInitial = inputs.wrapper-modules.wrappers.git.wrap {
-        inherit pkgs;
+      packages.gitInitial = inputs.wrapper-modules.wrappers.git.wrap (
+        { config, ... }:
+        {
+          inherit pkgs;
 
-        constructFiles.gitignore = {
-          relPath = ".gitignore";
-          content = ''
-            .direnv/
-            .jj/
-          '';
-        };
-
-        settings = {
-          init.defaultBranch = "main";
-          core.excludesfile = "${placeholder "out"}/.gitignore";
-
-          # Use SSH
-          url."ssh://git@github.com/".insteadOf = "https://github.com/";
-          url."ssh://git@codeberg.org/".insteadOf = "https://codeberg.org/";
-
-          # https://www.youtube.com/watch?v=HJtxQPJUcJc
-          rerere.enabled = true;
-          lfs.enable = true;
-
-          alias = {
-            st = "status -s";
-            sta = "status";
-
-            br = "branch";
-            bra = "branch -a";
-            co = "checkout";
-
-            # https://www.youtube.com/watch?v=xN1-2p06Urc
-            pr = "pull --rebase";
-            puf = "push --force-with-lease";
-            amend = "commit --amend --no-edit";
-            unadd = "reset HEAD";
-
-            lo = "log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit";
+          constructFiles.gitignore = {
+            relPath = ".gitignore";
+            content = ''
+              .direnv/
+              .jj/
+            '';
           };
-        };
-      };
+
+          settings = {
+            init.defaultBranch = "main";
+            core.excludesfile = config.constructFiles.gitignore.path;
+
+            # Use SSH
+            url."ssh://git@github.com/".insteadOf = "https://github.com/";
+            url."ssh://git@codeberg.org/".insteadOf = "https://codeberg.org/";
+
+            # https://www.youtube.com/watch?v=HJtxQPJUcJc
+            rerere.enabled = true;
+            lfs.enable = true;
+
+            alias = {
+              st = "status -s";
+              sta = "status";
+
+              br = "branch";
+              bra = "branch -a";
+              co = "checkout";
+
+              # https://www.youtube.com/watch?v=xN1-2p06Urc
+              pr = "pull --rebase";
+              puf = "push --force-with-lease";
+              amend = "commit --amend --no-edit";
+              unadd = "reset HEAD";
+
+              lo = "log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit";
+            };
+          };
+        }
+      );
     };
 }
