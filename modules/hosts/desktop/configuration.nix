@@ -2,12 +2,18 @@
 
 {
   flake.nixosConfigurations.pearl-desktop = inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      self.nixosModules.desktopConfiguration
-      inputs.nixos-hardware.nixosModules.common-cpu-intel-skylake
-      inputs.nixos-hardware.nixosModules.common-gpu-nvidia
-      inputs.nixos-hardware.nixosModules.common-pc-ssd
-    ];
+    modules =
+      with self.nixosModules;
+      with inputs.nixos-hardware.nixosModules;
+      [
+        desktopConfiguration
+        desktopHardware
+        nvidiaBundle
+
+        common-cpu-intel
+        common-gpu-nvidia
+        common-pc-ssd
+      ];
   };
 
   flake.nixosModules.desktopConfiguration =
@@ -20,14 +26,11 @@
 
     {
       imports = with self.nixosModules; [
-        desktopHardware
-
         hyprland
         dwm
 
         desktopBundle
         gamingBundle
-        nvidiaBundle
       ];
 
       loginScreen = {
@@ -90,6 +93,7 @@
         grub = {
           enable = true;
           useOSProber = true;
+
           copyKernels = true;
           efiSupport = true;
           devices = [ "nodev" ];

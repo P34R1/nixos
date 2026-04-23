@@ -2,10 +2,14 @@
 
 {
   flake.nixosConfigurations.pearl-laptop = inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      self.nixosModules.laptopConfiguration
-      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
-    ];
+    modules =
+      with self.nixosModules;
+      with inputs.nixos-hardware.nixosModules;
+      [
+        laptopConfiguration
+        laptopHardware
+        lenovo-thinkpad-t480
+      ];
   };
 
   flake.nixosModules.laptopConfiguration =
@@ -18,9 +22,7 @@
 
     {
       imports = with self.nixosModules; [
-        laptopHardware
         bluetooth
-
         hyprland
         dwm
 
