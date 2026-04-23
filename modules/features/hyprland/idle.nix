@@ -50,7 +50,7 @@
               owner = "hyprwm";
               repo = "hypridle";
               rev = "main";
-              hash = "sha256-Js1KcE7NJf4PXKpGg6noqu1B6dzmZq2UdDESXj6Q0AU=";
+              hash = "sha256-iI1orcQNEQAwAyRHHRogC68E3nls710wwbaD1X6RRKI=";
             };
           });
 
