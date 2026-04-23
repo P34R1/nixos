@@ -7,6 +7,12 @@
     {
       # Refer to https://wiki.hyprland.org/Configuring/Variables/
       settings = {
+        # https://wiki.hypr.land/Hypr-Ecosystem/hyprcursor/
+        env = [
+          "HYPRCURSOR_THEME,HackneyedCursors"
+          "HYPRCURSOR_SIZE,24"
+        ];
+
         # https://wiki.hyprland.org/Configuring/Variables/#general
         general = with self.themeNoHash; {
           gaps_in = 5;
