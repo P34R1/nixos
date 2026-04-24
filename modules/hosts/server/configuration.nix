@@ -8,7 +8,6 @@
       [
         serverConfiguration
         serverHardware
-        # lenovo-thinkpad-t480
       ];
   };
 
@@ -23,6 +22,9 @@
     {
       imports = with self.nixosModules; [
         coreBundle
+
+        nginx
+        slskd
       ];
 
       git = {
@@ -36,6 +38,7 @@
         users = [ "pearl" ];
       };
 
+      slskd.user = "pearl";
       tmux.enable = false;
       nix.flakePath = "/home/pearl/nixos/";
 
@@ -50,12 +53,25 @@
         ];
       };
 
-      services.openssh = {
-        enable = true;
-        settings = {
-          PasswordAuthentication = false;
-          AllowUsers = [ "pearl" ];
-          PermitRootLogin = "no";
+      services = {
+        openssh = {
+          enable = true;
+          listenAddresses = [
+            {
+              addr = "0.0.0.0";
+              port = 22;
+            }
+            {
+              addr = "[::]";
+              port = 22;
+            }
+          ];
+
+          settings = {
+            PasswordAuthentication = false;
+            AllowUsers = [ "pearl" ];
+            PermitRootLogin = "no";
+          };
         };
       };
 
