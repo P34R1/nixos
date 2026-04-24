@@ -2,7 +2,12 @@
 
 {
   flake.nixosModules.fish =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     {
       imports = with self.nixosModules; [
         fzf
@@ -54,9 +59,9 @@
         };
       };
 
-      programs.fish = {
+      programs.fish = with self.packages.${pkgs.stdenv.hostPlatform.system}; {
         enable = true;
-        package = self.packages.${pkgs.stdenv.hostPlatform.system}.fish;
+        package = if config.tmux.enable then fishTmux else fish;
       };
     };
 
@@ -68,7 +73,10 @@
       ...
     }:
     {
-      packages.fish = self.wrappers.fish.wrap (
+      packages.fish = self'.packages.fishTmux.wrap {
+        tmux = false;
+      };
+      packages.fishTmux = self.wrappers.fish.wrap (
         { config, ... }:
         let
           # https://github.com/P34R1/shell-colour-scripts
@@ -80,68 +88,74 @@
           };
         in
         {
-          inherit pkgs;
 
-          # https://discourse.nixos.org/t/can-i-use-flakes-within-a-git-repo-without-committing-flake-nix/18196
-          # https://discourse.nixos.org/t/adding-flake-nix-with-out-git-tracking-it/42806/2
-          functions = ''
-            function y
-                set tmp (mktemp -t "yazi-cwd.XXXXXX")
-                yazi $argv --cwd-file="$tmp"
-                if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-                    builtin cd -- "$cwd"
-                end
+          options.tmux = lib.mkEnableOption "tmux mode";
+          config = {
+            inherit pkgs;
 
-                rm -f -- "$tmp"
-            end
+            tmux = lib.mkDefault true;
 
-            function fish_greeting
-              set DIR_COLORSCRIPTS "${colorscripts}/colorscripts"
-              bash "$DIR_COLORSCRIPTS/$(basename (random choice $(ls $DIR_COLORSCRIPTS)))"
-            end
-          '';
+            # https://discourse.nixos.org/t/can-i-use-flakes-within-a-git-repo-without-committing-flake-nix/18196
+            # https://discourse.nixos.org/t/adding-flake-nix-with-out-git-tracking-it/42806/2
+            functions = ''
+              function y
+                  set tmp (mktemp -t "yazi-cwd.XXXXXX")
+                  yazi $argv --cwd-file="$tmp"
+                  if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+                      builtin cd -- "$cwd"
+                  end
 
-          # \c for control
-          # \e\c for ctrl + alt
-          # i think shift is impossible
-          binds = ''
-            bind \cf tmux-sessionizer
-            bind \e\cn "tmux-sessionizer ~/nixos"
-            bind \cw "just watch"
-          '';
+                  rm -f -- "$tmp"
+              end
 
-          # https://fishshell.com/docs/current/cmds/abbr.html
-          abbrs = ''
-            abbr -a -- nv nvim
-            abbr -a -- ns nh os switch
+              function fish_greeting
+                set DIR_COLORSCRIPTS "${colorscripts}/colorscripts"
+                bash "$DIR_COLORSCRIPTS/$(basename (random choice $(ls $DIR_COLORSCRIPTS)))"
+              end
+            '';
 
-            abbr -a --set-cursor='|' -- jjd 'jj desc -m "|"'
-            abbr -a --set-cursor='|' -- jjc 'jj ci -m "|"'
-            abbr -a --set-cursor='|' -- jjn 'jj new -m "|"'
+            # \c for control
+            # \e\c for ctrl + alt
+            # i think shift is impossible
+            binds = ''
+              bind \cf tmux-sessionizer
+              bind \e\cn "tmux-sessionizer ~/nixos"
+              bind \cw "just watch"
+            '';
 
-            abbr -a -- l ls -al
-            abbr -a -- tre ls --git-ignore -aT
+            # https://fishshell.com/docs/current/cmds/abbr.html
+            abbrs = ''
+              abbr -a -- nv nvim
+              abbr -a -- ns nh os switch
 
-            abbr -a -- ts tmux-sessionizer
-            abbr -a -- tw tmux-windowizer
+              abbr -a --set-cursor='|' -- jjd 'jj desc -m "|"'
+              abbr -a --set-cursor='|' -- jjc 'jj ci -m "|"'
+              abbr -a --set-cursor='|' -- jjn 'jj new -m "|"'
 
-            alias ls eza
-          '';
+              abbr -a -- l ls -al
+              abbr -a -- tre ls --git-ignore -aT
 
-          interactiveShellInit = ''
-            source ${./tmux.fish}
-            source ${./prompt.fish}
-            direnv hook fish | source
-            zoxide init fish | source
+              abbr -a -- ts tmux-sessionizer
+              abbr -a -- tw tmux-windowizer
 
-            set --global fish_color_command blue
-            set --global fish_color_quote yellow
-          '';
+              alias ls eza
+            '';
 
-          plugins = [
-            # hydro
-            # prompt
-          ];
+            interactiveShellInit = ''
+              ${lib.optionalString config.tmux "source ${./tmux.fish}"}
+              source ${./prompt.fish}
+              direnv hook fish | source
+              zoxide init fish | source
+
+              set --global fish_color_command blue
+              set --global fish_color_quote yellow
+            '';
+
+            plugins = [
+              # hydro
+              # prompt
+            ];
+          };
         }
       );
     };

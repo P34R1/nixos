@@ -14,10 +14,11 @@
     in
     {
       options.tmux = with lib; {
+        enable = mkEnableOption "tmux";
         reposPath = mkOption { type = types.str; };
       };
 
-      config = {
+      config = lib.mkIf cfg.enable {
         environment.systemPackages = [
           # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
           # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-windowizer
