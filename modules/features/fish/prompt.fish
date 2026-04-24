@@ -23,13 +23,16 @@ end
 function fish_prompt
     set -l last_status $status
 
+    set -l HN_PROMPT ""
+    test -n "$SSH_CLIENT"; and set HN_PROMPT (set_color blue)$hostname(set_color red)" | "
+
     set -l JJ_PROMPT ""
     test -n "$$_jj_prompt"; and set JJ_PROMPT (set_color red)" | "$$_jj_prompt
 
     set -l ST_PROMPT ""
     test "$last_status" -ne 0; and set ST_PROMPT (set_color red)" ["$last_status"]"
 
-    echo -ns (set_color red)"[" (set_color yellow)(prompt_pwd) $JJ_PROMPT (set_color red)"]" $ST_PROMPT (set_color normal)"\$ "
+    echo -ns (set_color red)"[" $HN_PROMPT (set_color yellow)(prompt_pwd) $JJ_PROMPT (set_color red)"]" $ST_PROMPT (set_color normal)"\$ "
 end
 
 function _jj_prompt_exit --on-event fish_exit
