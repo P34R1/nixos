@@ -25,6 +25,7 @@
 
         nginx
         slskd
+        openssh
       ];
 
       git = {
@@ -39,6 +40,7 @@
       };
 
       slskd.user = "pearl";
+      openssh.user = "pearl";
       tmux.enable = false;
       nix.flakePath = "/home/pearl/nixos/";
 
@@ -46,11 +48,6 @@
       users.users.pearl = {
         isNormalUser = true;
         extraGroups = [ "wheel" ];
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH97h8jvSFDbZPR4/KKhAUf8mtrgeIqWGzB9S0ATunDs undeadgamer279@gmail.com"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCAtzH4xk6DyVHj61pl4VzLS2uFaG8s45Xr6u0uX2MA undeadgamer279@gmail.com"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICvavh5rpoj12Ywi5lXT6hCn38KZuZaU8Ln5Rh3OxsPb vincent.fortin279@gmail.com"
-        ];
       };
 
       # autostart fish
@@ -60,28 +57,6 @@
           exec fish $LOGIN_OPTION
         fi
       '';
-
-      services = {
-        openssh = {
-          enable = true;
-          listenAddresses = [
-            {
-              addr = "0.0.0.0";
-              port = 22;
-            }
-            {
-              addr = "[::]";
-              port = 22;
-            }
-          ];
-
-          settings = {
-            PasswordAuthentication = false;
-            AllowUsers = [ "pearl" ];
-            PermitRootLogin = "no";
-          };
-        };
-      };
 
       # Bootloader.
       boot.loader = {
