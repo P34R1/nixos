@@ -9,6 +9,8 @@
         laptopConfiguration
         laptopHardware
         lenovo-thinkpad-t480
+
+        bluetooth
       ];
   };
 
@@ -22,7 +24,6 @@
 
     {
       imports = with self.nixosModules; [
-        bluetooth
         hyprland
         dwm
 

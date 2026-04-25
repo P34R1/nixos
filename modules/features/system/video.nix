@@ -1,19 +1,18 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.brightness =
+  flake.nixosModules.video =
     {
       config,
       pkgs,
       lib,
       ...
     }:
-
     let
-      cfg = config.brightness;
+      cfg = config.video;
     in
     {
-      options.brightness = with lib; {
+      options.video = with lib; {
         users = mkOption { type = types.listOf types.str; };
       };
 
@@ -22,8 +21,13 @@
           extraGroups = [ "video" ];
         });
 
-        hardware.acpilight = {
-          enable = true;
+        programs.dconf.enable = true;
+        hardware = {
+          acpilight.enable = true;
+          graphics = {
+            enable = true;
+            enable32Bit = true;
+          };
         };
       };
     };

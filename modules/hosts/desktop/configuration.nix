@@ -8,7 +8,7 @@
       [
         desktopConfiguration
         desktopHardware
-        nvidiaBundle
+        nvidia
 
         common-cpu-intel
         common-gpu-nvidia

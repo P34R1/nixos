@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.nvidiaBundle =
+  flake.nixosModules.nvidia =
     { config, pkgs, ... }:
     {
       services.xserver.videoDrivers = [ "nvidia" ];

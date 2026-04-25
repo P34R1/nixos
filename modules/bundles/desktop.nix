@@ -9,12 +9,12 @@
         zen
         mpd
         keyd
+        flatpak
 
         darkmode
         loginScreen
         audio
-        brightness
-        flatpak
+        video
       ];
 
       environment.systemPackages = with pkgs; [
@@ -35,11 +35,5 @@
         corefonts
       ];
 
-      # Graphics
-      programs.dconf.enable = true;
-      hardware.graphics = {
-        enable = true;
-        enable32Bit = true;
-      };
     };
 }
