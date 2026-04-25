@@ -56,7 +56,7 @@
 
       mpd.user = "pearl";
       audio.users = [ "pearl" ];
-      brightness.users = [ "pearl" ];
+      video.users = [ "pearl" ];
       network = {
         hostName = "pearl-laptop";
         users = [ "pearl" ];
