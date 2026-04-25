@@ -72,15 +72,6 @@
         extraGroups = [ "wheel" ];
       };
 
-      # List packages installed in system profile. To search, run:
-      # $ nix search wget
-      environment.systemPackages = with pkgs; [
-        (discord.override {
-          # withOpenASAR = true;
-          withVencord = true;
-        })
-      ];
-
       services.flatpak.packages = [
         # "dev.vencord.Vesktop"
         "com.obsproject.Studio"

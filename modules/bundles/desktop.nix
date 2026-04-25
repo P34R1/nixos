@@ -19,6 +19,10 @@
 
       environment.systemPackages = with pkgs; [
         cliphist
+        (discord.override {
+          # withOpenASAR = true;
+          withVencord = true;
+        })
       ];
 
       # https://github.com/ryanoasis/nerd-fonts

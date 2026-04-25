@@ -67,16 +67,6 @@
         extraGroups = [ "wheel" ];
       };
 
-      # List packages installed in system profile. To search, run:
-      # $ nix search wget
-      environment.systemPackages = with pkgs; [
-        # blender # was using flatpak, needed to downgrade
-        (discord.override {
-          # withOpenASAR = true;
-          withVencord = true;
-        })
-      ];
-
       services.flatpak.packages = [
         # "dev.vencord.Vesktop"
         "com.obsproject.Studio"
