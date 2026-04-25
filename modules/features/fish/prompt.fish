@@ -102,6 +102,9 @@ function _jj_prompt_render -a prompt_ref
                 set diff[2] (math $diff[2] + 1)
             case "M *"
                 set diff[3] (math $diff[3] + 1)
+            case "R *"
+                set diff[1] (math $diff[1] + 1)
+                set diff[2] (math $diff[2] + 1)
         end
     end
 
