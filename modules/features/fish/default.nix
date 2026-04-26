@@ -133,11 +133,6 @@
               set --global fish_color_command blue
               set --global fish_color_quote yellow
             '';
-
-            plugins = [
-              # hydro
-              # prompt
-            ];
           };
         }
       );
