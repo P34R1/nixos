@@ -11,7 +11,6 @@
     {
       imports = with self.nixosModules; [
         fzf
-        tmux
         yazi
       ];
 
@@ -59,9 +58,9 @@
         };
       };
 
-      programs.fish = with self.packages.${pkgs.stdenv.hostPlatform.system}; {
+      programs.fish = {
         enable = true;
-        package = if config.tmux.enable then fishTmux else fish;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.fish;
       };
     };
 
@@ -73,10 +72,7 @@
       ...
     }:
     {
-      packages.fish = self'.packages.fishTmux.wrap {
-        tmux = false;
-      };
-      packages.fishTmux = self.wrappers.fish.wrap (
+      packages.fish = self.wrappers.fish.wrap (
         { config, ... }:
         let
           # https://github.com/P34R1/shell-colour-scripts
@@ -88,15 +84,9 @@
           };
         in
         {
-
-          options.tmux = lib.mkEnableOption "tmux mode";
           config = {
             inherit pkgs;
 
-            tmux = lib.mkDefault true;
-
-            # https://discourse.nixos.org/t/can-i-use-flakes-within-a-git-repo-without-committing-flake-nix/18196
-            # https://discourse.nixos.org/t/adding-flake-nix-with-out-git-tracking-it/42806/2
             functions = ''
               function y
                   set tmp (mktemp -t "yazi-cwd.XXXXXX")
@@ -114,13 +104,10 @@
               end
             '';
 
-            # \c for control
-            # \e\c for ctrl + alt
-            # i think shift is impossible
+            # https://fishshell.com/docs/current/cmds/bind.html
             binds = ''
-              bind \cf tmux-sessionizer
-              bind \e\cn "tmux-sessionizer ~/nixos"
-              bind \cw "just watch"
+              bind ctrl-alt-enter "foot &>/dev/null & disown"
+              bind ctrl-w "just watch"
             '';
 
             # https://fishshell.com/docs/current/cmds/abbr.html
@@ -135,14 +122,10 @@
               abbr -a -- l ls -al
               abbr -a -- tre ls --git-ignore -aT
 
-              abbr -a -- ts tmux-sessionizer
-              abbr -a -- tw tmux-windowizer
-
               alias ls eza
             '';
 
             interactiveShellInit = ''
-              ${lib.optionalString config.tmux "source ${./tmux.fish}"}
               source ${./prompt.fish}
               direnv hook fish | source
               zoxide init fish | source

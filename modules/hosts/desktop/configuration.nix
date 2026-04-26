@@ -57,7 +57,6 @@
       };
 
       nix.flakePath = "/home/pearl/nixos/";
-      tmux.reposPath = "/home/pearl/repos/";
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.pearl = {

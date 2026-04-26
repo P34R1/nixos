@@ -41,7 +41,6 @@
 
       slskd.user = "pearl";
       openssh.user = "pearl";
-      tmux.enable = false;
       nix.flakePath = "/home/pearl/nixos/";
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
