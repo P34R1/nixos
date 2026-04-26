@@ -88,7 +88,7 @@
                 "[workspace 4 silent] discord"
               ]);
 
-              "$mod" = if config.debug then "ALT" else "SUPER";
+              "$mod" = if config.debug then "CAPSLOCK" else "SUPER";
               "$TERMINAL" = "foot";
               "$MENU" = "tofi-drun --drun-launch=true";
               "$LOCK" = "hyprlock";
@@ -100,16 +100,14 @@
               bind = [
                 "$mod, M, exit,"
                 "$mod, C, killactive,"
+
+                "$mod, G, togglegroup,"
                 "$mod, V, togglefloating,"
                 "$mod, B, fullscreen,"
 
                 "$mod, RETURN, exec, $TERMINAL"
                 "$mod, R, exec, $MENU"
                 "$mod, L, exec, $LOCK"
-
-                # Example special workspace (scratchpad)
-                "$mod, S, togglespecialworkspace, scratchpad"
-                "$mod SHIFT, S, movetoworkspace, special:scratchpad"
 
                 ", Print, exec, screenshot"
               ]
@@ -123,6 +121,7 @@
                   [
                     "$mod, ${button}, workspace, ${workspace}"
                     "$mod SHIFT, ${button}, movetoworkspace, ${workspace}"
+                    "$mod ALT, ${button}, changegroupactive, ${workspace}"
                   ]
                 ) 10
               );
