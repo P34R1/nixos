@@ -14,11 +14,14 @@
     { pkgs, ... }:
     {
       packages.hyprlock = inputs.wrapper-modules.lib.wrapPackage (
-        { ... }:
-        let
-          gen = self.lib.generators;
-          conf = pkgs.writeText "hyprlock.conf" (
-            gen.toHyprconf {
+        { config, ... }:
+        {
+          inherit pkgs;
+          package = pkgs.hyprlock;
+
+          constructFiles.config = {
+            relPath = "hyprlock.conf";
+            content = self.lib.generators.toHyprconf {
               attrs = with self.theme; {
                 general = {
                   disable_loading_bar = true;
@@ -79,17 +82,13 @@
                   }
                 ];
               };
-            }
-          );
-        in
-        {
-          inherit pkgs;
-          package = pkgs.hyprlock;
+            };
+          };
 
           # https://github.com/ericmurphyxyz/dotfiles/blob/master/.config/hypr/hyprlock.conf
           # https://github.com/justinmdickey/publicdots/blob/main/.config/hypr/hyprlock.conf
           flags = {
-            "-c" = "${conf}";
+            "-c" = "${config.constructFiles.config.path}";
           };
         }
       );

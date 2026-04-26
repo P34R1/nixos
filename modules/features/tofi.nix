@@ -21,10 +21,14 @@
     { pkgs, lib, ... }:
     {
       packages.tofi = inputs.wrapper-modules.lib.wrapPackage (
-        { ... }:
-        let
-          conf = pkgs.writeText "config" (
-            lib.generators.toINIWithGlobalSection { } {
+        { config, ... }:
+        {
+          inherit pkgs;
+          package = pkgs.tofi;
+
+          constructFiles.config = {
+            relPath = "config";
+            content = lib.generators.toINIWithGlobalSection { } {
               globalSection = with self.theme; {
                 font = "${pkgs.nerd-fonts.roboto-mono}/share/fonts/truetype/NerdFonts/RobotoMonoNerdFontPropo-Medium.ttf";
                 # #282828 alpha 75%
@@ -43,15 +47,11 @@
                 outline-width = 0;
                 result-spacing = 0;
               };
-            }
-          );
-        in
-        {
-          inherit pkgs;
-          package = pkgs.tofi;
+            };
+          };
 
           flags = {
-            "--config" = "${conf}";
+            "--config" = "${config.constructFiles.config.path}";
           };
         }
       );

@@ -14,22 +14,23 @@
       pkgs,
       ...
     }:
-    let
-      conf = pkgs.writeText "hyprland.conf" (self.lib.generators.toHyprconf { attrs = config.settings; });
-    in
     {
       options.settings = lib.mkOption { };
       config = {
         package = pkgs.hyprland;
+        constructFiles.config = {
+          relPath = "hyprland.conf";
+          content = self.lib.generators.toHyprconf { attrs = config.settings; };
+        };
 
         drv.installPhase = ''
           runHook preInstall
-          XDG_RUNTIME_DIR=/tmp ${lib.getExe config.package} --verify-config --config ${conf}
+          XDG_RUNTIME_DIR=/tmp ${lib.getExe config.package} --verify-config --config ${config.constructFiles.config.path}
           runHook postInstall
         '';
 
         flags = {
-          "--config" = "${conf}";
+          "--config" = "${config.constructFiles.config.path}";
         };
       };
     }

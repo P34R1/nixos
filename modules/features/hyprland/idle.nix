@@ -14,11 +14,24 @@
     { pkgs, ... }:
     {
       packages.hypridle = inputs.wrapper-modules.lib.wrapPackage (
-        { ... }:
-        let
-          gen = self.lib.generators;
-          conf = pkgs.writeText "hypridle.conf" (
-            gen.toHyprconf {
+        { config, ... }:
+        {
+          inherit pkgs;
+
+          # TODO: wait for v0.1.8 https://github.com/hyprwm/hypridle
+          # https://github.com/hyprwm/hypridle/commit/4de8bc0f7eb83e0039e057f991672fd91356bb56
+          package = pkgs.hypridle.overrideAttrs (old: {
+            src = pkgs.fetchFromGitHub {
+              owner = "hyprwm";
+              repo = "hypridle";
+              rev = "main";
+              hash = "sha256-iI1orcQNEQAwAyRHHRogC68E3nls710wwbaD1X6RRKI=";
+            };
+          });
+
+          constructFiles.config = {
+            relPath = "hypridle.conf";
+            content = self.lib.generators.toHyprconf {
               attrs = {
                 general = {
                   before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
@@ -38,25 +51,12 @@
                   }
                 ];
               };
-            }
-          );
-        in
-        {
-          inherit pkgs;
-          # TODO: wait for v0.1.8 https://github.com/hyprwm/hypridle
-          # https://github.com/hyprwm/hypridle/commit/4de8bc0f7eb83e0039e057f991672fd91356bb56
-          package = pkgs.hypridle.overrideAttrs (old: {
-            src = pkgs.fetchFromGitHub {
-              owner = "hyprwm";
-              repo = "hypridle";
-              rev = "main";
-              hash = "sha256-iI1orcQNEQAwAyRHHRogC68E3nls710wwbaD1X6RRKI=";
             };
-          });
+          };
 
           # https://github.com/ericmurphyxyz/dotfiles/blob/master/.config/hypr/hypridle.conf
           flags = {
-            "-c" = "${conf}";
+            "-c" = "${config.constructFiles.config.path}";
           };
         }
       );
