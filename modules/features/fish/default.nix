@@ -106,7 +106,6 @@
 
             # https://fishshell.com/docs/current/cmds/bind.html
             binds = ''
-              bind ctrl-alt-enter "foot &>/dev/null & disown"
               bind ctrl-w "just watch"
             '';
 

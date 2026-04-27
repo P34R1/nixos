@@ -33,6 +33,11 @@
             font = "JetBrainsMonoNF:size=11";
           };
 
+          key-bindings = {
+            spawn-terminal = "Control+Alt+Return";
+            show-urls-launch = "Control+Shift+o";
+          };
+
           # https://codeberg.org/dnkl/foot/src/branch/master/themes/gruvbox-dark
           colors-dark = with self.themeNoHash; {
             alpha = "0.75";
