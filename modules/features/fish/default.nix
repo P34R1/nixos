@@ -29,6 +29,8 @@
           fd
           ripgrep
           zoxide
+          tlrc
+          trashy
 
           (writeShellScriptBin "justfile" ''
             loc=$(git rev-parse --show-toplevel) || exit 1
@@ -122,6 +124,7 @@
               abbr -a -- tre ls --git-ignore -aT
 
               alias ls eza
+              alias r trashy
             '';
 
             interactiveShellInit = ''

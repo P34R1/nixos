@@ -12,19 +12,8 @@
 
         nix
         network
+        drive
       ];
-
-      nixpkgs.config.allowUnfree = true;
-      environment.systemPackages = with pkgs; [
-        trashy
-        tlrc
-        udisks2 # mounting
-        udiskie
-      ];
-
-      # mounting
-      services.udisks2.enable = true;
-      services.gvfs.enable = true;
 
       environment.variables = {
         VISUAL = "nvim";
