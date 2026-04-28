@@ -10,6 +10,16 @@
         gvfs.enable = true;
       };
 
+      systemd.user.services.udiskie = {
+        description = "Udiskie Automount Daemon";
+        wantedBy = [ "default.target" ];
+
+        serviceConfig = {
+          ExecStart = "${lib.getExe' pkgs.udiskie "udiskie"} -anT";
+          Restart = "on-failure";
+        };
+      };
+
       environment.systemPackages = with pkgs; [
         udiskie
 

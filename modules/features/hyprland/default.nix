@@ -50,7 +50,6 @@
         { config, ... }:
         let
           startup = pkgs.writeShellScriptBin "startup" ''
-            udiskie &
             dunst &
             wl-paste --type text --watch cliphist store &
             sleep 1
