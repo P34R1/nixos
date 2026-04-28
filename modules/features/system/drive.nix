@@ -15,7 +15,7 @@
         wantedBy = [ "default.target" ];
 
         serviceConfig = {
-          ExecStart = "${lib.getExe' pkgs.udiskie "udiskie"} -anT";
+          ExecStart = "${lib.getExe' pkgs.udiskie "udiskie"} -anTF";
           Restart = "on-failure";
         };
       };
