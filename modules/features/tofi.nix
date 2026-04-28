@@ -9,10 +9,11 @@
           selfPkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
         in
         with pkgs;
+        with lib;
         [
           selfPkgs.tofi
           (writeShellScriptBin "tofi-clip" ''
-            ${cliphist}/bin/cliphist list | ${selfPkgs.tofi}/bin/tofi | ${cliphist}/bin/cliphist decode | ${wl-clipboard}/bin/wl-copy
+            ${getExe cliphist} list | ${getExe selfPkgs.tofi} | ${getExe cliphist} decode | ${getExe' wl-clipboard "wl-copy"}
           '')
         ];
     };

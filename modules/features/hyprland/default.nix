@@ -22,11 +22,14 @@
       ];
 
       environment.sessionVariables.NIXOS_OZONE_WL = "1";
-      environment.systemPackages = with pkgs; [
-        awww
-        wl-clipboard
-        (writeShellScriptBin "screenshot" ''${grim}/bin/grim -g "$(${slurp}/bin/slurp -d)" - | ${wl-clipboard}/bin/wl-copy'')
-      ];
+      environment.systemPackages =
+        with pkgs;
+        with lib;
+        [
+          awww
+          wl-clipboard
+          (writeShellScriptBin "screenshot" ''${getExe grim} -g "$(${getExe slurp} -d)" - | ${getExe' wl-clipboard "wl-copy"}'')
+        ];
 
       programs.hyprland = {
         enable = true;

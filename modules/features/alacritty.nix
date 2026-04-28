@@ -11,14 +11,14 @@
     };
 
   perSystem =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       packages.alacritty = inputs.wrapper-modules.wrappers.alacritty.wrap {
         inherit pkgs;
 
         # https://alacritty.org/config-alacritty.html
         settings = {
-          terminal.shell = "${pkgs.fish}/bin/fish";
+          terminal.shell = "${lib.getExe pkgs.fish}";
           general.live_config_reload = false;
 
           window = {

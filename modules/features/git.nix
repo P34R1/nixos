@@ -27,23 +27,26 @@
           pinentryPackage = pkgs.pinentry-curses;
         };
 
-        environment.systemPackages = with pkgs; [
-          (writeShellScriptBin "gitignore" "${curl}/bin/curl -sL https://www.gitignore.io/api/$argv")
-          (self.packages.${pkgs.stdenv.hostPlatform.system}.jujutsuInitial.wrap {
-            settings = {
-              user.name = cfg.userName;
-              user.email = cfg.userEmail;
+        environment.systemPackages =
+          with pkgs;
+          with lib;
+          [
+            (writeShellScriptBin "gitignore" "${getExe curl} -sL https://www.gitignore.io/api/$argv")
+            (self.packages.${pkgs.stdenv.hostPlatform.system}.jujutsuInitial.wrap {
+              settings = {
+                user.name = cfg.userName;
+                user.email = cfg.userEmail;
 
-              git.sign-on-push = lib.mkIf (cfg.signingKey != "") true;
-              signing = lib.mkIf (cfg.signingKey != "") {
-                behavior = "drop";
-                backend = "gpg";
-                backends.gpg.program = lib.getExe pkgs.gnupg;
-                key = cfg.signingKey;
+                git.sign-on-push = lib.mkIf (cfg.signingKey != "") true;
+                signing = lib.mkIf (cfg.signingKey != "") {
+                  behavior = "drop";
+                  backend = "gpg";
+                  backends.gpg.program = getExe pkgs.gnupg;
+                  key = cfg.signingKey;
+                };
               };
-            };
-          })
-        ];
+            })
+          ];
 
         programs.git = {
           enable = true;
