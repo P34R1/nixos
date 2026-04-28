@@ -20,10 +20,12 @@
         systemd.services.mpd.environment.XDG_RUNTIME_DIR = "/run/user/${
           toString config.users.users.${cfg.user}.uid
         }";
+
         services.mpd = {
           enable = true;
           startWhenNeeded = true;
           user = cfg.user;
+
           settings = {
             music_directory = "/home/${cfg.user}/Music";
             audio_output = [
@@ -41,7 +43,7 @@
           after = [ "mpd.service" ];
 
           serviceConfig = {
-            ExecStart = "${lib.getExe pkgs.mpdris2-rs}";
+            ExecStart = "${lib.getExe pkgs.mpdris2-rs} -n";
             Restart = "on-failure";
           };
         };

@@ -69,7 +69,10 @@
         isNormalUser = true;
         description = "Vincent Fortin";
         uid = 1000;
-        extraGroups = [ "wheel" "dialout" ];
+        extraGroups = [
+          "wheel"
+          "dialout"
+        ];
       };
 
       services.flatpak.packages = [
