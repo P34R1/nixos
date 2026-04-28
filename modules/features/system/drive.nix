@@ -5,6 +5,20 @@
     { pkgs, lib, ... }:
     {
       # mounting
+      security.polkit = {
+        enable = true;
+        extraConfig = ''
+          polkit.addRule(function (action, subject) {
+            const udisks = action.id.indexOf("org.freedesktop.udisks2.") === 0;
+            const login1 = action.id.indexOf("org.freedesktop.login1.") === 0;
+
+            if (subject.isInGroup("wheel") && (udisks || login1)) {
+              return polkit.Result.YES;
+            }
+          });
+        '';
+      };
+
       services = {
         udisks2.enable = true;
         gvfs.enable = true;
