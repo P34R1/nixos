@@ -7,6 +7,7 @@
       environment.systemPackages = with pkgs; [
         self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
         glow # markdown parser
+        nixfmt-tree
       ];
     };
 
