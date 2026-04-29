@@ -32,7 +32,7 @@
 
             mkBat = bat: {
               inherit bat;
-              format = if (bat == "BAT0") then "{capacity}%" else " + {capacity}%";
+              format = if (bat == "BAT0") then "{capacity}% " else "+ {capacity}%";
               tooltip = false;
 
               interval = 5;
