@@ -11,9 +11,9 @@
 
       loginScreen.window-managers = [
         {
+          key = "d";
           name = "dwm";
           command = "sx dwm";
-          indicator = "d";
         }
       ];
 

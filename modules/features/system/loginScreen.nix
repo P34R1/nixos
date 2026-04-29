@@ -10,23 +10,20 @@
     }:
 
     let
-      inherit (lib.strings)
-        concatMapStrings
-        concatMapStringsSep
-        ;
-
+      inherit (lib.strings) concatMapStrings;
       cfg = config.loginScreen;
 
       # \033[1m => bold        \033[0m => unbold
       # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStrings
-      enabledOptions = concatMapStrings (
-        opt: "\\033[1m[${opt.indicator}]\\033[0m - ${opt.name}\\n"
-      ) cfg.window-managers;
+      window-managers =
+        cfg.window-managers
+        |> map (wm: {
+          label = "\\033[1m[${wm.key}]\\033[0m - ${wm.name}\\n";
+          handler = "${wm.key}) exec ${wm.command};;";
+        });
 
-      # https://ryantm.github.io/nixpkgs/functions/library/strings/#function-library-lib.strings.concatMapStringsSep
-      enabledCases = concatMapStringsSep "\n" (
-        opt: "${opt.indicator}) exec ${opt.command};;"
-      ) cfg.window-managers;
+      menuUi = window-managers |> concatMapStrings ({ label, ... }: label);
+      menuLogic = window-managers |> concatMapStrings ({ handler, ... }: handler);
     in
     {
       options.loginScreen = with lib; {
@@ -40,9 +37,9 @@
           type = types.listOf (
             types.submodule {
               options = {
+                key = mkOption { type = types.str; };
                 name = mkOption { type = types.str; };
                 command = mkOption { type = types.str; };
-                indicator = mkOption { type = types.str; };
               };
             }
           );
@@ -53,14 +50,16 @@
         # https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login
         programs.bash.loginShellInit = ''
           if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-            printf "${enabledOptions}"
+            printf -- "--- Select Window Manager ---\n"
+            printf "${menuUi}"
 
             stty -icanon -echo
             choice=$(dd bs=1 count=1 2>/dev/null)
             stty icanon echo
 
             case "$choice" in
-              ${enabledCases}
+              ${menuLogic}
+              *) printf "Invalid choice, staying on tty...\n" ;;
             esac
           fi
         '';

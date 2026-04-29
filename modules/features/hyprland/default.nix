@@ -15,9 +15,9 @@
 
       loginScreen.window-managers = [
         {
+          key = "h";
           name = "hyprland";
           command = "start-hyprland";
-          indicator = "h";
         }
       ];
 
