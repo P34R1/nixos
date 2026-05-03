@@ -25,6 +25,7 @@
 
         nginx
         slskd
+        dashy
         openssh
       ];
 
