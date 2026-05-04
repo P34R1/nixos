@@ -2,9 +2,13 @@
 
 {
   flake.nixosModules.nginx =
-    { config, lib, ... }:
     {
-      imports = [ self.nixosModules.acme ];
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
       options.nginx.domain = lib.mkOption {
         type = lib.types.str;
         default = "smegmail.org";
@@ -32,37 +36,29 @@
 
           virtualHosts."${config.nginx.domain}" = {
             default = true;
-            locations."/".return = "404";
+            forceSSL = true;
+            useACMEHost = config.nginx.domain;
+
+            locations."/".return = "301 https://www.${config.nginx.domain}$request_uri";
+          };
+
+          virtualHosts."www.${config.nginx.domain}" = {
+            forceSSL = lib.mkForce true;
+            useACMEHost = lib.mkForce config.nginx.domain;
+            basicAuthFile =
+              "pearl:$2y$05$9JCX99LgyUgC6yHI8NTdeuPUVeIlBsBn8IUFoSJbkrSFXRkjMn2U2"
+              |> pkgs.writeText ".htpasswd"
+              |> lib.mkForce;
           };
         };
-      };
-    };
 
-  flake.nixosModules.acme =
-    { config, lib, ... }:
-    let
-      domain = config.nginx.domain;
-    in
-    {
-      # https://discourse.nixos.org/t/use-mapattrs-with-nixos-modules/22692
-      options.services.nginx.virtualHosts = lib.mkOption {
-        type = lib.types.attrsOf (
-          lib.types.submodule (
-            { ... }:
-            {
-              useACMEHost = lib.mkDefault domain;
-              forceSSL = lib.mkDefault true;
-            }
-          )
-        );
-      };
-
-      config.security.acme = {
-        acceptTerms = true;
-        defaults = {
-          email = "vincent.fortin279@gmail.com";
-          webroot = "/var/lib/acme/acme-challenge";
-          group = "nginx";
+        security.acme = {
+          acceptTerms = true;
+          defaults = {
+            email = "vincent.fortin279@gmail.com";
+            webroot = "/var/lib/acme/acme-challenge";
+            group = "nginx";
+          };
         };
       };
     };
@@ -102,14 +98,10 @@
           enable = true;
           user = cfg.user;
 
-          domain = "slskd.${config.nginx.domain}";
-          nginx = {
-            useACMEHost = config.nginx.domain;
-            forceSSL = true;
-          };
-
+          domain = "www.${config.nginx.domain}";
           environmentFile = "${music}/credentials.env";
           settings = {
+            web.url_base = "/slskd";
             shares.directories = [ "${music}/library/" ];
             directories = {
               downloads = "${music}/downloads/";
