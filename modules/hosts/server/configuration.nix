@@ -26,6 +26,7 @@
         nginx
         slskd
         dashy
+        nextcloud
         openssh
       ];
 
