@@ -24,9 +24,6 @@
         coreBundle
 
         nginx
-        slskd
-        dashy
-        nextcloud
         openssh
       ];
 
