@@ -29,6 +29,8 @@
 
         desktopBundle
         gamingBundle
+
+        tailscale
       ];
 
       loginScreen = {
