@@ -22,6 +22,7 @@
         networking = {
           hostName = cfg.hostName;
           networkmanager.enable = true;
+          nftables.enable = true;
         };
 
         users.users = lib.genAttrs cfg.users (user: {

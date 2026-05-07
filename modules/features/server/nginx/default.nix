@@ -21,9 +21,9 @@
       };
 
       config = {
-        networking.firewall.allowedTCPPorts = [
-          80
-          443
+        networking.firewall.allowedTCPPorts = with config.services.nginx; [
+          defaultHTTPListenPort
+          defaultSSLListenPort
         ];
 
         services.nginx = {
