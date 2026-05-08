@@ -9,6 +9,16 @@
         items = items;
       };
 
+      widget = name: type: options: {
+        name = name;
+        widgets = [
+          {
+            type = type;
+            options = options;
+          }
+        ];
+      };
+
       item = title: icon: url: {
         title = title;
         icon = icon;
@@ -55,6 +65,7 @@
           (section "Hosting" [
             (item "Gateway" "fas fa-wifi" "https://10.0.0.1/")
             (item "Cloudflare" (dash-icon "cloudflare") "https://dash.cloudflare.com/")
+            (item "Tailscale" (dash-icon "tailscale") "https://login.tailscale.com/admin")
           ])
 
           (section "External" [
