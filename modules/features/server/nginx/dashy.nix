@@ -4,19 +4,15 @@
   flake.nixosModules.nginxDashy =
     { config, pkgs, ... }:
     let
-      section = name: items: {
+      section = name: displayData: type: items: {
         name = name;
-        items = items;
+        displayData = displayData;
+        ${type} = items;
       };
 
-      widget = name: type: options: {
-        name = name;
-        widgets = [
-          {
-            type = type;
-            options = options;
-          }
-        ];
+      widget = type: options: {
+        type = type;
+        options = options;
       };
 
       item = title: icon: url: {
@@ -37,9 +33,11 @@
       settings = {
         appConfig = {
           theme = "dashy-docs";
+
           preventWriteToDisk = true;
           preventLocalSave = true;
-          disableConfiguration = false;
+          disableConfiguration = true;
+
           hideComponents = {
             hideSearch = true;
             hideSettings = true;
@@ -56,25 +54,37 @@
         };
 
         sections = [
-          (section "Services" [
-            (item "Nextcloud" (dash-icon "nextcloud") "https://cloud.smegmail.org/")
+          (section "Services" { } "items" [
+            (item "Nextcloud" (dash-icon "nextcloud") "https://cloud.${config.nginx.domain}/")
             (item "slskd" (dash-icon "slskd") "/slskd/")
             (item "Mail" (dash-icon "gmail") "https://mail.google.com/mail/u/2/")
           ])
 
-          (section "Hosting" [
+          (section "Hosting" { } "items" [
             (item "Gateway" "fas fa-wifi" "https://10.0.0.1/")
             (item "Cloudflare" (dash-icon "cloudflare") "https://dash.cloudflare.com/")
             (item "Tailscale" (dash-icon "tailscale") "https://login.tailscale.com/admin")
           ])
 
-          (section "External" [
+          (section "External" { } "items" [
             (item "Github" "fab fa-github" "https://github.com/P34R1/")
           ])
 
-          (widget "Disk Info" "gl-disk-space" {
-            hostname = "https://${config.services.dashy.virtualHost.domain}/glances";
-          })
+          (section "Glances" { } "widgets" [
+            (widget "gl-mem-history" {
+              hostname = "https://${config.services.dashy.virtualHost.domain}/glances";
+            })
+            (widget "gl-disk-space" {
+              hostname = "https://${config.services.dashy.virtualHost.domain}/glances";
+            })
+          ])
+
+          (section "Weather Forecast" { cols = 2; } "widgets" [
+            (widget "iframe" {
+              url = "https://wttr.in/?qF";
+              frameHeight = 604;
+            })
+          ])
         ];
       };
     in
@@ -85,6 +95,7 @@
         "/glances/".proxyPass = "http://127.0.0.1:${toString config.services.glances.port}";
       };
 
+      services.glances.enable = true;
       services.dashy = {
         enable = true;
         virtualHost = {
@@ -95,20 +106,13 @@
         settings = settings;
       };
 
-      environment.etc."glances.conf".text = ''
+      environment.etc."glances/glances.conf".text = ''
         [outputs]
-        cors_origins = https://www.${config.nginx.domain}
-        url_prefix = /glances/
-      '';
+        cors_origins=https://www.${config.nginx.domain}
+        url_prefix=/glances/
 
-      services.glances = {
-        enable = true;
-        extraArgs = [
-          "--webserver"
-          "--disable-webui"
-          "--config"
-          "/etc/glances.conf"
-        ];
-      };
+        [fs]
+        hide=/boot.*,/var.*,/tmp,/nix/store
+      '';
     };
 }
