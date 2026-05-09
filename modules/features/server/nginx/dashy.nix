@@ -71,13 +71,19 @@
           (section "External" [
             (item "Github" "fab fa-github" "https://github.com/P34R1/")
           ])
+
+          (widget "Disk Info" "gl-disk-space" {
+            hostname = "https://${config.services.dashy.virtualHost.domain}/glances";
+          })
         ];
       };
     in
     {
-      # uncomment to avoid recompilation
-      # services.nginx.virtualHosts.${config.services.dashy.virtualHost.domain}.locations."= /conf.yml".alias =
-      #   pkgs.writers.writeYAML "dashy-conf.yml" settings;
+      services.nginx.virtualHosts.${config.services.dashy.virtualHost.domain}.locations = {
+        # uncomment to avoid recompilation
+        # "= /conf.yml".alias = pkgs.writers.writeYAML "dashy-conf.yml" settings;
+        "/glances/".proxyPass = "http://127.0.0.1:${toString config.services.glances.port}";
+      };
 
       services.dashy = {
         enable = true;
@@ -87,6 +93,22 @@
         };
 
         settings = settings;
+      };
+
+      environment.etc."glances.conf".text = ''
+        [outputs]
+        cors_origins = https://www.${config.nginx.domain}
+        url_prefix = /glances/
+      '';
+
+      services.glances = {
+        enable = true;
+        extraArgs = [
+          "--webserver"
+          "--disable-webui"
+          "--config"
+          "/etc/glances.conf"
+        ];
       };
     };
 }
