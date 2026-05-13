@@ -10,6 +10,7 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    agenix.url = "github:ryantm/agenix";
 
     nvim = {
       url = "github:P34R1/nvim";
