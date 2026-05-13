@@ -26,6 +26,7 @@
         nginx
         openssh
         tailscale
+        ddns
         agenix
       ];
 
