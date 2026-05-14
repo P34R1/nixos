@@ -124,7 +124,7 @@
               abbr -a -- tre ls --git-ignore -aT
 
               alias ls eza
-              alias r trashy
+              alias r trash
             '';
 
             interactiveShellInit = ''
