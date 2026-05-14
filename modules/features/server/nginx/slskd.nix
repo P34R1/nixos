@@ -13,6 +13,8 @@
       };
 
       config = {
+        age.secrets.slskd.file = ./slskd.age;
+
         systemd.services.slskd.serviceConfig = {
           ProtectHome = lib.mkForce "tmpfs";
           BindPaths = [ music ];
@@ -23,7 +25,7 @@
           user = cfg.user;
 
           domain = "www.${config.nginx.domain}";
-          environmentFile = "${music}/credentials.env";
+          environmentFile = config.age.secrets.slskd.path;
           settings = {
             web.url_base = "/slskd";
             shares.directories = [ "${music}/library/" ];

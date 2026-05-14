@@ -5,4 +5,8 @@ in
   "modules/features/server/cloudflare.age".publicKeys = [
     server
   ];
+
+  "modules/features/server/nginx/slskd.age".publicKeys = [
+    server
+  ];
 }
