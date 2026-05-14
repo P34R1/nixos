@@ -31,7 +31,7 @@
           with pkgs;
           with lib;
           [
-            (writeShellScriptBin "gitignore" "${getExe curl} -sL https://www.gitignore.io/api/$argv")
+            (writeShellScriptBin "gitignore" "${getExe curl} -sL https://www.gitignore.io/api/$@")
             (self.packages.${pkgs.stdenv.hostPlatform.system}.jujutsuInitial.wrap {
               settings = {
                 user.name = cfg.userName;
