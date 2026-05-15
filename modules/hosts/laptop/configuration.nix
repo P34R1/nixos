@@ -82,7 +82,7 @@
         "com.obsproject.Studio"
       ];
 
-      services.udev.packages = [ pkgs.platformio-core.udev ];
+      services.udev.packages = [ pkgs.platformio-core.udev pkgs.game-devices-udev-rules ];
 
       # Bootloader.
       boot.loader = {
