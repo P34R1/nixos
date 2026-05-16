@@ -51,6 +51,7 @@
 
       mpd.user = "pearl";
       audio.users = [ "pearl" ];
+      video.users = [ "pearl" ];
       network = {
         hostName = "pearl-desktop";
         users = [ "pearl" ];
