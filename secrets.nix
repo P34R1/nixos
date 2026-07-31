@@ -9,4 +9,8 @@ in
   "modules/features/server/nginx/slskd.age".publicKeys = [
     server
   ];
+
+  "modules/hosts/server/airvpn.conf.age".publicKeys = [
+    server
+  ];
 }

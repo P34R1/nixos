@@ -25,7 +25,7 @@
 
         nginx
         openssh
-        tailscale
+        # tailscale
         ddns
         agenix
       ];
@@ -41,9 +41,9 @@
         users = [ "pearl" ];
       };
 
-      slskd.user = "pearl";
+      slskd.musicOwner = "pearl";
       openssh.user = "pearl";
-      tailscale.server = true;
+      # tailscale.server = true;
       nix.flakePath = "/home/pearl/nixos/";
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -66,6 +66,16 @@
         systemd-boot = {
           enable = true;
           configurationLimit = 10;
+        };
+      };
+
+      age.secrets.airvpn.file = ./airvpn.conf.age;
+      networking = {
+        wg-quick.interfaces.airvpn.configFile = config.age.secrets.airvpn.path;
+
+        firewall = {
+          checkReversePath = "loose";
+          allowedTCPPorts = [ 55333 ];
         };
       };
 

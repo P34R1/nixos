@@ -5,33 +5,48 @@
     { config, lib, ... }:
     let
       cfg = config.slskd;
-      music = "/home/${cfg.user}/Music";
+      musicPath = "/home/${cfg.musicOwner}/Music";
+
+      group = "music";
     in
     {
       options.slskd = with lib; {
-        user = mkOption { type = types.str; };
+        musicOwner = mkOption { type = types.str; };
       };
 
       config = {
         age.secrets.slskd.file = ./slskd.age;
 
+        users = {
+          groups.${group}.gid = 55333;
+          users = {
+            ${cfg.musicOwner}.extraGroups = [ group ];
+            slskd = {
+              extraGroups = [ group ];
+              isSystemUser = true;
+            };
+          };
+        };
+
         systemd.services.slskd.serviceConfig = {
+          UMask = "0002"; # makes music group have write
           ProtectHome = lib.mkForce "tmpfs";
-          BindPaths = [ music ];
+          BindPaths = [ musicPath ];
         };
 
         services.slskd = {
           enable = true;
-          user = cfg.user;
+          group = group;
 
           domain = "www.${config.nginx.domain}";
           environmentFile = config.age.secrets.slskd.path;
           settings = {
             web.url_base = "/slskd";
-            shares.directories = [ "${music}/library/" ];
+            soulseek.listen_port = 55333;
+            shares.directories = [ "${musicPath}/library/" ];
             directories = {
-              downloads = "${music}/downloads/";
-              incomplete = "${music}/incomplete/";
+              downloads = "${musicPath}/downloads/";
+              incomplete = "${musicPath}/incomplete/";
             };
           };
         };
