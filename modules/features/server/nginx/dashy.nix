@@ -63,7 +63,8 @@
           (section "Hosting" { } "items" [
             (item "Gateway" "fas fa-wifi" "https://10.0.0.1/")
             (item "Cloudflare" (dash-icon "cloudflare") "https://dash.cloudflare.com/")
-            (item "Tailscale" (dash-icon "tailscale") "https://login.tailscale.com/admin")
+            (item "Tailscale" (dash-icon "tailscale") "https://login.tailscale.com/admin/")
+            (item "AirVPN" (dash-icon "airvpn") "https://airvpn.org/client/")
           ])
 
           (section "External" { } "items" [
