@@ -21,6 +21,7 @@
           justfile = builtins.replaceStrings [ "\n" ] [ "\\n" ] justfileRaw;
         in
         [
+          moreutils
           just
           entr
           bat
