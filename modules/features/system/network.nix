@@ -19,6 +19,8 @@
       };
 
       config = {
+        environment.systemPackages = [ pkgs.miniupnpc ];
+
         networking = {
           hostName = cfg.hostName;
           networkmanager.enable = true;

@@ -74,6 +74,7 @@
         wg-quick.interfaces.airvpn.configFile = config.age.secrets.airvpn.path;
 
         firewall = {
+          trustedInterfaces = [ "enp4s0" ];
           checkReversePath = "loose";
           allowedTCPPorts = [ 55333 ];
         };
