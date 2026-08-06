@@ -8,7 +8,7 @@
 
       services.cloudflare-ddns = {
         enable = true;
-        ip6Domains = [ config.nginx.domain ];
+        domains = [ "dc.${config.nginx.domain}" ];
         credentialsFile = config.age.secrets.cloudflare-cred.path;
       };
     };

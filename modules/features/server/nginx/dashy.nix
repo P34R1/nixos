@@ -61,7 +61,7 @@
           ])
 
           (section "Hosting" { } "items" [
-            (item "Gateway" "fas fa-wifi" "https://10.0.0.1/")
+            (item "Gateway" "fas fa-wifi" "http://10.0.0.1/")
             (item "Cloudflare" (dash-icon "cloudflare") "https://dash.cloudflare.com/")
             (item "Tailscale" (dash-icon "tailscale") "https://login.tailscale.com/admin/")
             (item "AirVPN" (dash-icon "airvpn") "https://airvpn.org/client/")
@@ -72,12 +72,8 @@
           ])
 
           (section "Glances" { } "widgets" [
-            (widget "gl-mem-history" {
-              hostname = "https://${config.services.dashy.virtualHost.domain}/glances";
-            })
-            (widget "gl-disk-space" {
-              hostname = "https://${config.services.dashy.virtualHost.domain}/glances";
-            })
+            (widget "gl-mem-history" { hostname = "/glances"; })
+            (widget "gl-disk-space" { hostname = "/glances"; })
           ])
 
           (section "Weather Forecast" { cols = 2; } "widgets" [
@@ -101,7 +97,7 @@
         enable = true;
         virtualHost = {
           enableNginx = true;
-          domain = "www.${config.nginx.domain}";
+          domain = config.nginx.domain;
         };
 
         settings = settings;
@@ -109,7 +105,7 @@
 
       environment.etc."glances/glances.conf".text = ''
         [outputs]
-        cors_origins=https://www.${config.nginx.domain}
+        cors_origins=https://${config.nginx.domain}
         url_prefix=/glances/
 
         [fs]

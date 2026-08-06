@@ -41,14 +41,7 @@
           ];
 
           virtualHosts."${config.nginx.domain}" = {
-            default = true;
-            forceSSL = true;
-            useACMEHost = config.nginx.domain;
-
-            locations."/".return = "301 https://www.${config.nginx.domain}$request_uri";
-          };
-
-          virtualHosts."www.${config.nginx.domain}" = {
+            default = lib.mkForce true;
             forceSSL = lib.mkForce true;
             useACMEHost = lib.mkForce config.nginx.domain;
             basicAuthFile =
@@ -58,6 +51,11 @@
           };
 
           virtualHosts."cloud.${config.nginx.domain}" = {
+            forceSSL = lib.mkForce true;
+            useACMEHost = lib.mkForce config.nginx.domain;
+          };
+
+          virtualHosts."dc.${config.nginx.domain}" = {
             forceSSL = lib.mkForce true;
             useACMEHost = lib.mkForce config.nginx.domain;
           };

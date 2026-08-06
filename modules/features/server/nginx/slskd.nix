@@ -38,7 +38,7 @@
           enable = true;
           group = group;
 
-          domain = "www.${config.nginx.domain}";
+          domain = config.nginx.domain;
           environmentFile = config.age.secrets.slskd.path;
           settings = {
             web.url_base = "/slskd";
