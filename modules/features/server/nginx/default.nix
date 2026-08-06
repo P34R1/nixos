@@ -54,11 +54,6 @@
             forceSSL = lib.mkForce true;
             useACMEHost = lib.mkForce config.nginx.domain;
           };
-
-          virtualHosts."dc.${config.nginx.domain}" = {
-            forceSSL = lib.mkForce true;
-            useACMEHost = lib.mkForce config.nginx.domain;
-          };
         };
 
         security.acme = {
@@ -68,6 +63,11 @@
             webroot = "/var/lib/acme/acme-challenge";
             group = "nginx";
           };
+
+          certs.${config.nginx.domain}.extraDomainNames = [
+            "cloud.${config.nginx.domain}"
+            "dc.${config.nginx.domain}"
+          ];
         };
       };
     };
