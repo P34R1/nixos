@@ -4,15 +4,13 @@
   flake.nixosModules.nginxSlskd =
     { config, lib, ... }:
     let
-      cfg = config.slskd;
-      musicPath = "/home/${cfg.musicOwner}/Music";
-
+      slskd = config.services.slskd.settings;
+      musicOwner = config.slskd.musicOwner;
+      musicPath = "/home/${musicOwner}/Music";
       group = "music";
     in
     {
-      options.slskd = with lib; {
-        musicOwner = mkOption { type = types.str; };
-      };
+      options.slskd.musicOwner = with lib; mkOption { type = types.str; };
 
       config = {
         age.secrets.slskd.file = ./slskd.age;
@@ -20,7 +18,7 @@
         users = {
           groups.${group}.gid = 55333;
           users = {
-            ${cfg.musicOwner}.extraGroups = [ group ];
+            ${musicOwner}.extraGroups = [ group ];
             slskd = {
               extraGroups = [ group ];
               isSystemUser = true;
@@ -34,11 +32,15 @@
           BindPaths = [ musicPath ];
         };
 
+        services.nginx.virtualHosts.${config.nginx.domain}.locations.${slskd.web.url_base} = {
+          proxyPass = "http://127.0.0.1:${toString slskd.web.port}";
+          proxyWebsockets = true;
+        };
+
         services.slskd = {
           enable = true;
           group = group;
 
-          domain = config.nginx.domain;
           environmentFile = config.age.secrets.slskd.path;
           settings = {
             web.url_base = "/slskd";

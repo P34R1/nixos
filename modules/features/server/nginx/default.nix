@@ -26,35 +26,37 @@
           defaultSSLListenPort
         ];
 
-        services.nginx = {
-          enable = true;
-          enableReload = true;
+        services.nginx =
+          let
+            sslCommon = {
+              forceSSL = true;
+              useACMEHost = config.nginx.domain;
+            };
+          in
+          {
+            enable = true;
+            enableReload = true;
 
-          recommendedGzipSettings = true;
-          recommendedOptimisation = true;
-          recommendedProxySettings = true;
-          recommendedTlsSettings = true;
+            recommendedGzipSettings = true;
+            recommendedOptimisation = true;
+            recommendedProxySettings = true;
+            recommendedTlsSettings = true;
 
-          defaultListenAddresses = [
-            "0.0.0.0"
-            "[::0]"
-          ];
+            defaultListenAddresses = [
+              "0.0.0.0"
+              "[::0]"
+            ];
 
-          virtualHosts."${config.nginx.domain}" = {
-            default = lib.mkForce true;
-            forceSSL = lib.mkForce true;
-            useACMEHost = lib.mkForce config.nginx.domain;
-            basicAuthFile =
-              "pearl:$2y$05$9JCX99LgyUgC6yHI8NTdeuPUVeIlBsBn8IUFoSJbkrSFXRkjMn2U2"
-              |> pkgs.writeText ".htpasswd"
-              |> lib.mkForce;
+            virtualHosts."${config.nginx.domain}" = sslCommon // {
+              default = true;
+              basicAuthFile = pkgs.writeText ".htpasswd" "pearl:$2y$05$9JCX99LgyUgC6yHI8NTdeuPUVeIlBsBn8IUFoSJbkrSFXRkjMn2U2";
+            };
+
+            virtualHosts."cloud.${config.nginx.domain}" = sslCommon;
+            virtualHosts."10.0.0.1" = sslCommon // {
+              locations."/".extraConfig = "if ($scheme = https) { return 301 http://$host$request_uri; }";
+            };
           };
-
-          virtualHosts."cloud.${config.nginx.domain}" = {
-            forceSSL = lib.mkForce true;
-            useACMEHost = lib.mkForce config.nginx.domain;
-          };
-        };
 
         security.acme = {
           acceptTerms = true;
