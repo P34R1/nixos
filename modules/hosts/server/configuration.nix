@@ -39,6 +39,7 @@
       network = {
         hostName = "pearl-server";
         users = [ "pearl" ];
+        enableUpnp = true;
       };
 
       slskd.musicOwner = "pearl";
@@ -76,7 +77,6 @@
         firewall = {
           trustedInterfaces = [ "enp4s0" ];
           checkReversePath = "loose";
-          allowedTCPPorts = [ 55333 ];
         };
       };
 

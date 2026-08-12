@@ -45,6 +45,7 @@
           settings = {
             web.url_base = "/slskd";
             soulseek.listen_port = 55333;
+            downloads.rename = false;
             shares.directories = [ "${musicPath}/library/" ];
             directories = {
               downloads = "${musicPath}/downloads/";
