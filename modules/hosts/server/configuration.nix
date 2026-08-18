@@ -25,7 +25,6 @@
 
         nginx
         openssh
-        # tailscale
         ddns
         agenix
       ];
@@ -44,7 +43,6 @@
 
       slskd.musicOwner = "pearl";
       openssh.user = "pearl";
-      # tailscale.server = true;
       nix.flakePath = "/home/pearl/nixos/";
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
