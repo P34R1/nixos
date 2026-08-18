@@ -57,7 +57,7 @@
           (section "Services" { } "items" [
             (item "Nextcloud" (dash-icon "nextcloud") "https://cloud.${config.nginx.domain}/")
             (item "slskd" (dash-icon "slskd") "/slskd/")
-            (item "Mail" (dash-icon "gmail") "https://mail.google.com/mail/u/2/")
+            (item "Mail" (dash-icon "gmail") "https://mail.google.com/mail/u/1/")
           ])
 
           (section "Hosting" { } "items" [
