@@ -10,6 +10,8 @@
       group = "music";
     in
     {
+      imports = [ self.nixosModules.beets ];
+
       options.slskd.musicOwner = with lib; mkOption { type = types.str; };
 
       config = {
