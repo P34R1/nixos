@@ -44,7 +44,7 @@
           };
         };
 
-        extraPackages = with pkgs; [
+        runtimePkgs = with pkgs; [
           glow
           vorbis-tools
           gnugrep

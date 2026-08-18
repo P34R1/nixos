@@ -18,17 +18,7 @@
         {
           inherit pkgs;
 
-          # TODO: wait for v0.1.8 https://github.com/hyprwm/hypridle
-          # https://github.com/hyprwm/hypridle/commit/4de8bc0f7eb83e0039e057f991672fd91356bb56
-          package = pkgs.hypridle.overrideAttrs (old: {
-            src = pkgs.fetchFromGitHub {
-              owner = "hyprwm";
-              repo = "hypridle";
-              rev = "main";
-              hash = "sha256-iI1orcQNEQAwAyRHHRogC68E3nls710wwbaD1X6RRKI=";
-            };
-          });
-
+          package = pkgs.hypridle;
           constructFiles.config = {
             relPath = "hypridle.conf";
             content = self.lib.generators.toHyprconf {
