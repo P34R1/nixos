@@ -26,6 +26,7 @@
         nginx
         openssh
         ddns
+        auto-upnp
         agenix
       ];
 
@@ -38,7 +39,6 @@
       network = {
         hostName = "pearl-server";
         users = [ "pearl" ];
-        enableUpnp = true;
       };
 
       slskd.musicOwner = "pearl";
