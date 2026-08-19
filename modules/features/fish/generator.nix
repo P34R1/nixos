@@ -52,6 +52,11 @@
           '';
         };
 
+        constructFiles.completions = {
+          relPath = "completions/";
+          builder = "cp -r ${./completions} \"$2\"";
+        };
+
         # drv.installPhase = ''
         #   runHook preInstall
         #   XDG_RUNTIME_DIR=/tmp ${lib.getExe config.package} --verify-config --config ${conf}

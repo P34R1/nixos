@@ -133,8 +133,9 @@
               direnv hook fish | source
               zoxide init fish | source
 
-              set --global fish_color_command blue
-              set --global fish_color_quote yellow
+              set -g fish_color_command blue
+              set -g fish_color_quote yellow
+              set -g fish_complete_path ${config.constructFiles.completions.path} $fish_complete_path
             '';
           };
         }
