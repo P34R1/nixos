@@ -14,11 +14,15 @@
     in
     {
       options.network = with lib; {
+        enable = mkOption {
+          type = types.bool;
+          default = true;
+        };
         hostName = mkOption { type = types.str; };
         users = mkOption { type = types.listOf types.str; };
       };
 
-      config = {
+      config = lib.mkIf (cfg.enable) {
         environment.systemPackages = [ pkgs.miniupnpc ];
         networking = {
           hostName = cfg.hostName;
