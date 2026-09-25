@@ -12,6 +12,7 @@
       imports = with self.nixosModules; [
         nginxDashy
         nginxSlskd
+        nginxNavidrome
         nginxNextcloud
       ];
 
