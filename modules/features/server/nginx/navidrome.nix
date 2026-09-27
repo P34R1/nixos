@@ -9,28 +9,21 @@
       ...
     }:
     let
-      musicOwner = config.slskd.musicOwner;
-      musicPath = "/home/${musicOwner}/Music";
-      group = "music";
-
-      navidrome = config.services.navidrome.settings;
+      musicPath = "/mnt/Music";
     in
     {
       imports = [ self.nixosModules.nginxSlskd ];
-      services.nginx.virtualHosts.${config.nginx.domain}.locations.${navidrome.BaseUrl} = {
-        proxyPass = "http://127.0.0.1:${toString navidrome.Port}";
+      services.nginx.virtualHosts."music.${config.nginx.domain}".locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString config.services.navidrome.settings.Port}";
         proxyWebsockets = true;
       };
 
-      systemd.services.navidrome.serviceConfig = {
-        ProtectHome = lib.mkForce "tmpfs";
-        BindPaths = [ musicPath ];
-      };
-
+      systemd.services.navidrome.serviceConfig.BindReadOnlyPaths = [ "/home/pearl/Music:${musicPath}" ];
       services.navidrome = {
         enable = true;
-        group = group;
-        settings.BaseUrl = "/music";
+        group = "music";
+
+        settings.PlaylistsPath = "${musicPath}/playlists";
       };
     };
 }

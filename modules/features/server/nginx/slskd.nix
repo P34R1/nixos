@@ -5,33 +5,22 @@
     { config, lib, ... }:
     let
       slskd = config.services.slskd.settings;
-      musicOwner = config.slskd.musicOwner;
-      musicPath = "/home/${musicOwner}/Music";
+      musicPath = "/mnt/Music";
       group = "music";
     in
     {
       imports = [ self.nixosModules.beets ];
-
-      options.slskd.musicOwner = with lib; mkOption { type = types.str; };
 
       config = {
         age.secrets.slskd.file = ./slskd.age;
 
         users = {
           groups.${group}.gid = 55333;
-          users = {
-            ${musicOwner}.extraGroups = [ group ];
-            slskd = {
-              extraGroups = [ group ];
-              isSystemUser = true;
-            };
+          users.pearl.extraGroups = [ group ];
+          users.slskd = {
+            extraGroups = [ group ];
+            isSystemUser = true;
           };
-        };
-
-        systemd.services.slskd.serviceConfig = {
-          UMask = "0002"; # makes music group have write
-          ProtectHome = lib.mkForce "tmpfs";
-          BindPaths = [ musicPath ];
         };
 
         services.nginx.virtualHosts.${config.nginx.domain}.locations.${slskd.web.url_base} = {
@@ -39,6 +28,7 @@
           proxyWebsockets = true;
         };
 
+        systemd.services.slskd.serviceConfig.BindPaths = [ "/home/pearl/Music:${musicPath}" ];
         services.slskd = {
           enable = true;
           group = group;

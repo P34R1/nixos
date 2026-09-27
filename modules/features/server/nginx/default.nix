@@ -54,6 +54,7 @@
             };
 
             virtualHosts."cloud.${config.nginx.domain}" = sslCommon;
+            virtualHosts."music.${config.nginx.domain}" = sslCommon;
             virtualHosts."10.0.0.1" = sslCommon // {
               locations."/".extraConfig = "if ($scheme = https) { return 301 http://$host$request_uri; }";
             };

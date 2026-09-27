@@ -41,7 +41,6 @@
         users = [ "pearl" ];
       };
 
-      slskd.musicOwner = "pearl";
       openssh.user = "pearl";
       nix.flakePath = "/home/pearl/nixos/";
 
