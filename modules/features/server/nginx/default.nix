@@ -33,6 +33,11 @@
               forceSSL = true;
               useACMEHost = config.nginx.domain;
             };
+
+            redirect = new: { locations."/".return = "301 ${new}"; };
+            auth = {
+              basicAuthFile = pkgs.writeText ".htpasswd" "pearl:$2y$05$9JCX99LgyUgC6yHI8NTdeuPUVeIlBsBn8IUFoSJbkrSFXRkjMn2U2";
+            };
           in
           {
             enable = true;
@@ -48,15 +53,15 @@
               "[::0]"
             ];
 
-            virtualHosts."${config.nginx.domain}" = sslCommon // {
-              default = true;
-              basicAuthFile = pkgs.writeText ".htpasswd" "pearl:$2y$05$9JCX99LgyUgC6yHI8NTdeuPUVeIlBsBn8IUFoSJbkrSFXRkjMn2U2";
-            };
+            virtualHosts = {
+              "_" = redirect "https://${config.nginx.domain}$request_uri" // {
+                default = true;
+              };
 
-            virtualHosts."cloud.${config.nginx.domain}" = sslCommon;
-            virtualHosts."music.${config.nginx.domain}" = sslCommon;
-            virtualHosts."10.0.0.1" = sslCommon // {
-              locations."/".extraConfig = "if ($scheme = https) { return 301 http://$host$request_uri; }";
+              "${config.nginx.domain}" = sslCommon // auth;
+              "cloud.${config.nginx.domain}" = sslCommon;
+              "music.${config.nginx.domain}" = sslCommon;
+              "10.0.0.1" = sslCommon // redirect "http://$host$request_uri";
             };
           };
 
@@ -70,6 +75,7 @@
 
           certs.${config.nginx.domain}.extraDomainNames = [
             "cloud.${config.nginx.domain}"
+            "music.${config.nginx.domain}"
             "dc.${config.nginx.domain}"
           ];
         };
